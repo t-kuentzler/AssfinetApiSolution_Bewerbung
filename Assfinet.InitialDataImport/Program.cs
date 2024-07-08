@@ -1,9 +1,18 @@
-﻿namespace Assfinet.InitialDataImport;
+﻿using Assfinet.Shared.Logging;
+using Serilog;
+
+namespace Assfinet.InitialDataImport;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        InitializeLogger();
+        Log.Information("Initialer Datenimport wurde gestartet.");
+    }
+    
+    private static void InitializeLogger()
+    {
+        LoggerConfigurator.ConfigureLogger("InitialDataImport");
     }
 }

@@ -1,9 +1,18 @@
-﻿namespace Assfinet.DailyUpdate;
+﻿using Assfinet.Shared.Logging;
+using Serilog;
+
+namespace Assfinet.DailyUpdate;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        InitializeLogger();
+        Log.Information("Täglicher Datenimport gestartet.");
+    }
+    
+    private static void InitializeLogger()
+    {
+        LoggerConfigurator.ConfigureLogger("DailyUpdate");
     }
 }

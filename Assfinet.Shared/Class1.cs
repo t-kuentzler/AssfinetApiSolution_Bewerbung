@@ -1,0 +1,5 @@
+﻿namespace Assfinet.Shared;
+
+public class Class1
+{
+}

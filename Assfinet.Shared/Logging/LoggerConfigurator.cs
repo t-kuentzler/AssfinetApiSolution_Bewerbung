@@ -5,9 +5,9 @@ namespace Assfinet.Shared.Logging
 {
     public static class LoggerConfigurator
     {
-        public static void ConfigureLogger(string applicationName)
+        public static void ConfigureLogger()
         {
-            var logFilePath = Path.Combine("logs", $"{applicationName}-log.txt");
+            var logFilePath = Path.Combine("logs", "log.txt");
 
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()

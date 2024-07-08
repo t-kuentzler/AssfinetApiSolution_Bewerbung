@@ -13,6 +13,6 @@ class Program
     
     private static void InitializeLogger()
     {
-        LoggerConfigurator.ConfigureLogger("DailyUpdate");
+        LoggerConfigurator.ConfigureLogger();
     }
 }

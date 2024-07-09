@@ -1,31 +1,50 @@
-namespace Assfinet.InitialImporter.Api;
+using Assfinet.Shared.Contracts;
+using Assfinet.Shared.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Serilog;
 
-public class Program
+namespace Assfinet.InitialImporter.Api
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-        builder.Services.AddAuthorization();
-
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
+        public static void Main(string[] args)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
+            var builder = WebApplication.CreateBuilder(args);
+            
+            // Add services to the container.
+            builder.Services.AddAuthorization();
+
+            // Swagger/OpenAPI konfigurieren
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            // Fügen Sie die Shared Services hinzu
+            builder.Services.AddSharedServices();
+            builder.Services.AddSerilogLogging();
+            
+            // Fügen Sie die Controller-Dienste hinzu
+            builder.Services.AddControllers();
+
+            var app = builder.Build();
+
+            var logger = app.Services.GetRequiredService<IAppLogger>();
+            logger.LogInformation("API-Anwendung gestartet.");
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseAuthorization();
+
+            app.MapControllers();
+
+            app.Run();
         }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.Run();
     }
 }

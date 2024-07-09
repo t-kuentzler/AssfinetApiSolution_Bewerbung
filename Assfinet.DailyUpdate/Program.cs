@@ -1,4 +1,4 @@
-﻿using Assfinet.Shared.Logging;
+﻿using Assfinet.Shared.Logger;
 using Serilog;
 
 namespace Assfinet.DailyUpdate;

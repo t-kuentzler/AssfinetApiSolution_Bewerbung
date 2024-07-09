@@ -1,7 +1,6 @@
 using Serilog;
-using System.IO;
 
-namespace Assfinet.Shared.Logging
+namespace Assfinet.Shared.Logger
 {
     public static class LoggerConfigurator
     {

@@ -1,0 +1,16 @@
+2024-07-09 14:12:40.339 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:15:24.152 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:16:04.572 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:19:08.463 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:19:17.838 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:20:02.237 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:20:30.904 +02:00 [INF] API-Anwendung gestartet.
+2024-07-09 14:20:30.992 +02:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2024-07-09 14:20:31.164 +02:00 [INF] Now listening on: http://localhost:5081
+2024-07-09 14:20:31.166 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-09 14:20:31.166 +02:00 [INF] Hosting environment: Development
+2024-07-09 14:20:31.166 +02:00 [INF] Content root path: /Users/tobiaskuntzler/Projects/Hansmann/AssfinetApiSolutionRepo_TEST/Assfinet.InitialImporter.Api
+2024-07-09 14:20:31.322 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5081/swagger/index.html - null null
+2024-07-09 14:20:31.363 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5081/swagger/index.html - 200 null text/html;charset=utf-8 43.9265ms
+2024-07-09 14:20:31.449 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5081/swagger/v1/swagger.json - null null
+2024-07-09 14:20:31.459 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5081/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 9.3472ms

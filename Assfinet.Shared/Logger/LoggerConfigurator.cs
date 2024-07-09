@@ -9,7 +9,7 @@ namespace Assfinet.Shared.Logger
             var logFilePath = Path.Combine("logs", "log.txt");
 
             Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
+                .MinimumLevel.Information()
                 .WriteTo.Console() 
                 .WriteTo.File(logFilePath, rollingInterval: RollingInterval.Day)  
                 .CreateLogger();

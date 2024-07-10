@@ -11,19 +11,20 @@ namespace Assfinet.InitialImporter.Api
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            
+
             // Add services to the container.
             builder.Services.AddAuthorization();
 
-            // Swagger/OpenAPI konfigurieren
+            // Configure Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            // Fügen Sie die Shared Services hinzu
-            builder.Services.AddSharedServices();
+            // Add Shared Services and configurations
+            builder.Services.AddSharedServices(builder.Configuration);
             builder.Services.AddSerilogLogging();
-            
-            // Fügen Sie die Controller-Dienste hinzu
+            builder.Services.AddApiSettings(builder.Configuration);
+
+            // Add Controllers services
             builder.Services.AddControllers();
 
             var app = builder.Build();
@@ -39,11 +40,8 @@ namespace Assfinet.InitialImporter.Api
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
             app.MapControllers();
-
             app.Run();
         }
     }

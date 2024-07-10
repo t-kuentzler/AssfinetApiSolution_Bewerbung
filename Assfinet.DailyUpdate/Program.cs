@@ -20,7 +20,7 @@ namespace Assfinet.DailyUpdate
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSharedServices();
+                    services.AddSharedServices(hostContext.Configuration);
                     services.AddSerilogLogging();
                 })
                 .UseSerilog();

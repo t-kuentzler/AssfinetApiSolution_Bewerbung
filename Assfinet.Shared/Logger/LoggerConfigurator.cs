@@ -6,12 +6,13 @@ namespace Assfinet.Shared.Logger
     {
         public static void ConfigureLogger()
         {
-            var logFilePath = Path.Combine("logs", "log.txt");
-
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()
-                .WriteTo.Console() 
-                .WriteTo.File(logFilePath, rollingInterval: RollingInterval.Day)  
+                .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Error)
+                .MinimumLevel.Override("System", Serilog.Events.LogEventLevel.Error)
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }
     }

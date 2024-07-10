@@ -20,6 +20,11 @@
 
     <ItemGroup>
       <Folder Include="Controllers\" />
+      <Folder Include="logs\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="logs\log20240710.txt" />
     </ItemGroup>
 
 </Project>

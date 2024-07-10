@@ -25,8 +25,11 @@ namespace Assfinet.InitialImporter.Api
             builder.Services.AddApiSettings(builder.Configuration);
 
             // Add Controllers services
-            builder.Services.AddControllers();
-
+            builder.Services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
             var app = builder.Build();
 
             var logger = app.Services.GetRequiredService<IAppLogger>();

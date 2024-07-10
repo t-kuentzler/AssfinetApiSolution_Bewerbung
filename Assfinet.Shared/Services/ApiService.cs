@@ -1,5 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Models;
 using Microsoft.Extensions.Configuration;
@@ -36,7 +40,7 @@ namespace Assfinet.Shared.Services
                 (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, baseUriAuth, userName, passwort, clientId, clientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
                 _logger.LogInformation("Bearer Token abgerufen.");
 
-                string apiPath = "v1/Ams/Kunde?take=10";
+                string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=10&accessMode=Admin";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,

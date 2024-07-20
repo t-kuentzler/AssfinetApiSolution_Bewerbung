@@ -35,7 +35,24 @@ namespace Assfinet.Shared.DependencyInjection
 
         public static IServiceCollection AddApiSettings(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<AssfinetApiSettings>(configuration.GetSection("AssfinetApiSettings"));
+            var assfinetApiSettings = new AssfinetApiSettings();
+            configuration.GetSection("ApiSettings").Bind(assfinetApiSettings);
+
+            // Override with environment variables if available
+            assfinetApiSettings.Password = Environment.GetEnvironmentVariable("HANSMANN_ASSFINET_USER_PASSWORD") ?? assfinetApiSettings.Password;
+            assfinetApiSettings.ClientSecret = Environment.GetEnvironmentVariable("HANSMANN_ASSFINET_CLIENTSECRET") ?? assfinetApiSettings.ClientSecret;
+
+            services.Configure<AssfinetApiSettings>(options =>
+            {
+                options.License = assfinetApiSettings.License;
+                options.BaseUriApi = assfinetApiSettings.BaseUriApi;
+                options.BaseUriAuth = assfinetApiSettings.BaseUriAuth;
+                options.UserName = assfinetApiSettings.UserName;
+                options.Password = assfinetApiSettings.Password;
+                options.ClientId = assfinetApiSettings.ClientId;
+                options.ClientSecret = assfinetApiSettings.ClientSecret;
+            });
+
             return services;
         }
     }

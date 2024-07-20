@@ -15,6 +15,10 @@ namespace Assfinet.InitialImporter.Api
             // Add services to the container.
             builder.Services.AddAuthorization();
 
+            builder.Configuration
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+            
             // Configure Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

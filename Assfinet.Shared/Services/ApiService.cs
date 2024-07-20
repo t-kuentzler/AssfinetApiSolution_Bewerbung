@@ -2,7 +2,8 @@ using System.Net;
 using System.Net.Http.Headers;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Models;
-using Microsoft.Extensions.Configuration;
+using Assfinet.Shared.Configurations;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -11,16 +12,16 @@ namespace Assfinet.Shared.Services
     public class ApiService : IApiService
     {
         private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;
+        private readonly AssfinetApiSettings _apiSettings;
         private readonly IAppLogger _logger;
         private static string? _bearerToken;
         private static DateTime _bearerExpireTimeUtc;
         private static string? _refreshToken;
 
-        public ApiService(HttpClient httpClient, IConfiguration configuration, IAppLogger logger)
+        public ApiService(HttpClient httpClient, IOptions<AssfinetApiSettings> apiSettings, IAppLogger logger)
         {
             _httpClient = httpClient;
-            _configuration = configuration;
+            _apiSettings = apiSettings.Value;
             _logger = logger;
         }
 
@@ -28,19 +29,14 @@ namespace Assfinet.Shared.Services
         {
             try
             {
-                Uri baseUriAuth, baseUriApi;
-                string userName, passwort, license, clientId, clientSecret;
-
-                GetApiSettings(out baseUriAuth, out baseUriApi, out userName, out passwort, out license, out clientId, out clientSecret);
-
-                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, baseUriAuth, userName, passwort, clientId, clientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
+                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password, _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
                 _logger.LogInformation("Bearer Token abgerufen.");
 
                 string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=10&accessMode=Admin";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
-                    RequestUri = new Uri(baseUriApi, apiPath),
+                    RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
                 };
                 requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
 
@@ -62,17 +58,6 @@ namespace Assfinet.Shared.Services
                 _logger.LogError($"Fehler beim Abrufen der Kunden: {ex.Message}");
                 throw;
             }
-        }
-
-        private void GetApiSettings(out Uri baseUriAuth, out Uri baseUriApi, out string userName, out string passwort, out string license, out string clientId, out string clientSecret)
-        {
-            license = _configuration["ApiSettings:License"] ?? throw new ArgumentNullException("ApiSettings:License");
-            baseUriAuth = new Uri(_configuration["ApiSettings:BaseUriAuth"] ?? throw new ArgumentNullException("ApiSettings:BaseUriAuth"));
-            baseUriApi = new Uri(_configuration["ApiSettings:BaseUriApi"] ?? throw new ArgumentNullException("ApiSettings:BaseUriApi"));
-            userName = _configuration["ApiSettings:UserName"] ?? throw new ArgumentNullException("ApiSettings:UserName");
-            passwort = _configuration["ApiSettings:Password"] ?? throw new ArgumentNullException("ApiSettings:Password");
-            clientId = _configuration["ApiSettings:ClientId"] ?? throw new ArgumentNullException("ApiSettings:ClientId");
-            clientSecret = _configuration["ApiSettings:ClientSecret"] ?? throw new ArgumentNullException("ApiSettings:ClientSecret");
         }
 
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth, string userName, string passwort, string clientId, string clientSecret, string? bearerToken, DateTime bearerExpireTimeUtc, string? refreshToken)

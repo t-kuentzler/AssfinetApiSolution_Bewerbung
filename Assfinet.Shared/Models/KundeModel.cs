@@ -261,7 +261,5 @@ namespace Assfinet.Shared.Models
         public decimal? WarenMaterialwertProJahr { get; set; }
         public bool? Wasserschutzgebiet { get; set; }
         public string Zuordnung { get; set; } // Zwangsfeld, 'PRIVAT' , 'FIRMA'
-        public ICollection<VertragModel> VertragModels { get; set; }
-
     }
 }

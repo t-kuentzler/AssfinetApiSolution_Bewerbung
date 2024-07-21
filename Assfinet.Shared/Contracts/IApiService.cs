@@ -5,4 +5,5 @@ namespace Assfinet.Shared.Contracts;
 public interface IApiService
 {
     Task<List<KundeModel>> GetKundenAsync();
+    Task<List<VertragModel>> GetVertraegeAsync();
 }

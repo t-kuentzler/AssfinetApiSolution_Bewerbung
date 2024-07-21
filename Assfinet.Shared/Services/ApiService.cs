@@ -60,6 +60,42 @@ namespace Assfinet.Shared.Services
             }
         }
 
+        public async Task<List<VertragModel>> GetVertraegeAsync()
+        {
+            try
+            {
+                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password, _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
+                _logger.LogInformation("Bearer Token abgerufen.");
+
+                string apiPath = "v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip=0&take=50&accessMode=Admin&pendingDrafts=false";
+                var requestData = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
+                };
+                requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
+
+                _logger.LogInformation($"API-Anfrage wird gesendet an {requestData.RequestUri}");
+                var results = await _httpClient.SendAsync(requestData);
+                var apiErgebnis = await results.Content.ReadAsStringAsync();
+
+                if (results.StatusCode != HttpStatusCode.OK)
+                {
+                    _logger.LogError($"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+                    throw new Exception($"Fehler: {apiErgebnis}");
+                }
+
+                _logger.LogInformation("API-Antwort erfolgreich empfangen.");
+                return JsonConvert.DeserializeObject<List<VertragModel>>(apiErgebnis) ?? new List<VertragModel>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Fehler beim Abrufen der Verträge: {ex.Message}");
+                throw;
+            }
+        }
+
+
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth, string userName, string passwort, string clientId, string clientSecret, string? bearerToken, DateTime bearerExpireTimeUtc, string? refreshToken)
         {
             var restGueltig = bearerExpireTimeUtc - DateTime.UtcNow;

@@ -94,6 +94,8 @@ namespace Assfinet.Shared.Services
                 throw;
             }
         }
+        
+        //Sparten daten auslesen. An Hand des Übergabeparamenters Spartentyp die response in entsprechendes Model parsen. vordefiniert liste von sparten erstellen und mit switch case übergabeparameter durchlaufen. Falls nicht vorhanden, fehler zurückgeben
 
 
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth, string userName, string passwort, string clientId, string clientSecret, string? bearerToken, DateTime bearerExpireTimeUtc, string? refreshToken)

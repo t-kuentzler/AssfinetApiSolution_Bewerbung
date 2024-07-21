@@ -191,4 +191,6 @@ public class Kunde
         public string Wohnort { get; set; }
         public string WohnortLand { get; set; }
         public string WohnortLandName { get; set; }
+        public ICollection<Vertrag> VertragModels { get; set; }
+
     }

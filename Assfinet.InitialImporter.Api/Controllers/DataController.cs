@@ -30,5 +30,19 @@ namespace Assfinet.InitialImporter.Api.Controllers
                 return StatusCode(500, "Interner Serverfehler");
             }
         }
+        
+        [HttpGet("vertrage")]
+        public async Task<IActionResult> GetVertraege()
+        {
+            try
+            {
+                var vertraege = await _apiService.GetVertraegeAsync();
+                return Ok(vertraege);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Interner Serverfehler");
+            }
+        }
     }
 }

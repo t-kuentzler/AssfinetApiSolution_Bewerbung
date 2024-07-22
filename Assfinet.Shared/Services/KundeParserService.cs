@@ -1,18 +1,22 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Entities;
 using Assfinet.Shared.Models;
+using AutoMapper;
 
 namespace Assfinet.Shared.Services;
 
 public class KundeParserService : IKundeParserService
 {
-    public KundeParserService()
+    private readonly IMapper _mapper;
+
+    public KundeParserService(IMapper mapper)
     {
-        
+        _mapper = mapper;
     }
 
     public Kunde ParseKundeModelToDbEntity(KundeModel kundeModel)
     {
-        return new Kunde();
+        var kunde = _mapper.Map<Kunde>(kundeModel);
+        return kunde;
     }
 }

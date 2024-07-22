@@ -1,4 +1,5 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Exceptions;
 using Assfinet.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,24 @@ namespace Assfinet.InitialImporter.Api.Controllers
             {
                 var vertraege = await _apiService.GetVertraegeAsync();
                 return Ok(vertraege);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Interner Serverfehler");
+            }
+        }
+        
+        [HttpGet("spartenDaten")]
+        public async Task<IActionResult> GetSpartenDaten([FromQuery] string sparte)
+        {
+            try
+            {
+                var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte);
+                return Ok(spartenDaten);
+            }
+            catch (UnknownSparteException ex)
+            {
+                return StatusCode(500, ex.Message);
             }
             catch (Exception)
             {

@@ -448,6 +448,7 @@ public class Vertrag
     public decimal? Jahressteuerbetrag { get; set; }
     public DateTime? KenntnisAm { get; set; }
     
+    [Required]
     [StringLength(40)]
     public string Key { get; set; } // StringLength = 40 Zwangsfeld, Vater - Datensatz, also zugehöriger Kunde.Amsidnr
     

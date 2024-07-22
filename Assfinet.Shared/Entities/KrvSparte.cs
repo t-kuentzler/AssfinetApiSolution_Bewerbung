@@ -13,6 +13,7 @@ public class KrvSparte
     [StringLength(40)]
     public string Amsidnr { get; set; }
     
+    [Required]
     [StringLength(40)]
     public string Key { get; set; } // Vater - Datensatz, also zugehöriger Vertrag.Amsidnr
     

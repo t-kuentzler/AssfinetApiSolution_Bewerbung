@@ -1,6 +1,5 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Exceptions;
-using Assfinet.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assfinet.InitialImporter.Api.Controllers
@@ -10,19 +9,24 @@ namespace Assfinet.InitialImporter.Api.Controllers
     public class DataController : ControllerBase
     {
         private readonly IApiService _apiService;
+        private readonly IKundeService _kundeService;
 
-        public DataController(IApiService apiService)
+        public DataController(IApiService apiService, IKundeService kundeService)
         {
             _apiService = apiService;
+            _kundeService = kundeService;
         }
 
-        [HttpGet("kunden")]
-        public async Task<IActionResult> GetKunden()
+        [HttpGet("import-kunden")]
+        public async Task<IActionResult> ImportKunden()
         {
             try
             {
-                var kunden = await _apiService.GetKundenAsync();
-                return Ok(kunden);
+                var kundenModels = await _apiService.GetKundenAsync();
+
+                await _kundeService.SaveKundenAsync(kundenModels);
+
+                return Ok();
             }
             catch (Exception)
             {

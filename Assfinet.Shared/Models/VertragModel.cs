@@ -1,3 +1,4 @@
+using Assfinet.Shared.Entities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -12,13 +13,7 @@ public partial class VertragModel
     public string Vu { get; set; }
     public int VuNummer { get; set; }
 
-    public string
-        ComputedStatus
-    {
-        get;
-        set;
-    } //errechnetes Feld aus Status: dabei wird EIGEN aufgeteilt: mit Dokument: POLICE, mit Antragsdatum: ANTRAG, sonst EIGEN
-
+    public string ComputedStatus { get; set; } //errechnetes Feld aus Status: dabei wird EIGEN aufgeteilt: mit Dokument: POLICE, mit Antragsdatum: ANTRAG, sonst EIGEN
     /// <summary>
     /// Gibt an ob dieser Datensatz lokal geändert und noch nicht von AMS bestätigt wurde
     /// </summary>

@@ -17,7 +17,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
             _kundeService = kundeService;
         }
 
-        [HttpGet("import-kunden")]
+        [HttpPost("import-kunden")]
         public async Task<IActionResult> ImportKunden()
         {
             try
@@ -34,8 +34,8 @@ namespace Assfinet.InitialImporter.Api.Controllers
             }
         }
         
-        [HttpGet("vertrage")]
-        public async Task<IActionResult> GetVertraege()
+        [HttpPost("import-vertrage")]
+        public async Task<IActionResult> ImportVertraege()
         {
             try
             {
@@ -48,8 +48,8 @@ namespace Assfinet.InitialImporter.Api.Controllers
             }
         }
         
-        [HttpGet("spartenDaten")]
-        public async Task<IActionResult> GetSpartenDaten([FromQuery] string sparte)
+        [HttpPost("import-spartenDaten")]
+        public async Task<IActionResult> ImportSpartenDaten([FromQuery] string sparte)
         {
             try
             {

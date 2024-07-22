@@ -3,6 +3,7 @@ using System.Net.Http.Headers;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Models;
 using Assfinet.Shared.Configurations;
+using Assfinet.Shared.Exceptions;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -101,7 +102,14 @@ namespace Assfinet.Shared.Services
     {
         try
         {
-            string apiPath = $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip=0&take=50&sparte={sparte}&accessMode=Admin";
+            (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
+                new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
+                _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
+                _refreshToken);
+            _logger.LogInformation("Bearer Token abgerufen.");
+
+            string apiPath =
+                $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip=0&take=50&sparte={sparte}&accessMode=Admin";
             var requestData = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
@@ -114,14 +122,20 @@ namespace Assfinet.Shared.Services
 
             if (results.StatusCode != HttpStatusCode.OK)
             {
-                throw new Exception($"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+                throw new Exception(
+                    $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
             }
 
             // Basierend auf dem Sparte-Parameter das passende Modell auswählen
             return ParseSpartenResponse(apiErgebnis, sparte);
         }
+        catch (UnknownSparteException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
+            _logger.LogError($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
             throw new Exception($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
         }
     }
@@ -147,7 +161,8 @@ namespace Assfinet.Shared.Services
                 }
                 break;
             default:
-                throw new ArgumentException("Unbekannte Sparte");
+                _logger.LogWarning("Unbekannte Sparte");
+                throw new UnknownSparteException("Unbekannte Sparte");
         }
 
         return result;

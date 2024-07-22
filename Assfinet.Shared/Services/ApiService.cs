@@ -96,8 +96,6 @@ namespace Assfinet.Shared.Services
             }
         }
         
-        //Sparten daten auslesen. An Hand des Übergabeparamenters Spartentyp die response in entsprechendes Model parsen. vordefiniert liste von sparten erstellen und mit switch case übergabeparameter durchlaufen. Falls nicht vorhanden, fehler zurückgeben
-
         public async Task<List<object>> GetSpartenDatenAsync(string sparte)
     {
         try

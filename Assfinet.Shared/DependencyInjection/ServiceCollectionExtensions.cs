@@ -1,6 +1,7 @@
 using Assfinet.Shared.Configurations;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Logger;
+using Assfinet.Shared.Repositories;
 using Assfinet.Shared.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,8 +14,16 @@ namespace Assfinet.Shared.DependencyInjection
     {
         public static IServiceCollection AddSharedServices(this IServiceCollection services, IConfiguration configuration)
         {
+            //Services
+            services.AddHttpClient<IApiService, ApiService>();
+            services.AddScoped<IKundeService, KundeService>();
+            
+            //Repositories
+            services.AddScoped<IKundeRepository, KundeRepository>();
+            services.AddScoped<IVertragRepository, VertragRepository>();
+
+            
             services.AddTransient<IAppLogger, AppLogger>();
-            services.AddHttpClient<IApiService, ApiService>(); 
             services.AddSingleton(configuration);
 
             return services;

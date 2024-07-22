@@ -10,12 +10,10 @@ namespace Assfinet.InitialImporter.Api.Controllers
     public class DataController : ControllerBase
     {
         private readonly IApiService _apiService;
-        private readonly IAppLogger _logger;
 
-        public DataController(IApiService apiService, IAppLogger logger)
+        public DataController(IApiService apiService)
         {
             _apiService = apiService;
-            _logger = logger;
         }
 
         [HttpGet("kunden")]

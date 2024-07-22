@@ -3,6 +3,7 @@ using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Logger;
 using Assfinet.Shared.Repositories;
 using Assfinet.Shared.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -14,6 +15,19 @@ namespace Assfinet.Shared.DependencyInjection
     {
         public static IServiceCollection AddSharedServices(this IServiceCollection services, IConfiguration configuration)
         {
+            var connectionString = Environment.GetEnvironmentVariable("HANSMANN_ASSFINET_SCHATTENDATENBANK_CONNECTIONSTRING_TEST");
+
+            if (!string.IsNullOrEmpty(connectionString))
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 23)))); // Version hier anpassen
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    "Die Verbindungszeichenfolge wurde nicht in der Umgebungsvariablen gefunden.");
+            }
+            
             //Services
             services.AddHttpClient<IApiService, ApiService>();
             services.AddScoped<IKundeService, KundeService>();
@@ -23,6 +37,8 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IVertragRepository, VertragRepository>();
 
+            //Automapper
+            services.AddAutoMapper(typeof(MappingProfile));
             
             services.AddTransient<IAppLogger, AppLogger>();
             services.AddSingleton(configuration);

@@ -987,5 +987,6 @@ public class Vertrag
     
     public decimal? Zuschlagbetrag { get; set; }
     public decimal? ZuschlagbetragZw { get; set; }
+    public virtual Kunde Kunde { get; set; }
     public virtual KrvSparte KrvSparte { get; set; }
 }

@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -7,9 +8,17 @@ public partial class VertragSparteModel
 {
     public Guid Id { get; set; }
     public DateTimeOffset? Bearbeitet { get; set; }
+    
+    [StringLength(40)]
     public string Amsidnr { get; set; }
+    
+    [StringLength(40)]
     public string Key { get; set; } // Vater - Datensatz, also zugehöriger Vertrag.Amsidnr
+    
+    [Required]
+    [StringLength(50)]
     public string Typ { get; set; }
+    
     [JsonExtensionData]
     public IDictionary<string, JToken> AdditionalData { get; set; }
     /// <summary>
@@ -19,6 +28,9 @@ public partial class VertragSparteModel
     /// <summary>
     /// Die Lizenz der der Vertrag angehört
     /// </summary>
+    /// 
+    
+    [StringLength(40)]
     public string License { get; set; }
     public DateTime LastSynchronisation { get; private set; }
 }

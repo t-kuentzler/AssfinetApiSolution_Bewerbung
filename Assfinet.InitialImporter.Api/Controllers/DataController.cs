@@ -56,7 +56,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
             }
             catch (UnknownSparteException ex)
             {
-                return StatusCode(500, ex.Message);
+                return BadRequest(ex.Message);
             }
             catch (Exception)
             {

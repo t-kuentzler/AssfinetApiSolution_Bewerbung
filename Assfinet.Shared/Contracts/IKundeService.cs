@@ -4,5 +4,5 @@ namespace Assfinet.Shared.Contracts;
 
 public interface IKundeService
 {
-    Task SaveKundenAsync(IEnumerable<KundeModel> kunden);
+    Task SaveKundenAsync(List<KundeModel> kunden);
 }

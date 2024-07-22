@@ -97,6 +97,62 @@ namespace Assfinet.Shared.Services
         
         //Sparten daten auslesen. An Hand des Übergabeparamenters Spartentyp die response in entsprechendes Model parsen. vordefiniert liste von sparten erstellen und mit switch case übergabeparameter durchlaufen. Falls nicht vorhanden, fehler zurückgeben
 
+        public async Task<List<object>> GetSpartenDatenAsync(string sparte)
+    {
+        try
+        {
+            string apiPath = $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip=0&take=50&sparte={sparte}&accessMode=Admin";
+            var requestData = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
+            };
+            requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
+
+            var results = await _httpClient.SendAsync(requestData);
+            var apiErgebnis = await results.Content.ReadAsStringAsync();
+
+            if (results.StatusCode != HttpStatusCode.OK)
+            {
+                throw new Exception($"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+            }
+
+            // Basierend auf dem Sparte-Parameter das passende Modell auswählen
+            return ParseSpartenResponse(apiErgebnis, sparte);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
+        }
+    }
+
+    private List<object> ParseSpartenResponse(string responseContent, string sparte)
+    {
+        List<object> result = new List<object>();
+
+        switch (sparte)
+        {
+            case "KRV":
+                var kundeModels = JsonConvert.DeserializeObject<List<KrvModel>>(responseContent);
+                if (kundeModels != null)
+                {
+                    result.AddRange(kundeModels);
+                }
+                break;
+            case "DEP":
+                var vertragModels = JsonConvert.DeserializeObject<List<DepModel>>(responseContent);
+                if (vertragModels != null)
+                {
+                    result.AddRange(vertragModels);
+                }
+                break;
+            default:
+                throw new ArgumentException("Unbekannte Sparte");
+        }
+
+        return result;
+    }
+
 
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth, string userName, string passwort, string clientId, string clientSecret, string? bearerToken, DateTime bearerExpireTimeUtc, string? refreshToken)
         {

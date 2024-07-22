@@ -1,4 +1,5 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Exceptions;
 using Assfinet.Shared.Models;
 
 namespace Assfinet.Shared.Services;
@@ -33,9 +34,15 @@ public class KundeService : IKundeService
                 await _kundeRepository.AddKundeAsync(parsedKunde);
             }
         }
+        catch (RepositoryException ex)
+        {
+            _logger.LogError($"Repository-Exception beim importieren von allen Kunden.", ex);
+            throw;
+        }
         catch (Exception ex)
         {
-            _logger.LogError("Es ist ein unerwarteter Fehler aufgetreten.", ex);
+            _logger.LogError("Es ist ein unerwarteter Fehler aufgetreten beim importieren von allen Kunden.", ex);
+            throw new KundeServiceException();
         }
 
     }

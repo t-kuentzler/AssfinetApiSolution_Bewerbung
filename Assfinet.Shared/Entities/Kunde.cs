@@ -546,6 +546,6 @@ public class Kunde
         public decimal? WarenMaterialwertProJahr { get; set; }
         public bool? Wasserschutzgebiet { get; set; }
         public string Zuordnung { get; set; } // Zwangsfeld, 'PRIVAT' , 'FIRMA'
-        public ICollection<Vertrag> VertragModels { get; set; }
+        public ICollection<Vertrag> Vertraege { get; set; }
 
     }

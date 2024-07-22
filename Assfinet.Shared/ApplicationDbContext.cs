@@ -43,8 +43,8 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<KrvSparte>(entity =>
         {
             entity.HasKey(e => e.Id);
-
-            // Optional: Wenn KrvSparte mit Vertrag verbunden ist
+            
+            // Eine KrvSparte gehört zu einem Vertrag, basierend auf Key und AmsId
             entity.HasOne<Vertrag>()
                 .WithMany()
                 .HasForeignKey(e => e.Key) 

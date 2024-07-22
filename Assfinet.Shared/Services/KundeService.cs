@@ -31,7 +31,7 @@ public class KundeService : IKundeService
             foreach (var kunde in kunden)
             {
                 var parsedKunde = _kundeParserService.ParseKundeModelToDbEntity(kunde);
-                await _kundeRepository.AddKundeAsync(parsedKunde);
+                // await _kundeRepository.AddKundeAsync(parsedKunde);
             }
         }
         catch (RepositoryException ex)

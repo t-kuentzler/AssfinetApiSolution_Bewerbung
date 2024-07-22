@@ -69,7 +69,10 @@ public class Kunde
         
         [StringLength(12)]
         public string Blz2 { get; set; } // StringLength = 12
+        
+        [StringLength(60)]
         public string Branche { get; set; }
+        
         public decimal? Bruttojahresmietwert { get; set; }
         public decimal? Bruttojahresumsatz { get; set; }
         

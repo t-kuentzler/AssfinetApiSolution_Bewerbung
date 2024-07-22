@@ -15,6 +15,7 @@ public class ApplicationDbContext : DbContext
 
     // DbSet für Verträge
     public DbSet<Vertrag> Vertraege { get; set; }
+    public DbSet<Vertrag> KrvSparten { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,6 +38,18 @@ public class ApplicationDbContext : DbContext
                 .HasForeignKey(e => e.Key)
                 .HasPrincipalKey(k => k.AmsId)
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+        
+        modelBuilder.Entity<KrvSparte>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            // Optional: Wenn KrvSparte mit Vertrag verbunden ist
+            entity.HasOne<Vertrag>()
+                .WithMany()
+                .HasForeignKey(e => e.Key) 
+                .HasPrincipalKey(v => v.AmsId) 
+                .OnDelete(DeleteBehavior.Restrict); 
         });
     }
 }

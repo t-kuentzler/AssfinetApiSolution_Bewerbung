@@ -17,6 +17,7 @@ namespace Assfinet.Shared.DependencyInjection
             //Services
             services.AddHttpClient<IApiService, ApiService>();
             services.AddScoped<IKundeService, KundeService>();
+            services.AddScoped<IKundeParserService, KundeParserService>();
             
             //Repositories
             services.AddScoped<IKundeRepository, KundeRepository>();

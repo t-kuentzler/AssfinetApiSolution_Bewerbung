@@ -14,14 +14,17 @@ namespace Assfinet.InitialImporter.Api
 
             // Add services to the container.
             builder.Services.AddAuthorization();
-
-            builder.Configuration
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddEnvironmentVariables();
             
             // Configure Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            
+            // Load shared configurations
+            var sharedConfigPath = GetSharedAppSettingsPath();
+            
+            builder.Configuration
+                .AddJsonFile(sharedConfigPath, optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
 
             // Add Shared Services and configurations
             builder.Services.AddSharedServices(builder.Configuration);
@@ -51,5 +54,21 @@ namespace Assfinet.InitialImporter.Api
             app.MapControllers();
             app.Run();
         }
+        
+        private static string GetSharedAppSettingsPath()
+        {
+            //appsettings.json liegt direkt im Veröffentlichungsverzeichnis
+            var baseDirectory = AppContext.BaseDirectory;
+            var sharedConfigPath = Path.Combine(baseDirectory, "appsettings.json");
+
+            if (!File.Exists(sharedConfigPath))
+            {
+                throw new FileNotFoundException($"The configuration file '{sharedConfigPath}' was not found and is not optional.");
+            }
+
+            return sharedConfigPath;
+        }
     }
+    
+    
 }

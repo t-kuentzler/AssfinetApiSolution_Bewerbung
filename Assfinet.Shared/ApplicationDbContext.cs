@@ -49,7 +49,7 @@ public class ApplicationDbContext : DbContext
                 .WithMany()
                 .HasForeignKey(e => e.Key) 
                 .HasPrincipalKey(v => v.AmsId) 
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Cascade); 
         });
     }
 }

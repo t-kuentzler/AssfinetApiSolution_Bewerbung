@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -35,7 +36,11 @@ public class Vertrag
     public string License { get; set; }
 
     public DateTime LastSynchronisation { get; private set; }
-    [JsonExtensionData] public IDictionary<string, JToken> AdditionalData { get; set; }
+    
+    [NotMapped]
+    [JsonExtensionData]
+    public IDictionary<string, JToken> AdditionalData { get; set; }
+    
     public bool? Abbuchung { get; set; } // Zwangsfeld
     public DateTime? AblaufDt { get; set; } // Ablauf gem.Bedingung
 

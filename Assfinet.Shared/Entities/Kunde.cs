@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -12,6 +13,8 @@ public class Kunde
         public bool Dirty { get; set; } // Automatisches Feld, soll nicht manuell gesetzt werden
         public string License { get; set; }
         public DateTime LastSynchronisation { get; private set; }
+        
+        [NotMapped]
         [JsonExtensionData]
         public IDictionary<string, JToken> AdditionalData { get; set; }
         

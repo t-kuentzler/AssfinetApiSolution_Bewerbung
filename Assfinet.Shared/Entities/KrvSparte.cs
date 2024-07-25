@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -21,6 +22,7 @@ public class KrvSparte
     [StringLength(50)]
     public string Typ { get; set; }
     
+    [NotMapped]
     [JsonExtensionData]
     public IDictionary<string, JToken> AdditionalData { get; set; }
     /// <summary>

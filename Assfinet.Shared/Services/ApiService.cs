@@ -26,6 +26,68 @@ namespace Assfinet.Shared.Services
             _logger = logger;
         }
 
+        // public async Task<List<KundeModel>> GetKundenAsync()
+        // {
+        //     var allKunden = new List<KundeModel>();
+        //     int skip = 0;
+        //     int take = 50;
+        //     bool hasMoreData = true;
+        //
+        //     try
+        //     {
+        //         (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
+        //             new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
+        //             _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
+        //             _refreshToken);
+        //         _logger.LogInformation("Bearer Token abgerufen.");
+        //
+        //         while (hasMoreData)
+        //         {
+        //             string apiPath =
+        //                 $"v1/Ams/Kunde?orderBy=Id&byDescending=true&skip={skip}&take={take}&accessMode=Admin";
+        //             var requestData = new HttpRequestMessage
+        //             {
+        //                 Method = HttpMethod.Get,
+        //                 RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
+        //             };
+        //             requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
+        //
+        //             _logger.LogInformation($"API-Anfrage wird gesendet an {requestData.RequestUri}");
+        //             var results = await _httpClient.SendAsync(requestData);
+        //             var apiErgebnis = await results.Content.ReadAsStringAsync();
+        //
+        //             if (results.StatusCode != HttpStatusCode.OK)
+        //             {
+        //                 _logger.LogError(
+        //                     $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+        //                 throw new Exception($"Fehler: {apiErgebnis}");
+        //             }
+        //
+        //             var kunden = JsonConvert.DeserializeObject<List<KundeModel>>(apiErgebnis) ?? new List<KundeModel>();
+        //             allKunden.AddRange(kunden);
+        //
+        //             if (kunden.Count < take)
+        //             {
+        //                 hasMoreData = false;
+        //             }
+        //             else
+        //             {
+        //                 skip += take;
+        //                 await Task.Delay(5000);
+        //             }
+        //         }
+        //
+        //         _logger.LogInformation("API-Antwort erfolgreich empfangen.");
+        //         _logger.LogInformation($"Es wurden {allKunden.Count} abgerufen.");
+        //         return allKunden;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         _logger.LogError($"Fehler beim Abrufen der Kunden: {ex.Message}");
+        //         throw;
+        //     }
+        // }
+        
         public async Task<List<KundeModel>> GetKundenAsync()
         {
             try
@@ -33,7 +95,7 @@ namespace Assfinet.Shared.Services
                 (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password, _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
                 _logger.LogInformation("Bearer Token abgerufen.");
 
-                string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=50&accessMode=Admin";
+                string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=10&accessMode=Admin";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -61,14 +123,19 @@ namespace Assfinet.Shared.Services
             }
         }
 
+
         public async Task<List<VertragModel>> GetVertraegeAsync()
         {
             try
             {
-                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password, _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
+                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
+                    new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
+                    _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
+                    _refreshToken);
                 _logger.LogInformation("Bearer Token abgerufen.");
 
-                string apiPath = "v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip=0&take=50&accessMode=Admin&pendingDrafts=false";
+                string apiPath =
+                    "v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip=0&take=50&accessMode=Admin&pendingDrafts=false";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -82,7 +149,8 @@ namespace Assfinet.Shared.Services
 
                 if (results.StatusCode != HttpStatusCode.OK)
                 {
-                    _logger.LogError($"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+                    _logger.LogError(
+                        $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
                     throw new Exception($"Fehler: {apiErgebnis}");
                 }
 
@@ -95,82 +163,87 @@ namespace Assfinet.Shared.Services
                 throw;
             }
         }
-        
+
         public async Task<List<object>> GetSpartenDatenAsync(string sparte)
-    {
-        try
         {
-            (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
-                new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
-                _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
-                _refreshToken);
-            _logger.LogInformation("Bearer Token abgerufen.");
-
-            string apiPath =
-                $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip=0&take=50&sparte={sparte}&accessMode=Admin";
-            var requestData = new HttpRequestMessage
+            try
             {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
-            };
-            requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
+                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
+                    new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
+                    _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
+                    _refreshToken);
+                _logger.LogInformation("Bearer Token abgerufen.");
 
-            var results = await _httpClient.SendAsync(requestData);
-            var apiErgebnis = await results.Content.ReadAsStringAsync();
+                string apiPath =
+                    $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip=0&take=50&sparte={sparte}&accessMode=Admin";
+                var requestData = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
+                };
+                requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
 
-            if (results.StatusCode != HttpStatusCode.OK)
+                var results = await _httpClient.SendAsync(requestData);
+                var apiErgebnis = await results.Content.ReadAsStringAsync();
+
+                if (results.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception(
+                        $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+                }
+
+                // Basierend auf dem Sparte-Parameter das passende Modell auswählen
+                return ParseSpartenResponse(apiErgebnis, sparte);
+            }
+            catch (UnknownSparteException)
             {
-                throw new Exception(
-                    $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
+                throw new Exception($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
+            }
+        }
+
+        private List<object> ParseSpartenResponse(string responseContent, string sparte)
+        {
+            List<object> result = new List<object>();
+
+            switch (sparte)
+            {
+                case "KRV":
+                    var kundeModels = JsonConvert.DeserializeObject<List<KrvModel>>(responseContent);
+                    if (kundeModels != null)
+                    {
+                        result.AddRange(kundeModels);
+                    }
+
+                    break;
+                case "DEP":
+                    var vertragModels = JsonConvert.DeserializeObject<List<DepModel>>(responseContent);
+                    if (vertragModels != null)
+                    {
+                        result.AddRange(vertragModels);
+                    }
+
+                    break;
+                default:
+                    _logger.LogWarning("Unbekannte Sparte");
+                    throw new UnknownSparteException("Unbekannte Sparte");
             }
 
-            // Basierend auf dem Sparte-Parameter das passende Modell auswählen
-            return ParseSpartenResponse(apiErgebnis, sparte);
-        }
-        catch (UnknownSparteException)
-        {
-            throw;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
-            throw new Exception($"Fehler beim Abrufen der Daten: {ex.Message}", ex);
-        }
-    }
-
-    private List<object> ParseSpartenResponse(string responseContent, string sparte)
-    {
-        List<object> result = new List<object>();
-
-        switch (sparte)
-        {
-            case "KRV":
-                var kundeModels = JsonConvert.DeserializeObject<List<KrvModel>>(responseContent);
-                if (kundeModels != null)
-                {
-                    result.AddRange(kundeModels);
-                }
-                break;
-            case "DEP":
-                var vertragModels = JsonConvert.DeserializeObject<List<DepModel>>(responseContent);
-                if (vertragModels != null)
-                {
-                    result.AddRange(vertragModels);
-                }
-                break;
-            default:
-                _logger.LogWarning("Unbekannte Sparte");
-                throw new UnknownSparteException("Unbekannte Sparte");
+            return result;
         }
 
-        return result;
-    }
 
-
-        private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth, string userName, string passwort, string clientId, string clientSecret, string? bearerToken, DateTime bearerExpireTimeUtc, string? refreshToken)
+        private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth,
+            string userName, string passwort, string clientId, string clientSecret, string? bearerToken,
+            DateTime bearerExpireTimeUtc, string? refreshToken)
         {
             var restGueltig = bearerExpireTimeUtc - DateTime.UtcNow;
-            if (!string.IsNullOrEmpty(bearerToken) && !string.IsNullOrEmpty(refreshToken) && restGueltig.TotalSeconds > 20)
+            if (!string.IsNullOrEmpty(bearerToken) && !string.IsNullOrEmpty(refreshToken) &&
+                restGueltig.TotalSeconds > 20)
             {
                 _logger.LogInformation("Aktuelles Bearer Token ist noch gültig.");
             }
@@ -178,25 +251,35 @@ namespace Assfinet.Shared.Services
             {
                 if (!string.IsNullOrEmpty(bearerToken) && !string.IsNullOrEmpty(refreshToken))
                 {
-                    _logger.LogInformation("Bearer Token ist abgelaufen, neues Token über Refresh Token wird angefordert.");
-                    string grantStr = $"grant_type=refresh_token&refresh_token={Uri.EscapeDataString(refreshToken)}&scope=offline_access%20drive";
-                    (bearerToken, bearerExpireTimeUtc, refreshToken) = await GetBearerTokenCall(httpClient, baseUriAuth, clientId, clientSecret, grantStr);
+                    _logger.LogInformation(
+                        "Bearer Token ist abgelaufen, neues Token über Refresh Token wird angefordert.");
+                    string grantStr =
+                        $"grant_type=refresh_token&refresh_token={Uri.EscapeDataString(refreshToken)}&scope=offline_access%20drive";
+                    (bearerToken, bearerExpireTimeUtc, refreshToken) =
+                        await GetBearerTokenCall(httpClient, baseUriAuth, clientId, clientSecret, grantStr);
                 }
+
                 if (string.IsNullOrEmpty(bearerToken) || string.IsNullOrEmpty(refreshToken))
                 {
-                    _logger.LogInformation("Kein gültiger Bearer Token oder Refresh Token vorhanden, neues Token wird angefordert.");
-                    string grantStr = $"grant_type=password&username={Uri.EscapeDataString(userName)}&password={Uri.EscapeDataString(passwort)}&scope=offline_access%20drive";
-                    (bearerToken, bearerExpireTimeUtc, refreshToken) = await GetBearerTokenCall(httpClient, baseUriAuth, clientId, clientSecret, grantStr);
+                    _logger.LogInformation(
+                        "Kein gültiger Bearer Token oder Refresh Token vorhanden, neues Token wird angefordert.");
+                    string grantStr =
+                        $"grant_type=password&username={Uri.EscapeDataString(userName)}&password={Uri.EscapeDataString(passwort)}&scope=offline_access%20drive";
+                    (bearerToken, bearerExpireTimeUtc, refreshToken) =
+                        await GetBearerTokenCall(httpClient, baseUriAuth, clientId, clientSecret, grantStr);
                 }
             }
+
             return (bearerToken ?? string.Empty, bearerExpireTimeUtc, refreshToken ?? string.Empty);
         }
 
-        private async Task<(string, DateTime, string)> GetBearerTokenCall(HttpClient httpClient, Uri baseUriAuth, string clientId, string clientSecret, string grantStr)
+        private async Task<(string, DateTime, string)> GetBearerTokenCall(HttpClient httpClient, Uri baseUriAuth,
+            string clientId, string clientSecret, string grantStr)
         {
             try
             {
-                var encodedPair = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
+                var encodedPair =
+                    Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{clientId}:{clientSecret}"));
 
                 var requestToken = new HttpRequestMessage
                 {
@@ -204,7 +287,8 @@ namespace Assfinet.Shared.Services
                     RequestUri = new Uri(baseUriAuth, "connect/token"),
                     Content = new StringContent(grantStr)
                 };
-                requestToken.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded") { CharSet = "UTF-8" };
+                requestToken.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded")
+                    { CharSet = "UTF-8" };
                 requestToken.Headers.TryAddWithoutValidation("Authorization", $"Basic {encodedPair}");
 
                 _logger.LogInformation($"Token-Anfrage wird gesendet an {requestToken.RequestUri}");
@@ -213,7 +297,8 @@ namespace Assfinet.Shared.Services
 
                 if (bearerResult.StatusCode != HttpStatusCode.OK)
                 {
-                    _logger.LogError($"Fehler bei der Token-Anfrage: StatusCode: {bearerResult.StatusCode}, ReasonPhrase: {bearerResult.ReasonPhrase}, Response: {bearerData}");
+                    _logger.LogError(
+                        $"Fehler bei der Token-Anfrage: StatusCode: {bearerResult.StatusCode}, ReasonPhrase: {bearerResult.ReasonPhrase}, Response: {bearerData}");
                     throw new Exception($"Fehler bei der Token-Anfrage: {bearerData}");
                 }
 

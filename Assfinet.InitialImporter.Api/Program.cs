@@ -1,3 +1,4 @@
+using Assfinet.Shared;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,7 +9,7 @@ namespace Assfinet.InitialImporter.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,8 @@ namespace Assfinet.InitialImporter.Api
                 });
             var app = builder.Build();
 
+            await CheckDatabaseConnection(app);
+
             var logger = app.Services.GetRequiredService<IAppLogger>();
             logger.LogInformation("API-Anwendung gestartet.");
 
@@ -53,6 +56,31 @@ namespace Assfinet.InitialImporter.Api
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
+        }
+        
+        private static async Task CheckDatabaseConnection(WebApplication app)
+        {
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var dbContext = services.GetRequiredService<ApplicationDbContext>();
+                    var canConnect = await dbContext.Database.CanConnectAsync();
+                    if (canConnect)
+                    {
+                        Log.Information("Verbindung zur Datenbank erfolgreich.");
+                    }
+                    else
+                    {
+                        Log.Error("Fehler bei der Verbindung zur Datenbank.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Ein unerwarteter Fehler ist aufgetreten beim Versuch, die Datenbankverbindung zu prüfen.");
+                }
+            }
         }
         
         private static string GetSharedAppSettingsPath()

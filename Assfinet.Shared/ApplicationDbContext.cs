@@ -36,7 +36,7 @@ public class ApplicationDbContext : DbContext
             entity.HasOne(e => e.Kunde)
                 .WithMany(k => k.Vertraege)
                 .HasForeignKey(e => e.Key)
-                .HasPrincipalKey(k => k.AmsId)
+                .HasPrincipalKey(k => k.Amsidnr)
                 .OnDelete(DeleteBehavior.Cascade);
         });
         
@@ -48,7 +48,7 @@ public class ApplicationDbContext : DbContext
             entity.HasOne<Vertrag>()
                 .WithMany()
                 .HasForeignKey(e => e.Key) 
-                .HasPrincipalKey(v => v.AmsId) 
+                .HasPrincipalKey(v => v.Amsidnr) 
                 .OnDelete(DeleteBehavior.Cascade); 
         });
     }

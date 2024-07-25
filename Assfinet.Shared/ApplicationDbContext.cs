@@ -32,7 +32,7 @@ public class ApplicationDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.HasIndex(e => e.Key).IsUnique();
 
-            // Ein Vertrag gehört zu einem Kunden, basierend auf Key und AmsId
+            // Ein Vertrag gehört zu einem Kunden, basierend auf Key und AmsIdnr
             entity.HasOne(e => e.Kunde)
                 .WithMany(k => k.Vertraege)
                 .HasForeignKey(e => e.Key)
@@ -44,7 +44,7 @@ public class ApplicationDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
             
-            // Eine KrvSparte gehört zu einem Vertrag, basierend auf Key und AmsId
+            // Eine KrvSparte gehört zu einem Vertrag, basierend auf Key und AmsIdnr
             entity.HasOne<Vertrag>()
                 .WithMany()
                 .HasForeignKey(e => e.Key) 

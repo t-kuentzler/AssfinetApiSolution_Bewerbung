@@ -1,4 +1,3 @@
-
 namespace Assfinet.Shared.Entities
 {
     public class KundeFinanzen

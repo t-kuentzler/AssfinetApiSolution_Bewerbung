@@ -42,6 +42,6 @@ namespace Assfinet.Shared.Entities
         public decimal? WarenMaterialwertProJahr { get; set; }
 
         // Navigation properties
-        public virtual Kunde Kunde { get; set; }
+        public virtual Kunde? Kunde { get; set; }
     }
 }

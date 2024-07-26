@@ -9,32 +9,32 @@ namespace Assfinet.Shared.Entities
     {
         public int Id { get; set; }
         [StringLength(40)]
-        public string Adrid { get; set; }
+        public string? Adrid { get; set; }
         [StringLength(100)]
-        public string Aenderungsgrund { get; set; }
+        public string? Aenderungsgrund { get; set; }
         public DateTime? Aenderung { get; set; }
         [NotMapped]
         [JsonExtensionData]
-        public IDictionary<string, JToken> AdditionalData { get; set; }
+        public IDictionary<string, JToken>? AdditionalData { get; set; }
         [StringLength(40)]
         public string Amsidnr { get; set; }
         public Guid AmsId { get; set; }
         [StringLength(40)]
-        public string Bearbeiter { get; set; }
+        public string? Bearbeiter { get; set; }
         public DateTime? Bearbeitet { get; set; }
         [StringLength(200)]
-        public string BelegteSparten { get; set; }
+        public string? BelegteSparten { get; set; }
         [StringLength(11)]
-        public string Debitor { get; set; }
+        public string? Debitor { get; set; }
         public bool Dirty { get; set; }
         public DateTime? DsgvoDeleteDate { get; set; }
         public DateTime? DsgvoLockDate { get; set; }
         public bool? DsgvoLocked { get; set; }
         public bool? Duzen { get; set; }
         [StringLength(20)]
-        public string DtazvEntgelt { get; set; }
+        public string? DtazvEntgelt { get; set; }
         [StringLength(40)]
-        public string EloGid { get; set; }
+        public string? EloGid { get; set; }
         public DateTime? EintrittsdatumArbeitgeber { get; set; }
         public int? Erloeskonto { get; set; }
         public DateTime? ErlUwg7 { get; set; }
@@ -58,44 +58,44 @@ namespace Assfinet.Shared.Entities
         public bool? GesetzlichRentenversichert { get; set; }
         public DateTime? GewuenschterRentenbeginn { get; set; }
         [StringLength(50)]
-        public string GTarif1 { get; set; }
+        public string? GTarif1 { get; set; }
         [StringLength(50)]
-        public string GTarif2 { get; set; }
+        public string? GTarif2 { get; set; }
         [StringLength(50)]
-        public string GTarif3 { get; set; }
+        public string? GTarif3 { get; set; }
         [StringLength(50)]
-        public string GTarif4 { get; set; }
+        public string? GTarif4 { get; set; }
         [StringLength(50)]
-        public string GTarif5 { get; set; }
+        public string? GTarif5 { get; set; }
         public DateTime? GueltigAb { get; set; }
         public DateTime? GueltigBis { get; set; }
         [StringLength(10)]
-        public string GVstAbzug { get; set; }
+        public string? GVstAbzug { get; set; }
         public decimal? GVstAnteil { get; set; }
         public DateTime? GVstSeit { get; set; }
         public bool? GVtAccount { get; set; }
         public bool? GZuschussAltVt { get; set; }
         [StringLength(100)]
-        public string Handelsregisternummer { get; set; }
+        public string? Handelsregisternummer { get; set; }
         public DateTime? IdentDate { get; set; }
         public DateTime? IdentGueltigBis { get; set; }
         [StringLength(30)]
-        public string IdentTyp { get; set; }
+        public string? IdentTyp { get; set; }
         public decimal? Inflationsrate { get; set; }
-        public string License { get; set; }
+        public string? License { get; set; }
         public DateTime LastSynchronisation { get; private set; }
         [StringLength(50)]
-        public string LageBetriebsgrundstuecks { get; set; }
+        public string? LageBetriebsgrundstuecks { get; set; }
         [StringLength(3)]
-        public string Land { get; set; }
+        public string? Land { get; set; }
         [StringLength(50)]
-        public string Landesname { get; set; }
+        public string? Landesname { get; set; }
         public DateTime? LetzterBesuch { get; set; }
         public decimal? LohnGehaltssumme { get; set; }
         [StringLength(50)]
-        public string Mandant { get; set; }
+        public string? Mandant { get; set; }
         [StringLength(40)]
-        public string MandantAmsidnr { get; set; }
+        public string? MandantAmsidnr { get; set; }
         public DateTime? MahnstopBis { get; set; }
         public DateTime? MaklervertragBis { get; set; }
         public DateTime? MaklervertragDatum { get; set; }
@@ -103,45 +103,45 @@ namespace Assfinet.Shared.Entities
         public decimal? Mietsteigerung { get; set; }
         public int? Mitarbeiterzahl { get; set; }
         [StringLength(35)]
-        public string Mobiltelefon { get; set; }
+        public string? Mobiltelefon { get; set; }
         [StringLength(40)]
-        public string Name { get; set; }
+        public string? Name { get; set; }
         [StringLength(200)]
-        public string Name1 { get; set; }
+        public string? Name1 { get; set; }
         [StringLength(200)]
-        public string Name2 { get; set; }
+        public string? Name2 { get; set; }
         [StringLength(200)]
-        public string Name3 { get; set; }
+        public string? Name3 { get; set; }
         public decimal? NichtSelbstaendigeArbeitBruttoMonatlich { get; set; }
         public decimal? NichtSelbstaendigeArbeitNettoMonatlich { get; set; }
         [StringLength(50)]
-        public string Ort { get; set; }
+        public string? Ort { get; set; }
         [StringLength(50)]
-        public string OrtPhonetisch { get; set; }
+        public string? OrtPhonetisch { get; set; }
         [StringLength(30)]
-        public string PAusbildung { get; set; }
+        public string? PAusbildung { get; set; }
         public DateTime? PAustrittVorag { get; set; }
         public bool? PBefristvt { get; set; }
         [StringLength(20)]
-        public string PBeschaeftignungsverhaeltnis { get; set; }
+        public string? PBeschaeftignungsverhaeltnis { get; set; }
         [StringLength(100)]
-        public string PBildung { get; set; }
+        public string? PBildung { get; set; }
         public DateTime? PBefristvtBis { get; set; }
         public bool? Pep { get; set; }
         public DateTime? PersonalausweisAusstellungsdatum { get; set; }
         [StringLength(30)]
-        public string PersonalausweisBehoerde { get; set; }
+        public string? PersonalausweisBehoerde { get; set; }
         public DateTime? PersonalausweisGueltigBis { get; set; }
         [StringLength(30)]
-        public string PersonalausweisNr { get; set; }
+        public string? PersonalausweisNr { get; set; }
         [StringLength(20)]
-        public string Personalnummer { get; set; }
+        public string? Personalnummer { get; set; }
         [StringLength(30)]
-        public string PFsbehoerde { get; set; }
+        public string? PFsbehoerde { get; set; }
         public DateTime? PFsdatum { get; set; }
         public DateTime? PFsgueltigab { get; set; }
         [StringLength(20)]
-        public string PFsnummer { get; set; }
+        public string? PFsnummer { get; set; }
         public bool? PProbezeit { get; set; }
         public DateTime? PProbezeitbis { get; set; }
         public DateTime? PraemienrechnungAb { get; set; }
@@ -153,60 +153,60 @@ namespace Assfinet.Shared.Entities
         public decimal? PVwl { get; set; }
         public bool? PVwlGenutzt { get; set; }
         public decimal? PWochenarbeitszeit { get; set; }
-        public string Rechtsform { get; set; }
+        public string? Rechtsform { get; set; }
         public bool? Rechexcel { get; set; }
         public bool? RechnungsMail { get; set; }
         [StringLength(100)]
-        public string Repraesentant { get; set; }
+        public string? Repraesentant { get; set; }
         [StringLength(500)]
-        public string S21_F1 { get; set; }
+        public string? S21_F1 { get; set; }
         [StringLength(500)]
-        public string S21_F10 { get; set; }
+        public string? S21_F10 { get; set; }
         [StringLength(500)]
-        public string S21_F2 { get; set; }
+        public string? S21_F2 { get; set; }
         [StringLength(500)]
-        public string S21_F3 { get; set; }
+        public string? S21_F3 { get; set; }
         [StringLength(500)]
-        public string S21_F4 { get; set; }
+        public string? S21_F4 { get; set; }
         [StringLength(500)]
-        public string S21_F5 { get; set; }
+        public string? S21_F5 { get; set; }
         [StringLength(500)]
-        public string S21_F6 { get; set; }
+        public string? S21_F6 { get; set; }
         [StringLength(500)]
-        public string S21_F7 { get; set; }
+        public string? S21_F7 { get; set; }
         [StringLength(500)]
-        public string S21_F8 { get; set; }
+        public string? S21_F8 { get; set; }
         [StringLength(500)]
-        public string S21_F9 { get; set; }
+        public string? S21_F9 { get; set; }
         [StringLength(500)]
-        public string S22_F1 { get; set; }
+        public string? S22_F1 { get; set; }
         [StringLength(500)]
-        public string S22_F10 { get; set; }
+        public string? S22_F10 { get; set; }
         [StringLength(500)]
-        public string S22_F2 { get; set; }
+        public string? S22_F2 { get; set; }
         [StringLength(500)]
-        public string S22_F3 { get; set; }
+        public string? S22_F3 { get; set; }
         [StringLength(500)]
-        public string S22_F4 { get; set; }
+        public string? S22_F4 { get; set; }
         [StringLength(500)]
-        public string S22_F5 { get; set; }
+        public string? S22_F5 { get; set; }
         [StringLength(500)]
-        public string S22_F6 { get; set; }
+        public string? S22_F6 { get; set; }
         [StringLength(500)]
-        public string S22_F7 { get; set; }
+        public string? S22_F7 { get; set; }
         [StringLength(500)]
-        public string S22_F8 { get; set; }
+        public string? S22_F8 { get; set; }
         [StringLength(500)]
-        public string S22_F9 { get; set; }
+        public string? S22_F9 { get; set; }
         [StringLength(40)]
-        public string Sachbearbeiter { get; set; }
+        public string? Sachbearbeiter { get; set; }
         [StringLength(250)]
-        public string Schlagwoerter { get; set; }
+        public string? Schlagwoerter { get; set; }
         public DateTime? Sepamandat { get; set; }
         [StringLength(35)]
-        public string Sepamandatsreferenz { get; set; }
+        public string? Sepamandatsreferenz { get; set; }
         [StringLength(30)]
-        public string SepaSddType { get; set; }
+        public string? SepaSddType { get; set; }
         public decimal? SelbstaendigeArbeitNettoMonatlich { get; set; }
         public DateTime? StichtagBruttojahresmietwert { get; set; }
         public DateTime? StichtagBruttojahresumsatz { get; set; }
@@ -217,97 +217,97 @@ namespace Assfinet.Shared.Entities
         public DateTime? StopAbrechnungBis { get; set; }
         public DateTime? StopZahlungBis { get; set; }
         [StringLength(50)]
-        public string Strasse { get; set; }
+        public string? Strasse { get; set; }
         [StringLength(50)]
-        public string StrassePhonetisch { get; set; }
+        public string? StrassePhonetisch { get; set; }
         public decimal? SubunternehmerAuftragswert { get; set; }
         public decimal? SummeEigeneBauvorhaben { get; set; }
         public DateTime? TaetigAufBetriebsgrundstueckSeit { get; set; }
         [StringLength(20)]
-        public string Titel { get; set; }
+        public string? Titel { get; set; }
         public bool? Trockenbett { get; set; }
         public bool? Ueberschwemmungsgebiet { get; set; }
         public bool? Umfriedet { get; set; }
         public int? Umsatz { get; set; }
         [StringLength(4)]
-        public string UmsatzJahr { get; set; }
+        public string? UmsatzJahr { get; set; }
         [StringLength(20)]
-        public string USTIDNr { get; set; }
+        public string? USTIDNr { get; set; }
         public DateTime? Verstorben { get; set; }
         [StringLength(50)]
-        public string Vm1 { get; set; }
+        public string? Vm1 { get; set; }
         [StringLength(50)]
-        public string Vm10 { get; set; }
+        public string? Vm10 { get; set; }
         [StringLength(50)]
-        public string Vm2 { get; set; }
+        public string? Vm2 { get; set; }
         [StringLength(50)]
-        public string Vm3 { get; set; }
+        public string? Vm3 { get; set; }
         [StringLength(50)]
-        public string Vm4 { get; set; }
+        public string? Vm4 { get; set; }
         [StringLength(50)]
-        public string Vm5 { get; set; }
+        public string? Vm5 { get; set; }
         [StringLength(50)]
-        public string Vm6 { get; set; }
+        public string? Vm6 { get; set; }
         [StringLength(50)]
-        public string Vm7 { get; set; }
+        public string? Vm7 { get; set; }
         [StringLength(50)]
-        public string Vm8 { get; set; }
+        public string? Vm8 { get; set; }
         [StringLength(50)]
-        public string Vm9 { get; set; }
+        public string? Vm9 { get; set; }
         [StringLength(40)]
-        public string VnMvertrag { get; set; }
+        public string? VnMvertrag { get; set; }
         [StringLength(15)]
-        public string Vnnummer { get; set; }
+        public string? Vnnummer { get; set; }
         public int? VnSepaPreNotificationtAge { get; set; }
         public decimal? WarenMaterialwertProJahr { get; set; }
         public bool? Wasserschutzgebiet { get; set; }
         [StringLength(3)]
-        public string Zuordnung { get; set; }
+        public string? Zuordnung { get; set; }
 
         [StringLength(200)]
-        public string Kundenname { get; set; }
+        public string? Kundenname { get; set; }
         [StringLength(200)]
-        public string KundennamePhonetisch { get; set; }
+        public string? KundennamePhonetisch { get; set; }
         [StringLength(200)]
-        public string Kundentyp { get; set; }
+        public string? Kundentyp { get; set; }
         [StringLength(20)]
-        public string Kundenverbindung { get; set; }
+        public string? Kundenverbindung { get; set; }
         public DateTime? KundeSeit { get; set; }
         [StringLength(15)]
-        public string Partner { get; set; }
+        public string? Partner { get; set; }
         [StringLength(30)]
-        public string Finanzamt { get; set; }
+        public string? Finanzamt { get; set; }
         [StringLength(100)]
-        public string GBetriebsart { get; set; }
+        public string? GBetriebsart { get; set; }
         public int? GBetriebsartId { get; set; }
         public bool? GB2b { get; set; }
         public bool? GAvwl { get; set; }
         public bool? PGehaltBbgKranken { get; set; }
         public bool? PGehaltBbgRente { get; set; }
         [StringLength(7)]
-        public string Plz { get; set; }
+        public string? Plz { get; set; }
         [StringLength(20)]
-        public string Kindergeldnummer { get; set; }
+        public string? Kindergeldnummer { get; set; }
         public decimal? KinderLautSteuerkarte { get; set; }
         public bool? Kirchensteuer { get; set; }
         [StringLength(12)]
-        public string Konto1 { get; set; }
+        public string? Konto1 { get; set; }
         [StringLength(12)]
-        public string Konto2 { get; set; }
+        public string? Konto2 { get; set; }
         [StringLength(100)]
-        public string Kontobezeichnung1 { get; set; }
+        public string? Kontobezeichnung1 { get; set; }
         [StringLength(100)]
-        public string Kontobezeichnung2 { get; set; }
+        public string? Kontobezeichnung2 { get; set; }
         [StringLength(40)]
-        public string Kontoinhaber1 { get; set; }
+        public string? Kontoinhaber1 { get; set; }
         [StringLength(40)]
-        public string Kontoinhaber2 { get; set; }
+        public string? Kontoinhaber2 { get; set; }
         public decimal? Kapitalmarktzins { get; set; }
 
         // Navigation properties
-        public virtual KundePersonenDetails PersonenDetails { get; set; }
-        public virtual KundeFinanzen Finanzen { get; set; }
-        public virtual KundeKontakt Kontakt { get; set; }
-        public virtual ICollection<Vertrag> Vertraege { get; set; }
+        public virtual KundePersonenDetails? PersonenDetails { get; set; }
+        public virtual KundeFinanzen? Finanzen { get; set; }
+        public virtual KundeKontakt? Kontakt { get; set; }
+        public virtual ICollection<Vertrag>? Vertraege { get; set; }
     }
 }

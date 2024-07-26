@@ -26,6 +26,7 @@ namespace Assfinet.Shared.Validators
             RuleFor(k => k.LageBetriebsgrundstuecks).MaximumLength(50);
             RuleFor(k => k.Land).MaximumLength(3);
             RuleFor(k => k.Landesname).MaximumLength(50);
+            RuleFor(k => k.License).NotEmpty();
             RuleFor(k => k.Mandant).MaximumLength(50);
             RuleFor(k => k.MandantAmsidnr).MaximumLength(40);
             RuleFor(k => k.Mobiltelefon).MaximumLength(35);
@@ -79,14 +80,16 @@ namespace Assfinet.Shared.Validators
             RuleFor(k => k.Kontobezeichnung2).MaximumLength(100);
             RuleFor(k => k.Kontoinhaber1).MaximumLength(40);
             RuleFor(k => k.Kontoinhaber2).MaximumLength(40);
-            
-            RuleFor(kunde => kunde.PersonenDetails)
+            RuleFor(k => k.Zuordnung).MaximumLength(20);
+
+            // Nested Validators
+            RuleFor(k => k.PersonenDetails)
                 .SetValidator(new KundePersonenDetailsValidator());
-            
-            RuleFor(kunde => kunde.Finanzen)
+
+            RuleFor(k => k.Finanzen)
                 .SetValidator(new KundeFinanzenValidator());
-            
-            RuleFor(kunde => kunde.Kontakt)
+
+            RuleFor(k => k.Kontakt)
                 .SetValidator(new KundeKontaktValidator());
         }
     }

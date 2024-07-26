@@ -261,7 +261,7 @@ namespace Assfinet.Shared.Entities
         public int? VnSepaPreNotificationtAge { get; set; }
         public decimal? WarenMaterialwertProJahr { get; set; }
         public bool? Wasserschutzgebiet { get; set; }
-        [StringLength(3)]
+        [StringLength(20)]
         public string? Zuordnung { get; set; }
 
         [StringLength(200)]
@@ -305,9 +305,9 @@ namespace Assfinet.Shared.Entities
         public decimal? Kapitalmarktzins { get; set; }
 
         // Navigation properties
-        public virtual KundePersonenDetails? PersonenDetails { get; set; }
-        public virtual KundeFinanzen? Finanzen { get; set; }
-        public virtual KundeKontakt? Kontakt { get; set; }
+        public virtual KundePersonenDetails PersonenDetails { get; set; }
+        public virtual KundeFinanzen Finanzen { get; set; }
+        public virtual KundeKontakt Kontakt { get; set; }
         public virtual ICollection<Vertrag>? Vertraege { get; set; }
     }
 }

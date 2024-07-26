@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.DailyUpdate", "Ass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.InitialImporter.Api", "Assfinet.InitialImporter.Api\Assfinet.InitialImporter.Api.csproj", "{6B109054-F699-4523-875C-8FBFC9783994}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.Shared.Tests", "Assfinet.Shared.Tests\Assfinet.Shared.Tests.csproj", "{CE69F731-1290-44CC-AC15-E4576B709A06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{6B109054-F699-4523-875C-8FBFC9783994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B109054-F699-4523-875C-8FBFC9783994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B109054-F699-4523-875C-8FBFC9783994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE69F731-1290-44CC-AC15-E4576B709A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE69F731-1290-44CC-AC15-E4576B709A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE69F731-1290-44CC-AC15-E4576B709A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE69F731-1290-44CC-AC15-E4576B709A06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

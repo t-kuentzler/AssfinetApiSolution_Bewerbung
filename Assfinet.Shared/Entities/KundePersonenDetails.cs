@@ -60,6 +60,6 @@ namespace Assfinet.Shared.Entities
         public string? Zuordnung { get; set; }
 
         // Navigation properties
-        public virtual Kunde? Kunde { get; set; }
+        public virtual Kunde Kunde { get; set; }
     }
 }

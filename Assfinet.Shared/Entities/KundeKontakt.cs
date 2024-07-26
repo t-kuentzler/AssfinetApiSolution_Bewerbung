@@ -28,6 +28,6 @@ namespace Assfinet.Shared.Entities
         [StringLength(35)] public string? TelefonPrivat { get; set; }
 
         // Navigation properties
-        public virtual Kunde? Kunde { get; set; }
+        public virtual Kunde Kunde { get; set; }
     }
 }

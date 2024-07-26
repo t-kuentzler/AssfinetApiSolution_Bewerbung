@@ -27,11 +27,27 @@ public class KundeService : IKundeService
                 _logger.LogWarning("Es wurden 0 Kunden von der API abgerufen.");
                 return;
             }
+            else
+            {
+                _logger.LogInformation($"Es wurden {kunden.Count} kunden von der API abgerufen.");
+            }
 
             foreach (var kunde in kunden)
             {
                 var parsedKunde = _kundeParserService.ParseKundeModelToDbEntity(kunde);
-                // await _kundeRepository.AddKundeAsync(parsedKunde);
+                var kundeExists = _kundeRepository.KundeExistsByAmsIdAsync(parsedKunde.AmsId);
+                if (kundeExists.Result)
+                {
+                    _logger.LogInformation($"Es wird versucht, den Kunden mit der AmsId '{parsedKunde.AmsId}' in der Datenbank zu erstellen.");
+                    await _kundeRepository.UpdateKundeAsync(parsedKunde);
+                    _logger.LogInformation($"Der Kunde mit der AmsId '{parsedKunde.AmsId}' wurde erfolgreich in der Datenbank erstellt.");
+                }
+                else
+                {
+                    _logger.LogInformation($"Es wird versucht, den Kunden mit der AmsId '{parsedKunde.AmsId}' in der Datenbank zu aktualisieren.");
+                    await _kundeRepository.AddKundeAsync(parsedKunde);
+                    _logger.LogInformation($"Der Kunde mit der AmsId '{parsedKunde.AmsId}' wurde erfolgreich in der Datenbank aktualisiert.");
+                }
             }
         }
         catch (RepositoryException ex)

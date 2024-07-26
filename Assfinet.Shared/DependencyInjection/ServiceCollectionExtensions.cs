@@ -1,8 +1,12 @@
 using Assfinet.Shared.Configurations;
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Entities;
 using Assfinet.Shared.Logger;
 using Assfinet.Shared.Repositories;
 using Assfinet.Shared.Services;
+using Assfinet.Shared.Validators;
+using Azure.Core;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +43,16 @@ namespace Assfinet.Shared.DependencyInjection
 
             //Automapper
             services.AddAutoMapper(typeof(MappingProfile));
+            
+            // Validator Wrapper
+            services.AddTransient(typeof(IValidatorWrapper<>), typeof(ValidatorWrapper<>));
+            
+            //Validator
+            services.AddTransient<IValidator<Kunde>, KundeValidator>();
+            services.AddTransient<IValidator<KundePersonenDetails>, KundePersonenDetailsValidator>();
+            services.AddTransient<IValidator<KundeKontakt>, KundeKontaktValidator>();
+            services.AddTransient<IValidator<KundeFinanzen>, KundeFinanzenValidator>();
+
             
             services.AddTransient<IAppLogger, AppLogger>();
             services.AddSingleton(configuration);

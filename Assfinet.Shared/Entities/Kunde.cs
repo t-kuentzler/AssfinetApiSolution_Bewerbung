@@ -220,6 +220,8 @@ namespace Assfinet.Shared.Entities
         public string Strasse { get; set; }
         [StringLength(50)]
         public string StrassePhonetisch { get; set; }
+        public decimal? SubunternehmerAuftragswert { get; set; }
+        public decimal? SummeEigeneBauvorhaben { get; set; }
         public DateTime? TaetigAufBetriebsgrundstueckSeit { get; set; }
         [StringLength(20)]
         public string Titel { get; set; }
@@ -261,6 +263,46 @@ namespace Assfinet.Shared.Entities
         public bool? Wasserschutzgebiet { get; set; }
         [StringLength(3)]
         public string Zuordnung { get; set; }
+
+        [StringLength(200)]
+        public string Kundenname { get; set; }
+        [StringLength(200)]
+        public string KundennamePhonetisch { get; set; }
+        [StringLength(200)]
+        public string Kundentyp { get; set; }
+        [StringLength(20)]
+        public string Kundenverbindung { get; set; }
+        public DateTime? KundeSeit { get; set; }
+        [StringLength(15)]
+        public string Partner { get; set; }
+        [StringLength(30)]
+        public string Finanzamt { get; set; }
+        [StringLength(100)]
+        public string GBetriebsart { get; set; }
+        public int? GBetriebsartId { get; set; }
+        public bool? GB2b { get; set; }
+        public bool? GAvwl { get; set; }
+        public bool? PGehaltBbgKranken { get; set; }
+        public bool? PGehaltBbgRente { get; set; }
+        [StringLength(7)]
+        public string Plz { get; set; }
+        [StringLength(20)]
+        public string Kindergeldnummer { get; set; }
+        public decimal? KinderLautSteuerkarte { get; set; }
+        public bool? Kirchensteuer { get; set; }
+        [StringLength(12)]
+        public string Konto1 { get; set; }
+        [StringLength(12)]
+        public string Konto2 { get; set; }
+        [StringLength(100)]
+        public string Kontobezeichnung1 { get; set; }
+        [StringLength(100)]
+        public string Kontobezeichnung2 { get; set; }
+        [StringLength(40)]
+        public string Kontoinhaber1 { get; set; }
+        [StringLength(40)]
+        public string Kontoinhaber2 { get; set; }
+        public decimal? Kapitalmarktzins { get; set; }
 
         // Navigation properties
         public virtual KundePersonenDetails PersonenDetails { get; set; }

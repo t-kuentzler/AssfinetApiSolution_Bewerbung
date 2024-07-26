@@ -22,48 +22,43 @@ public class KundeService : IKundeService
 
     public async Task ImportKundenAsync(List<KundeModel> kundenModels)
     {
-        try
+        if (kundenModels.Count == 0)
         {
-            if (kundenModels.Count == 0)
-            {
-                _logger.LogWarning("Es wurden 0 Kunden von der API abgerufen.");
-                return;
-            }
-
-            _logger.LogInformation($"Es wurden {kundenModels.Count} Kunden von der API abgerufen.");
-
-            foreach (var kundeModel in kundenModels)
-            {
-                var kunde = _kundeParserService.ParseKundeModelToDbEntity(kundeModel);
-
-                try
-                {
-                    await _kundeProcessingService.ValidateKundeAsync(kunde);
-                    await _kundeProcessingService.ProcessKundeAsync(kunde);
-                }
-                catch (ValidationException ex)
-                {
-                    _logger.LogError(
-                        $"Bei dem Kunden mit der AmsId '{kunde.AmsId}' ist ein Validierungsfehler aufgetreten: {ex.Message}",
-                        ex);
-                }
-                catch (RepositoryException ex)
-                {
-                    _logger.LogError(
-                        $"Repository-Exception beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}'.", ex);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(
-                        $"Es ist ein unerwarteter Fehler beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}' aufgetreten.",
-                        ex);
-                }
-            }
+            _logger.LogWarning("Es wurden 0 Kunden von der API abgerufen.");
+            return;
         }
-        catch (Exception ex)
+
+        _logger.LogInformation($"Es wurden {kundenModels.Count} Kunden von der API abgerufen.");
+
+        foreach (var kundeModel in kundenModels)
         {
-            _logger.LogError("Es ist ein unerwarteter Fehler beim Importieren von allen Kunden aufgetreten.", ex);
-            throw;
+            var kunde = _kundeParserService.ParseKundeModelToDbEntity(kundeModel);
+
+            try
+            {
+                await _kundeProcessingService.ValidateKundeAsync(kunde);
+                await _kundeProcessingService.ProcessKundeAsync(kunde);
+            }
+            catch (ValidationException ex)
+            {
+                _logger.LogError(
+                    $"Bei dem Kunden mit der AmsId '{kunde.AmsId}' ist ein Validierungsfehler aufgetreten: {ex.Message}",
+                    ex);
+                throw;
+            }
+            catch (RepositoryException ex)
+            {
+                _logger.LogError(
+                    $"Repository-Exception beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}'.", ex);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    $"Es ist ein unerwarteter Fehler beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}' aufgetreten.",
+                    ex);
+                throw new KundeServiceException();
+            }
         }
     }
 }

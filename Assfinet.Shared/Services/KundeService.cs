@@ -1,65 +1,69 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
 using Assfinet.Shared.Models;
+using FluentValidation;
 
 namespace Assfinet.Shared.Services;
 
 public class KundeService : IKundeService
 {
-    private readonly IKundeRepository _kundeRepository;
     private readonly IKundeParserService _kundeParserService;
     private readonly IAppLogger _logger;
+    private readonly IKundeProcessingService _kundeProcessingService;
 
-    public KundeService(IKundeRepository kundeRepository, IKundeParserService kundeParserService,
-        IAppLogger logger)
+    public KundeService(IKundeParserService kundeParserService,
+        IAppLogger logger, IKundeProcessingService kundeProcessingService)
     {
-        _kundeRepository = kundeRepository;
         _kundeParserService = kundeParserService;
         _logger = logger;
+        _kundeProcessingService = kundeProcessingService;
     }
 
-    public async Task SaveKundenAsync(List<KundeModel> kunden)
+    public async Task SaveKundenAsync(List<KundeModel> kundenModels)
     {
         try
         {
-            if (kunden.Count == 0)
+            if (kundenModels.Count == 0)
             {
                 _logger.LogWarning("Es wurden 0 Kunden von der API abgerufen.");
                 return;
             }
-            else
-            {
-                _logger.LogInformation($"Es wurden {kunden.Count} kunden von der API abgerufen.");
-            }
 
-            foreach (var kunde in kunden)
+            _logger.LogInformation($"Es wurden {kundenModels.Count} Kunden von der API abgerufen.");
+
+            foreach (var kundeModel in kundenModels)
             {
-                var parsedKunde = _kundeParserService.ParseKundeModelToDbEntity(kunde);
-                var kundeExists = _kundeRepository.KundeExistsByAmsIdAsync(parsedKunde.AmsId);
-                if (kundeExists.Result)
+                var kunde = _kundeParserService.ParseKundeModelToDbEntity(kundeModel);
+
+                try
                 {
-                    _logger.LogInformation($"Es wird versucht, den Kunden mit der AmsId '{parsedKunde.AmsId}' in der Datenbank zu erstellen.");
-                    await _kundeRepository.UpdateKundeAsync(parsedKunde);
-                    _logger.LogInformation($"Der Kunde mit der AmsId '{parsedKunde.AmsId}' wurde erfolgreich in der Datenbank erstellt.");
+                    await _kundeProcessingService.ValidateKundeAsync(kunde);
+                    await _kundeProcessingService.ProcessKundeAsync(kunde);
                 }
-                else
+                catch (ValidationException ex)
                 {
-                    _logger.LogInformation($"Es wird versucht, den Kunden mit der AmsId '{parsedKunde.AmsId}' in der Datenbank zu aktualisieren.");
-                    await _kundeRepository.AddKundeAsync(parsedKunde);
-                    _logger.LogInformation($"Der Kunde mit der AmsId '{parsedKunde.AmsId}' wurde erfolgreich in der Datenbank aktualisiert.");
+                    _logger.LogError(
+                        $"Bei dem Kunden mit der AmsId '{kunde.AmsId}' ist ein Validierungsfehler aufgetreten: {ex.Message}",
+                        ex);
+                }
+                catch (RepositoryException ex)
+                {
+                    _logger.LogError(
+                        $"Repository-Exception beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}'.", ex);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(
+                        $"Es ist ein unerwarteter Fehler beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}' aufgetreten.",
+                        ex);
                 }
             }
-        }
-        catch (RepositoryException ex)
-        {
-            _logger.LogError($"Repository-Exception beim importieren von allen Kunden.", ex);
-            throw;
         }
         catch (Exception ex)
         {
-            _logger.LogError("Es ist ein unerwarteter Fehler aufgetreten beim importieren von allen Kunden.", ex);
-            throw new KundeServiceException();
+            _logger.LogError("Es ist ein unerwarteter Fehler beim Importieren von allen Kunden aufgetreten.", ex);
+            throw;
         }
-
     }
 }

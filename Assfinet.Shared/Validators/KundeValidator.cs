@@ -82,7 +82,6 @@ namespace Assfinet.Shared.Validators
             RuleFor(k => k.Kontoinhaber2).MaximumLength(40);
             RuleFor(k => k.Zuordnung).MaximumLength(20);
 
-            // Nested Validators
             RuleFor(k => k.PersonenDetails)
                 .SetValidator(new KundePersonenDetailsValidator());
 

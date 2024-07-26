@@ -24,7 +24,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
             {
                 var kundenModels = await _apiService.GetKundenAsync();
 
-                await _kundeService.SaveKundenAsync(kundenModels);
+                await _kundeService.ImportKundenAsync(kundenModels);
 
                 return Ok();
             }

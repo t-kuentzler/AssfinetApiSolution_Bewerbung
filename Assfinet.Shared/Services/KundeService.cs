@@ -20,7 +20,7 @@ public class KundeService : IKundeService
         _kundeProcessingService = kundeProcessingService;
     }
 
-    public async Task SaveKundenAsync(List<KundeModel> kundenModels)
+    public async Task ImportKundenAsync(List<KundeModel> kundenModels)
     {
         try
         {

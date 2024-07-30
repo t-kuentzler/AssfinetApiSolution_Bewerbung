@@ -49,7 +49,7 @@ public class KundeProcessingServiceTests
         // Arrange
         var kunde = new Kunde { Id = 1, AmsId = Guid.NewGuid() };
 
-        _kundeRepositoryMock.Setup(r => r.KundeExistsByAmsIdAsync(kunde.AmsId)).ReturnsAsync((Kunde?)null);
+        _kundeRepositoryMock.Setup(r => r.GetKundeByAmsIdAsync(kunde.AmsId)).ReturnsAsync((Kunde?)null);
 
         // Act
         await _kundeProcessingService.ProcessImportKundeAsync(kunde);
@@ -67,7 +67,7 @@ public class KundeProcessingServiceTests
         var kunde = new Kunde { Id = 1, AmsId = Guid.NewGuid() };
         var existingKunde = new Kunde { Id = 1, AmsId = kunde.AmsId };
 
-        _kundeRepositoryMock.Setup(r => r.KundeExistsByAmsIdAsync(kunde.AmsId)).ReturnsAsync(existingKunde);
+        _kundeRepositoryMock.Setup(r => r.GetKundeByAmsIdAsync(kunde.AmsId)).ReturnsAsync(existingKunde);
 
         // Act
         await _kundeProcessingService.ProcessImportKundeAsync(kunde);

@@ -40,6 +40,9 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddScoped<IVertragService, VertragService>();
             services.AddScoped<IVertragParserService, VertragParserService>();
             services.AddScoped<IVertragProcessingService, VertragProcessingService>();
+            services.AddScoped<ISparteService, SparteService>();
+            services.AddScoped<ISparteParserService, SparteParserService>();
+            services.AddScoped<ISparteProcessingService, SparteProcessingService>();
 
             //Repositories
             services.AddScoped<IKundeRepository, KundeRepository>();

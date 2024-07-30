@@ -91,7 +91,7 @@ namespace Assfinet.Shared
                     .WithOne(f => f.Vertrag)
                     .HasForeignKey<VertragFinanzen>(f => f.VertragId);
 
-                entity.HasOne(e => e.DetailsEntity)
+                entity.HasOne(e => e.VertragDetails)
                     .WithOne(d => d.Vertrag)
                     .HasForeignKey<VertragDetails>(d => d.VertragId);
 

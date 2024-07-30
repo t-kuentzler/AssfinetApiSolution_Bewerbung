@@ -36,7 +36,7 @@ public class Vertrag
 
     // Navigation properties
     public virtual VertragFinanzen Finanzen { get; set; }
-    public virtual VertragDetails DetailsEntity { get; set; }
+    public virtual VertragDetails VertragDetails { get; set; }
     public virtual VertragHistorie Historie { get; set; }
     public virtual VertragBank BankDetails { get; set; }
     public virtual Kunde Kunde { get; set; }

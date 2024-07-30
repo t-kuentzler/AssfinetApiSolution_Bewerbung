@@ -32,30 +32,30 @@ public class KundeService : IKundeService
 
         foreach (var kundeModel in kundenModels)
         {
-            var kunde = _kundeParserService.ParseKundeModelToDbEntity(kundeModel);
 
             try
             {
+                var kunde = _kundeParserService.ParseKundeModelToDbEntity(kundeModel);
                 await _kundeProcessingService.ValidateKundeAsync(kunde);
-                await _kundeProcessingService.ProcessKundeAsync(kunde);
+                await _kundeProcessingService.ProcessImportKundeAsync(kunde);
             }
             catch (ValidationException ex)
             {
                 _logger.LogError(
-                    $"Bei dem Kunden mit der AmsId '{kunde.AmsId}' ist ein Validierungsfehler aufgetreten: {ex.Message}",
+                    $"Bei dem Kunden mit der AmsId '{kundeModel.Id}' ist ein Validierungsfehler aufgetreten: {ex.Message}",
                     ex);
                 throw;
             }
             catch (RepositoryException ex)
             {
                 _logger.LogError(
-                    $"Repository-Exception beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}'.", ex);
+                    $"Repository-Exception beim Importieren von dem Kunden mit der AmsId '{kundeModel.Id}'.", ex);
                 throw;
             }
             catch (Exception ex)
             {
                 _logger.LogError(
-                    $"Es ist ein unerwarteter Fehler beim Importieren von dem Kunden mit der AmsId '{kunde.AmsId}' aufgetreten.",
+                    $"Es ist ein unerwarteter Fehler beim Importieren von dem Kunden mit der AmsId '{kundeModel.Id}' aufgetreten.",
                     ex);
                 throw new KundeServiceException();
             }

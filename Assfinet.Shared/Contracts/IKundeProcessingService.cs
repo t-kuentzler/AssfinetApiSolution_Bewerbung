@@ -5,5 +5,5 @@ namespace Assfinet.Shared.Contracts;
 public interface IKundeProcessingService
 {
     Task ValidateKundeAsync(Kunde kunde);
-    Task ProcessKundeAsync(Kunde kunde);
+    Task ProcessImportKundeAsync(Kunde kunde);
 }

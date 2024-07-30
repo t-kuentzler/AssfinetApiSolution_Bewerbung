@@ -9,7 +9,9 @@ namespace Assfinet.Shared.Validators
         {
             RuleFor(k => k.Adrid).MaximumLength(40);
             RuleFor(k => k.Aenderungsgrund).MaximumLength(100);
-            RuleFor(k => k.Amsidnr).MaximumLength(40);
+            RuleFor(k => k.Amsidnr)
+                .NotEmpty()
+                .MaximumLength(40);
             RuleFor(k => k.Bearbeiter).MaximumLength(40);
             RuleFor(k => k.BelegteSparten).MaximumLength(200);
             RuleFor(k => k.Debitor).MaximumLength(11);

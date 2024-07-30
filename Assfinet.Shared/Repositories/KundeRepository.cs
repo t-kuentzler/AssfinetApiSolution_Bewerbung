@@ -40,12 +40,13 @@ public class KundeRepository : IKundeRepository
         }
     }
 
-    public async Task<bool> KundeExistsByAmsIdAsync(Guid amsId)
+    public async Task<Kunde?> KundeExistsByAmsIdAsync(Guid amsId)
     {
         try
         {
-            return await _applicationDbContext.Kunden
-                .AnyAsync(k => k.AmsId == amsId);
+            return await _applicationDbContext.Kunden.FirstOrDefaultAsync(k => k.AmsId == amsId);
+            // return await _applicationDbContext.Kunden
+            //     .AnyAsync(k => k.AmsId == amsId);
         } 
         catch (Exception ex)
         {

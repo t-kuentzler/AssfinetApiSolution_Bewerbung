@@ -18,7 +18,7 @@ public class VertragService : IVertragService
         _logger = logger;
         _vertragProcessingService = vertragProcessingService;
     }
-    
+
     public async Task ImportVertraegeAsync(List<VertragModel> vertraegeModels)
     {
         if (vertraegeModels.Count == 0)
@@ -31,12 +31,11 @@ public class VertragService : IVertragService
 
         foreach (var vertragModel in vertraegeModels)
         {
-
             try
             {
                 var vertrag = _vertragParserService.ParseKundeModelToDbEntity(vertragModel);
                 await _vertragProcessingService.ValidateKundeAsync(vertrag);
-                await _vertragProcessingService.ProcessImportKundeAsync(vertrag);
+                await _vertragProcessingService.ProcessImportVertragAsync(vertrag);
             }
             catch (ValidationException ex)
             {
@@ -59,4 +58,5 @@ public class VertragService : IVertragService
                 throw new VertragServiceException();
             }
         }
+    }
 }

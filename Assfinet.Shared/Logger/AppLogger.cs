@@ -24,8 +24,14 @@ namespace Assfinet.Shared.Logger
 
         public void LogError(string message, params object[] args)
         {
-            _logger.Error(message, args);
+            if (args.Length > 0 && args[0] is Exception exception)
+            {
+                _logger.Error(exception, message);
+            }
+            else
+            {
+                _logger.Error(message, args);
+            }
         }
-        
     }
 }

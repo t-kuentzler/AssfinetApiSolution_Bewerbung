@@ -32,6 +32,7 @@ public class VertragProcessingService : IVertragProcessingService
         {
             _logger.LogError(
                 $"Der Vertrag mit dem Key '{vertrag.Key}' konnte nicht in der Datenbank erstellt werden, da kein Kunde mit der entsprechenden Amsidnr gefunden wurde.");
+            return;
         }
 
         //Nicht erstellen, wenn Vertrag schon in Db existiert
@@ -40,6 +41,7 @@ public class VertragProcessingService : IVertragProcessingService
         {
             _logger.LogError(
                 $"Der Vertrag mit der AmsId '{vertrag.AmsId}' konnte nicht in der Datenbank erstellt werden, da schon ein Datensatz mit der AmsId existiert.");
+            return;
         }
 
         _logger.LogInformation(

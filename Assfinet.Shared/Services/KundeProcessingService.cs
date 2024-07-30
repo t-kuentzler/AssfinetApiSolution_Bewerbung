@@ -30,6 +30,7 @@ public class KundeProcessingService : IKundeProcessingService
         {
             _logger.LogError(
                 $"Der Kunde mit der AmsId '{kunde.AmsId}' konnte nicht in der Datenbank erstellt werden, da schon ein Datensatz mit der AmsId existiert.");
+            return;
         }
 
         _logger.LogInformation(

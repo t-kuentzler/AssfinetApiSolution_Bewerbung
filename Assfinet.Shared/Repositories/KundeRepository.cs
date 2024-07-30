@@ -40,7 +40,7 @@ public class KundeRepository : IKundeRepository
         }
     }
 
-    public async Task<Kunde?> KundeExistsByAmsIdAsync(Guid amsId)
+    public async Task<Kunde?> GetKundeByAmsIdAsync(Guid amsId)
     {
         try
         {
@@ -51,4 +51,18 @@ public class KundeRepository : IKundeRepository
             throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Kunden mit AmsId: '{amsId}'.", ex);
         }
     }
+    
+    public async Task<Kunde?> GetKundeByAmsidnrAsync(string amsidnr)
+    {
+        try
+        {
+            return await _applicationDbContext.Kunden.FirstOrDefaultAsync(k => k.Amsidnr == amsidnr);
+        } 
+        catch (Exception ex)
+        {
+            throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Kunden mit Amsidnr: '{amsidnr}'.", ex);
+        }
+    }
+    
+    
 }

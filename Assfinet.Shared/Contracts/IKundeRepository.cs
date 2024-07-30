@@ -6,6 +6,7 @@ public interface IKundeRepository
 {
     Task AddKundeAsync(Kunde kunde);
     Task UpdateKundeAsync(Kunde kunde);
-    Task<Kunde?> KundeExistsByAmsIdAsync(Guid amsId);
-    
+    Task<Kunde?> GetKundeByAmsIdAsync(Guid amsId);
+    Task<Kunde?> GetKundeByAmsidnrAsync(string amsidnr);
+
 }

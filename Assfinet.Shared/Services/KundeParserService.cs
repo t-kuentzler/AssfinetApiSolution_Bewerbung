@@ -25,13 +25,13 @@ namespace Assfinet.Shared.Services
             {
                 if (kundeModel == null)
                 {
-                    throw new ArgumentNullException(nameof(kundeModel), "KundeModel cannot be null.");
+                    throw new ArgumentNullException(nameof(kundeModel));
                 }
 
                 var kunde = _mapper.Map<Kunde>(kundeModel);
                 if (kunde == null)
                 {
-                    throw new InvalidOperationException("Mapping of KundeModel to Kunde failed.");
+                    throw new InvalidOperationException("Mapping von KundeModel zu Kunde fehlgeschlagen.");
                 }
 
                 kunde.PersonenDetails = _mapper.Map<KundePersonenDetails>(kundeModel) ?? new KundePersonenDetails();

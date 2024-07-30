@@ -21,25 +21,22 @@ public class KundeProcessingService : IKundeProcessingService
         await _kundeValidator.ValidateAndThrowAsync(kunde);
     }
 
-    public async Task ProcessKundeAsync(Kunde kunde)
+    public async Task ProcessImportKundeAsync(Kunde kunde)
     {
         var kundeExists = await _kundeRepository.KundeExistsByAmsIdAsync(kunde.AmsId);
 
-        if (kundeExists)
-        {
-            _logger.LogInformation(
-                $"Es wird versucht, den Kunden mit der AmsId '{kunde.AmsId}' in der Datenbank zu aktualisieren.");
-            await _kundeRepository.UpdateKundeAsync(kunde);
-            _logger.LogInformation(
-                $"Der Kunde mit der AmsId '{kunde.AmsId}' wurde erfolgreich in der Datenbank aktualisiert.");
-        }
-        else
+        if (kundeExists == null)
         {
             _logger.LogInformation(
                 $"Es wird versucht, den Kunden mit der AmsId '{kunde.AmsId}' in der Datenbank zu erstellen.");
             await _kundeRepository.AddKundeAsync(kunde);
             _logger.LogInformation(
                 $"Der Kunde mit der AmsId '{kunde.AmsId}' wurde erfolgreich in der Datenbank erstellt.");
+        }
+        else
+        {
+            _logger.LogError(
+                $"Der Kunde mit der AmsId '{kunde.AmsId}' konnte nicht in der Datenbank erstellt werden, da schon ein Datensatz mit der AmsId existiert.");
         }
     }
 }

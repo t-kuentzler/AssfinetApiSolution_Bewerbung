@@ -10,8 +10,8 @@ public class MappingProfile : Profile
     {
         CreateMap<KundeModel, Kunde>()
             .ForMember(dest => dest.AmsId,
-                opt => opt.MapFrom(src => src.Id)) // Mapping von Id in KundeModel auf AmsId in Kunde
-            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID in Kunde wird von der Datenbank generiert
+                opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
+            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
 
         CreateMap<KundeModel, KundePersonenDetails>()
             .ForMember(dest => dest.KundeId, opt => opt.Ignore());
@@ -23,6 +23,21 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.KundeId, opt => opt.Ignore());
 
         CreateMap<VertragModel, Vertrag>()
-            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID in Vertrag wird von der Datenbank generiert
+            .ForMember(dest => dest.AmsId,
+                opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
+            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
+
+        CreateMap<VertragModel, VertragFinanzen>()
+            .ForMember(dest => dest.VertragId, opt => opt.Ignore());
+        
+        CreateMap<VertragModel, VertragDetails>()
+            .ForMember(dest => dest.VertragId, opt => opt.Ignore());
+       
+        CreateMap<VertragModel, VertragHistorie>()
+            .ForMember(dest => dest.VertragId, opt => opt.Ignore());
+         
+        CreateMap<VertragModel, VertragBank>()
+            .ForMember(dest => dest.VertragId, opt => opt.Ignore());
+        
     }
 }

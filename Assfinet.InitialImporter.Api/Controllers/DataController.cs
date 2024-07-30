@@ -10,11 +10,14 @@ namespace Assfinet.InitialImporter.Api.Controllers
     {
         private readonly IApiService _apiService;
         private readonly IKundeService _kundeService;
+        private readonly IVertragService _vertragService;
 
-        public DataController(IApiService apiService, IKundeService kundeService)
+        public DataController(IApiService apiService, IKundeService kundeService,
+            IVertragService vertragService)
         {
             _apiService = apiService;
             _kundeService = kundeService;
+            _vertragService = vertragService;
         }
 
         [HttpPost("import-kunden")]
@@ -40,6 +43,9 @@ namespace Assfinet.InitialImporter.Api.Controllers
             try
             {
                 var vertraege = await _apiService.GetVertraegeAsync();
+
+                await _vertragService.ImportVertraegeAsync(vertraege);
+                
                 return Ok(vertraege);
             }
             catch (Exception)

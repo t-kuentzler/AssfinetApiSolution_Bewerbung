@@ -2,25 +2,51 @@ using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Entities;
 using Assfinet.Shared.Models;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using Assfinet.Shared.Exceptions;
 
-namespace Assfinet.Shared.Services;
-
-public class KundeParserService : IKundeParserService
+namespace Assfinet.Shared.Services
 {
-    private readonly IMapper _mapper;
-
-    public KundeParserService(IMapper mapper)
+    public class KundeParserService : IKundeParserService
     {
-        _mapper = mapper;
-    }
+        private readonly IMapper _mapper;
+        private readonly IAppLogger _logger;
 
-    public Kunde ParseKundeModelToDbEntity(KundeModel kundeModel)
-    {
-        var kunde = _mapper.Map<Kunde>(kundeModel);
-        kunde.PersonenDetails = _mapper.Map<KundePersonenDetails>(kundeModel);
-        kunde.Finanzen = _mapper.Map<KundeFinanzen>(kundeModel);
-        kunde.Kontakt = _mapper.Map<KundeKontakt>(kundeModel);
-        
-        return kunde;
+        public KundeParserService(IMapper mapper, IAppLogger logger)
+        {
+            _mapper = mapper;
+            _logger = logger;
+        }
+
+        public Kunde ParseKundeModelToDbEntity(KundeModel kundeModel)
+        {
+            try
+            {
+                if (kundeModel == null)
+                {
+                    throw new ArgumentNullException(nameof(kundeModel), "KundeModel cannot be null.");
+                }
+
+                var kunde = _mapper.Map<Kunde>(kundeModel);
+                if (kunde == null)
+                {
+                    throw new InvalidOperationException("Mapping of KundeModel to Kunde failed.");
+                }
+
+                kunde.PersonenDetails = _mapper.Map<KundePersonenDetails>(kundeModel) ?? new KundePersonenDetails();
+                kunde.Finanzen = _mapper.Map<KundeFinanzen>(kundeModel) ?? new KundeFinanzen();
+                kunde.Kontakt = _mapper.Map<KundeKontakt>(kundeModel) ?? new KundeKontakt();
+
+                return kunde;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    $"Es ist ein unerwarteter Fehler beim Parsen von KundeModel zu Kunde aufgetreten.",
+                    ex);
+                throw new KundeParserServiceException();
+            }
+        }
     }
 }

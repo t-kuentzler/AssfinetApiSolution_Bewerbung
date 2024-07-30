@@ -45,8 +45,6 @@ public class KundeRepository : IKundeRepository
         try
         {
             return await _applicationDbContext.Kunden.FirstOrDefaultAsync(k => k.AmsId == amsId);
-            // return await _applicationDbContext.Kunden
-            //     .AnyAsync(k => k.AmsId == amsId);
         } 
         catch (Exception ex)
         {

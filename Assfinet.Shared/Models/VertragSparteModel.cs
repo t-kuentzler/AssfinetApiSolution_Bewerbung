@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +14,7 @@ public partial class VertragSparteModel
     public string Amsidnr { get; set; }
     
     [StringLength(40)]
-    public string Key { get; set; } // Vater - Datensatz, also zugehöriger Vertrag.Amsidnr
+    public string Key { get; set; }
     
     [Required]
     [StringLength(50)]
@@ -31,6 +32,6 @@ public partial class VertragSparteModel
     /// 
     
     [StringLength(40)]
-    public string License { get; set; }
+    public string? License { get; set; }
     public DateTime LastSynchronisation { get; private set; }
 }

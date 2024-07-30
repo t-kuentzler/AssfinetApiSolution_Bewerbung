@@ -1,5 +1,4 @@
 using Assfinet.Shared.Contracts;
-using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
 using Assfinet.Shared.Models;
 using FluentValidation;

@@ -135,7 +135,7 @@ namespace Assfinet.Shared.Services
                 _logger.LogInformation("Bearer Token abgerufen.");
 
                 string apiPath =
-                    "v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip=0&take=50&accessMode=Admin&pendingDrafts=false";
+                    "v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip=0&take=10&accessMode=Admin&pendingDrafts=false";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,

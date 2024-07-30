@@ -95,7 +95,7 @@ namespace Assfinet.Shared.Services
                 (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password, _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
                 _logger.LogInformation("Bearer Token abgerufen.");
 
-                string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=10&accessMode=Admin";
+                string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=3&accessMode=Admin";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,

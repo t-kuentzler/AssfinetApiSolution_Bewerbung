@@ -13,20 +13,20 @@ public class Vertrag
     public string Amsidnr { get; set; }
     public DateTime? Bearbeitet { get; set; }
     [StringLength(20)]
-    public string Sparte { get; set; }
+    public string? Sparte { get; set; }
     [StringLength(60)]
-    public string Details { get; set; }
+    public string? Details { get; set; }
     [Required]
     [StringLength(40)]
-    public string Key { get; set; } // Vater - Datensatz, also zugehöriger Vertrag.Amsidnr
+    public string Key { get; set; }
     [StringLength(40)]
-    public string Vu { get; set; }
+    public string? Vu { get; set; }
     public int VuNummer { get; set; }
     [StringLength(60)]
-    public string ComputedStatus { get; set; }
+    public string? ComputedStatus { get; set; }
     public bool Dirty { get; set; }
     [StringLength(40)]
-    public string License { get; set; }
+    public string? License { get; set; }
     public DateTime LastSynchronisation { get; private set; }
     [NotMapped]
     [JsonExtensionData]

@@ -40,7 +40,7 @@ public class VertragRepository : IVertragRepository
         }
     }
     
-    public async Task<Vertrag?> VertragExistsByAmsIdAsync(Guid amsId)
+    public async Task<Vertrag?> GetVertragByAmsIdAsync(Guid amsId)
     {
         try
         {

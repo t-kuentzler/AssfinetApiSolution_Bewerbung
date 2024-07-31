@@ -32,20 +32,20 @@ namespace Assfinet.Shared.Services
             if (existingVertrag == null)
             {
                 _logger.LogError(
-                    $"Die Spartendaten mit dem Key '{sparte.Key}' konnten nicht in der Datenbank erstellt werden, da kein Vertrag mit der entsprechenden Amsidnr gefunden wurde.");  
+                    $"Die Spartendaten vom Typ '{sparte.GetType().Name}' mit dem Key '{sparte.Key}' konnten nicht in der Datenbank erstellt werden, da kein Vertrag mit der entsprechenden Amsidnr gefunden wurde.");  
                 return;
             }
 
             var existingSparte = await repository.GetSparteByAmsidnrAsync(sparte.Key);
             if (existingSparte != null)
             {
-                _logger.LogError($"Der Spartendatensatz mit dem Key '{sparte.Key}' existiert bereits.");
+                _logger.LogError($"Der Spartendatensatz vom Typ '{sparte.GetType().Name}' mit dem Key '{sparte.Key}' existiert bereits.");
                 return;
             }
 
-            _logger.LogInformation($"Es wird versucht, die Sparte mit dem Key '{sparte.Key}' in der Datenbank zu erstellen.");
+            _logger.LogInformation($"Es wird versucht, die Sparte vom Typ '{sparte.GetType().Name}' mit dem Key '{sparte.Key}' in der Datenbank zu erstellen.");
             await repository.AddSparteAsync(sparte);
-            _logger.LogInformation($"Die Sparte mit dem Key '{sparte.Key}' wurde erfolgreich in der Datenbank erstellt.");
+            _logger.LogInformation($"Die Sparte vom Typ '{sparte.GetType().Name}' mit dem Key '{sparte.Key}' wurde erfolgreich in der Datenbank erstellt.");
         }
 
         private IValidatorWrapper<T> GetValidator<T>() where T : class

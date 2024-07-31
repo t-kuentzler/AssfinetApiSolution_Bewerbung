@@ -51,4 +51,16 @@ public class VertragRepository : IVertragRepository
             throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Vertrags mit AmsId: '{amsId}'.", ex);
         }
     }
+    
+    public async Task<Vertrag?> GetVertragByAmsidnrAsync(string amsidnr)
+    {
+        try
+        {
+            return await _applicationDbContext.Vertraege.FirstOrDefaultAsync(k => k.Amsidnr == amsidnr);
+        } 
+        catch (Exception ex)
+        {
+            throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Vertrags mit Amsidnr: '{amsidnr}'.", ex);
+        }
+    }
 }

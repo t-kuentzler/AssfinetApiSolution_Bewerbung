@@ -7,4 +7,5 @@ public interface IVertragRepository
     Task AddVertragAsync(Vertrag vertrag);
     Task UpdateVertragAsync(Vertrag vertrag);
     Task<Vertrag?> GetVertragByAmsIdAsync(Guid amsId);
+    Task<Vertrag?> GetVertragByAmsidnrAsync(string amsidnr);
 }

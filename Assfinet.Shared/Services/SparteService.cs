@@ -35,7 +35,7 @@ public class SparteService : ISparteService
             {
                 var sparte = _sparteParserService.ParseModelToDbEntity((VertragSparteModel)spartenModel);
                 await _sparteProcessingService.ValidateAsync(sparte);
-                await _sparteProcessingService.ProcessImportAsync(sparte);
+                await _sparteProcessingService.ProcessImportSparteAsync(sparte);
             }
             catch (ValidationException ex)
             {

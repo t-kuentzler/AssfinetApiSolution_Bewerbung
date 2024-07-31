@@ -9,6 +9,7 @@ namespace Assfinet.Shared.Entities;
 public class KrvSparte : IVertragKeyProvider
 {
     public int Id { get; set; }
+    [Required]
     public Guid AmsId { get; set; }     
     public DateTimeOffset? Bearbeitet { get; set; }
     

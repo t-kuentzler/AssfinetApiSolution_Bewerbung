@@ -8,7 +8,9 @@ namespace Assfinet.Shared.Entities;
 public class Vertrag
 {
     public int Id { get; set; }
+    [Required]
     public Guid AmsId { get; set; }
+    [Required]
     [StringLength(40)]
     public string Amsidnr { get; set; }
     public DateTime? Bearbeitet { get; set; }

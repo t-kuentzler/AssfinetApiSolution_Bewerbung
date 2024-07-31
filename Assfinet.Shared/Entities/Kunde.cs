@@ -16,8 +16,10 @@ namespace Assfinet.Shared.Entities
         [NotMapped]
         [JsonExtensionData]
         public IDictionary<string, JToken>? AdditionalData { get; set; }
+        [Required]
         [StringLength(40)]
         public string Amsidnr { get; set; }
+        [Required]
         public Guid AmsId { get; set; }
         [StringLength(40)]
         public string? Bearbeiter { get; set; }

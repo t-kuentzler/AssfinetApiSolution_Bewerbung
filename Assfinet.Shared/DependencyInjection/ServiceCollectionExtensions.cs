@@ -47,6 +47,7 @@ namespace Assfinet.Shared.DependencyInjection
             //Repositories
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IVertragRepository, VertragRepository>();
+            services.AddTransient<ISparteRepository<KrvSparte>, KrvSparteRepository>();
 
             //Automapper
             services.AddAutoMapper(typeof(MappingProfile));

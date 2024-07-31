@@ -1,4 +1,5 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Enums;
 using Assfinet.Shared.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,13 +12,15 @@ namespace Assfinet.InitialImporter.Api.Controllers
         private readonly IApiService _apiService;
         private readonly IKundeService _kundeService;
         private readonly IVertragService _vertragService;
+        private readonly ISparteService _sparteService;
 
         public DataController(IApiService apiService, IKundeService kundeService,
-            IVertragService vertragService)
+            IVertragService vertragService, ISparteService sparteService)
         {
             _apiService = apiService;
             _kundeService = kundeService;
             _vertragService = vertragService;
+            _sparteService = sparteService;
         }
 
         [HttpPost("import-kunden")]
@@ -54,12 +57,15 @@ namespace Assfinet.InitialImporter.Api.Controllers
             }
         }
         
-        [HttpPost("import-spartenDaten")]
-        public async Task<IActionResult> ImportSpartenDaten([FromQuery] string sparte)
+        [HttpPost("import-sparten")]
+        public async Task<IActionResult> ImportSpartenDaten([FromQuery] Spartentypen sparte)
         {
             try
             {
-                var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte);
+                var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte.ToString());
+
+                await _sparteService.ImportSpartenDatenAsync(spartenDaten);
+                
                 return Ok(spartenDaten);
             }
             catch (UnknownSparteException ex)

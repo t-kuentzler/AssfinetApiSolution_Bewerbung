@@ -39,5 +39,10 @@ public class MappingProfile : Profile
         CreateMap<VertragModel, VertragBank>()
             .ForMember(dest => dest.VertragId, opt => opt.Ignore());
         
+        CreateMap<KrvModel, KrvSparte>()
+            .ForMember(dest => dest.AmsId,
+                opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
+            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
+
     }
 }

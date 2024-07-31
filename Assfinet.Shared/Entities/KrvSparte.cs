@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Assfinet.Shared.Contracts;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Assfinet.Shared.Entities;
 
-public class KrvSparte
+public class KrvSparte : IVertragKeyProvider
 {
     public int Id { get; set; }
     public Guid AmsId { get; set; }     

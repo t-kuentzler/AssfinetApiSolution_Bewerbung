@@ -31,7 +31,8 @@ namespace Assfinet.Shared.Services
             var existingVertrag = await _vertragRepository.GetVertragByAmsidnrAsync(sparte.Key);
             if (existingVertrag == null)
             {
-                _logger.LogError($"Der Vertrag mit dem Key '{sparte.Key}' konnte nicht in der Datenbank gefunden werden.");
+                _logger.LogError(
+                    $"Die Spartendaten mit dem Key '{sparte.Key}' konnten nicht in der Datenbank erstellt werden, da kein Vertrag mit der entsprechenden Amsidnr gefunden wurde.");  
                 return;
             }
 

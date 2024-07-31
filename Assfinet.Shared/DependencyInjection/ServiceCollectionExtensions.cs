@@ -5,7 +5,6 @@ using Assfinet.Shared.Logger;
 using Assfinet.Shared.Repositories;
 using Assfinet.Shared.Services;
 using Assfinet.Shared.Validators;
-using Azure.Core;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,8 +30,8 @@ namespace Assfinet.Shared.DependencyInjection
                 throw new InvalidOperationException(
                     "Die Verbindungszeichenfolge wurde nicht in der Umgebungsvariablen gefunden.");
             }
-            
-            //Services
+
+            // Services
             services.AddHttpClient<IApiService, ApiService>();
             services.AddScoped<IKundeService, KundeService>();
             services.AddScoped<IKundeParserService, KundeParserService>();
@@ -44,18 +43,19 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddScoped<ISparteParserService, SparteParserService>();
             services.AddScoped<ISparteProcessingService, SparteProcessingService>();
 
-            //Repositories
+            // Repositories
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IVertragRepository, VertragRepository>();
-            services.AddTransient<ISparteRepository<KrvSparte>, KrvSparteRepository>();
+            services.AddTransient(typeof(ISparteRepository<>), typeof(SparteRepository<>));
 
-            //Automapper
+
+            // Automapper
             services.AddAutoMapper(typeof(MappingProfile));
-            
+
             // Validator Wrapper
             services.AddTransient(typeof(IValidatorWrapper<>), typeof(ValidatorWrapper<>));
-            
-            //Validator
+
+            // Validatoren
             services.AddTransient<IValidator<Kunde>, KundeValidator>();
             services.AddTransient<IValidator<KundePersonenDetails>, KundePersonenDetailsValidator>();
             services.AddTransient<IValidator<KundeKontakt>, KundeKontaktValidator>();
@@ -64,8 +64,10 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddTransient<IValidator<VertragDetails>, VertragDetailsValidator>();
             services.AddTransient<IValidator<VertragHistorie>, VertragHistorieValidator>();
             services.AddTransient<IValidator<VertragBank>, VertragBankValidator>();
+            services.AddTransient<IValidator<KrvSparte>, KrvSparteValidator>();
+            services.AddTransient<IValidator<IVertragKeyProvider>, VertragKeyProviderValidator>();
 
-            
+            // Logger
             services.AddTransient<IAppLogger, AppLogger>();
             services.AddSingleton(configuration);
 

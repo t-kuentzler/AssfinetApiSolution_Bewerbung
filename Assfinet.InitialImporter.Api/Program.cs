@@ -1,8 +1,11 @@
 using Assfinet.Shared;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.DependencyInjection;
+using Assfinet.Shared.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 namespace Assfinet.InitialImporter.Api
@@ -18,7 +21,16 @@ namespace Assfinet.InitialImporter.Api
             
             // Configure Swagger/OpenAPI
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+                options.UseInlineDefinitionsForEnums();
+                options.MapType<Spartentypen>(() => new OpenApiSchema
+                {
+                    Type = "string",
+                    Enum = Enum.GetNames(typeof(Spartentypen)).Select(name => new OpenApiString(name) as IOpenApiAny).ToList()
+                });
+            });
             
             // Load shared configurations
             var sharedConfigPath = GetSharedAppSettingsPath();

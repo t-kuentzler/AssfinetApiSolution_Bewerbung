@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Net;
 using System.Net.Http.Headers;
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Models;
 using Assfinet.Shared.Configurations;
+using Assfinet.Shared.Enums;
 using Assfinet.Shared.Exceptions;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -26,76 +28,18 @@ namespace Assfinet.Shared.Services
             _logger = logger;
         }
 
-        // public async Task<List<KundeModel>> GetKundenAsync()
-        // {
-        //     var allKunden = new List<KundeModel>();
-        //     int skip = 0;
-        //     int take = 50;
-        //     bool hasMoreData = true;
-        //
-        //     try
-        //     {
-        //         (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
-        //             new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
-        //             _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
-        //             _refreshToken);
-        //         _logger.LogInformation("Bearer Token abgerufen.");
-        //
-        //         while (hasMoreData)
-        //         {
-        //             string apiPath =
-        //                 $"v1/Ams/Kunde?orderBy=Id&byDescending=true&skip={skip}&take={take}&accessMode=Admin";
-        //             var requestData = new HttpRequestMessage
-        //             {
-        //                 Method = HttpMethod.Get,
-        //                 RequestUri = new Uri(new Uri(_apiSettings.BaseUriApi), apiPath),
-        //             };
-        //             requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
-        //
-        //             _logger.LogInformation($"API-Anfrage wird gesendet an {requestData.RequestUri}");
-        //             var results = await _httpClient.SendAsync(requestData);
-        //             var apiErgebnis = await results.Content.ReadAsStringAsync();
-        //
-        //             if (results.StatusCode != HttpStatusCode.OK)
-        //             {
-        //                 _logger.LogError(
-        //                     $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
-        //                 throw new Exception($"Fehler: {apiErgebnis}");
-        //             }
-        //
-        //             var kunden = JsonConvert.DeserializeObject<List<KundeModel>>(apiErgebnis) ?? new List<KundeModel>();
-        //             allKunden.AddRange(kunden);
-        //
-        //             if (kunden.Count < take)
-        //             {
-        //                 hasMoreData = false;
-        //             }
-        //             else
-        //             {
-        //                 skip += take;
-        //                 await Task.Delay(5000);
-        //             }
-        //         }
-        //
-        //         _logger.LogInformation("API-Antwort erfolgreich empfangen.");
-        //         _logger.LogInformation($"Es wurden {allKunden.Count} abgerufen.");
-        //         return allKunden;
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         _logger.LogError($"Fehler beim Abrufen der Kunden: {ex.Message}");
-        //         throw;
-        //     }
-        // }
-        
-        public async Task<List<KundeModel>> GetKundenAsync()
+        public async Task<List<KundeModel>> GetKundenAsync(int skip, int take)
         {
             try
             {
-                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient, new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password, _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc, _refreshToken);
+                (_bearerToken, _bearerExpireTimeUtc, _refreshToken) = await GetBearerToken(_httpClient,
+                    new Uri(_apiSettings.BaseUriAuth), _apiSettings.UserName, _apiSettings.Password,
+                    _apiSettings.ClientId, _apiSettings.ClientSecret, _bearerToken, _bearerExpireTimeUtc,
+                    _refreshToken);
                 _logger.LogInformation("Bearer Token abgerufen.");
 
-                string apiPath = "v1/Ams/Kunde?orderBy=Id&byDescending=true&skip=0&take=3&accessMode=Admin";
+                string apiPath =
+                    $"v1/Ams/Kunde?orderBy=Id&byDescending=true&skip={skip}&take={take}&accessMode=Admin";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -109,12 +53,15 @@ namespace Assfinet.Shared.Services
 
                 if (results.StatusCode != HttpStatusCode.OK)
                 {
-                    _logger.LogError($"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
+                    _logger.LogError(
+                        $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
                     throw new Exception($"Fehler: {apiErgebnis}");
                 }
 
+                var kunden = JsonConvert.DeserializeObject<List<KundeModel>>(apiErgebnis) ?? new List<KundeModel>();
+
                 _logger.LogInformation("API-Antwort erfolgreich empfangen.");
-                return JsonConvert.DeserializeObject<List<KundeModel>>(apiErgebnis) ?? new List<KundeModel>();
+                return kunden;
             }
             catch (Exception ex)
             {
@@ -122,9 +69,8 @@ namespace Assfinet.Shared.Services
                 throw;
             }
         }
-
-
-        public async Task<List<VertragModel>> GetVertraegeAsync()
+        
+        public async Task<List<VertragModel>> GetVertraegeAsync(int skip, int take)
         {
             try
             {
@@ -135,7 +81,7 @@ namespace Assfinet.Shared.Services
                 _logger.LogInformation("Bearer Token abgerufen.");
 
                 string apiPath =
-                    "v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip=0&take=10&accessMode=Admin&pendingDrafts=false";
+                    $"v1/Ams/Vertrag?orderBy=LastSynchronisation&byDescending=true&skip={skip}&take={take}&accessMode=Admin&pendingDrafts=false";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -164,7 +110,7 @@ namespace Assfinet.Shared.Services
             }
         }
 
-        public async Task<List<object>> GetSpartenDatenAsync(string sparte)
+        public async Task<List<object>> GetSpartenDatenAsync(string sparte, int skip, int take)
         {
             try
             {
@@ -175,7 +121,7 @@ namespace Assfinet.Shared.Services
                 _logger.LogInformation("Bearer Token abgerufen.");
 
                 string apiPath =
-                    $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip=0&take=10&sparte={sparte}&accessMode=Admin";
+                    $"v1/Ams/Vertrag/Sparte?orderBy=Id&byDescending=true&skip={skip}&take={take}&sparte={sparte}&accessMode=Admin";
                 var requestData = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -192,8 +138,16 @@ namespace Assfinet.Shared.Services
                         $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
                 }
 
-                // Basierend auf dem Sparte-Parameter das passende Modell auswählen
-                return ParseSpartenResponse(apiErgebnis, sparte);
+                // Basierend auf dem Sparte-Parameter das passende Model auswählen
+                if (Enum.TryParse(sparte, out Spartentypen spartentyp))
+                {
+                    return ParseSpartenResponse(apiErgebnis, spartentyp);
+                }
+                else
+                {
+                    _logger.LogWarning("Unbekannte Sparte");
+                    throw new UnknownSparteException("Unbekannte Sparte");
+                }
             }
             catch (UnknownSparteException)
             {
@@ -206,35 +160,36 @@ namespace Assfinet.Shared.Services
             }
         }
 
-        private List<object> ParseSpartenResponse(string responseContent, string sparte)
+
+        private List<object> ParseSpartenResponse(string responseContent, Spartentypen spartentyp)
         {
-            List<object> result = new List<object>();
-
-            switch (sparte)
+            // Dictionary zur Zuordnung der Spartentypen zu ihren entsprechenden Typen
+            var sparteModelTypes = new Dictionary<Spartentypen, Type>
             {
-                case "KRV":
-                    var kundeModels = JsonConvert.DeserializeObject<List<KrvModel>>(responseContent);
-                    if (kundeModels != null)
-                    {
-                        result.AddRange(kundeModels);
-                    }
+                { Spartentypen.KRV, typeof(KrvModel) },
+                { Spartentypen.DEP, typeof(DepModel) }
+                // Weitere Spartentypen hier hinzufügen
+            };
 
-                    break;
-                case "DEP":
-                    var vertragModels = JsonConvert.DeserializeObject<List<DepModel>>(responseContent);
-                    if (vertragModels != null)
-                    {
-                        result.AddRange(vertragModels);
-                    }
-
-                    break;
-                default:
-                    _logger.LogWarning("Unbekannte Sparte");
-                    throw new UnknownSparteException("Unbekannte Sparte");
+            if (!sparteModelTypes.TryGetValue(spartentyp, out var modelType))
+            {
+                _logger.LogWarning("Unbekannte Sparte");
+                throw new UnknownSparteException("Unbekannte Sparte");
             }
 
-            return result;
+            var deserializedListType = typeof(List<>).MakeGenericType(modelType);
+            var kundenModels = (IList?)JsonConvert.DeserializeObject(responseContent, deserializedListType);
+
+            if (kundenModels == null)
+            {
+                return new List<object>();
+            }
+
+            return kundenModels.Cast<object>().ToList();
         }
+
+
+
 
 
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth,

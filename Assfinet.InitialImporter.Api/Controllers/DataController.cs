@@ -1,6 +1,7 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Enums;
 using Assfinet.Shared.Exceptions;
+using Assfinet.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Assfinet.InitialImporter.Api.Controllers
@@ -13,14 +14,17 @@ namespace Assfinet.InitialImporter.Api.Controllers
         private readonly IKundeService _kundeService;
         private readonly IVertragService _vertragService;
         private readonly ISparteService _sparteService;
+        private readonly IAppLogger _logger;
 
         public DataController(IApiService apiService, IKundeService kundeService,
-            IVertragService vertragService, ISparteService sparteService)
+            IVertragService vertragService, ISparteService sparteService,
+            IAppLogger logger)
         {
             _apiService = apiService;
             _kundeService = kundeService;
             _vertragService = vertragService;
             _sparteService = sparteService;
+            _logger = logger;
         }
 
         [HttpPost("import-kunden")]
@@ -28,45 +32,105 @@ namespace Assfinet.InitialImporter.Api.Controllers
         {
             try
             {
-                var kundenModels = await _apiService.GetKundenAsync();
+                int skip = 4200;
+                int take = 50;
+                bool hasMoreData = true;
+                var allKunden = new List<KundeModel>();
 
-                await _kundeService.ImportKundenAsync(kundenModels);
+                while (hasMoreData)
+                {
+                    var kundenModels = await _apiService.GetKundenAsync(skip, take);
+                    if (kundenModels.Count < take)
+                    {
+                        hasMoreData = false;
+                    }
 
-                return Ok();
+                    if (kundenModels.Count > 0)
+                    {
+                        await _kundeService.ImportKundenAsync(kundenModels);
+                        allKunden.AddRange(kundenModels);
+                    }
+
+                    skip += take;
+                    await Task.Delay(3000);
+                }
+
+                _logger.LogInformation($"Es wurden insgesamt {allKunden.Count} Kunden importiert.");
+                return Ok("Import abgeschlossen.");
             }
             catch (Exception)
             {
                 return StatusCode(500, "Interner Serverfehler");
             }
         }
-        
-        [HttpPost("import-vertrage")]
+
+        [HttpPost("import-vertraege")]
         public async Task<IActionResult> ImportVertraege()
         {
             try
             {
-                var vertraege = await _apiService.GetVertraegeAsync();
+                int skip = 12000;
+                int take = 50;
+                bool hasMoreData = true;
+                var allVertraege = new List<VertragModel>();
 
-                await _vertragService.ImportVertraegeAsync(vertraege);
-                
-                return Ok(vertraege);
+                while (hasMoreData)
+                {
+                    var vertraegeModels = await _apiService.GetVertraegeAsync(skip, take);
+                    if (vertraegeModels.Count < take)
+                    {
+                        hasMoreData = false;
+                    }
+
+                    if (vertraegeModels.Count > 0)
+                    {
+                        await _vertragService.ImportVertraegeAsync(vertraegeModels);
+                        allVertraege.AddRange(vertraegeModels);
+                    }
+
+                    skip += take;
+                    await Task.Delay(3000);
+                }
+
+                _logger.LogInformation($"Es wurden insgesamt {allVertraege.Count} Verträge importiert.");
+                return Ok("Import abgeschlossen.");
             }
             catch (Exception)
             {
                 return StatusCode(500, "Interner Serverfehler");
             }
         }
-        
+
         [HttpPost("import-sparten")]
         public async Task<IActionResult> ImportSpartenDaten([FromQuery] Spartentypen sparte)
         {
             try
             {
-                var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte.ToString());
+                int skip = 0;
+                int take = 10;
+                bool hasMoreData = true;
+                var allSparten = new List<object>();
 
-                await _sparteService.ImportSpartenDatenAsync(spartenDaten);
-                
-                return Ok(spartenDaten);
+                while (hasMoreData)
+                {
+                    var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte.ToString(), skip, take);
+                    if (spartenDaten.Count < take)
+                    {
+                        hasMoreData = false;
+                    }
+
+                    if (spartenDaten.Count > 0)
+                    {
+                        // await _sparteService.ImportSpartenDatenAsync(spartenDaten);
+                        allSparten.AddRange(spartenDaten);
+                    }
+
+                    skip += take;
+                    await Task.Delay(3000);
+                }
+
+                _logger.LogInformation($"Es wurden insgesamt {allSparten.Count} Verträge importiert.");
+                return Ok("Import abgeschlossen.");
             }
             catch (UnknownSparteException ex)
             {

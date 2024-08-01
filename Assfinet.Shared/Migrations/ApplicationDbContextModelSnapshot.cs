@@ -1384,8 +1384,8 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("Mobiltelefon")
-                        .HasMaxLength(15)
-                        .HasColumnType("varchar(15)");
+                        .HasMaxLength(35)
+                        .HasColumnType("varchar(35)");
 
                     b.Property<string>("TelefonGeschaeftlich")
                         .HasMaxLength(35)
@@ -1436,8 +1436,8 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("Branche")
-                        .HasMaxLength(60)
-                        .HasColumnType("varchar(60)");
+                        .HasMaxLength(600)
+                        .HasColumnType("varchar(600)");
 
                     b.Property<decimal?>("Bruttojahresmietwert")
                         .HasColumnType("decimal(65,30)");
@@ -1653,12 +1653,12 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("Sparte")
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar(20)");
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Vu")
-                        .HasMaxLength(40)
-                        .HasColumnType("varchar(40)");
+                        .HasMaxLength(80)
+                        .HasColumnType("varchar(80)");
 
                     b.Property<int>("VuNummer")
                         .HasColumnType("int");

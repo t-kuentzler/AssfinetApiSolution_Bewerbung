@@ -16,7 +16,7 @@ namespace Assfinet.Shared.Entities
         [StringLength(35)] public string? Fax { get; set; }
         [StringLength(34)] public string? Iban1 { get; set; }
         [StringLength(34)] public string? Iban2 { get; set; }
-        [StringLength(15)] public string? Mobiltelefon { get; set; }
+        [StringLength(35)] public string? Mobiltelefon { get; set; }
         [StringLength(12)] public string? Konto1 { get; set; }
         [StringLength(12)] public string? Konto2 { get; set; }
         [StringLength(100)] public string? Kontobezeichnung1 { get; set; }

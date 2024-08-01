@@ -14,14 +14,14 @@ public class Vertrag
     [StringLength(40)]
     public string Amsidnr { get; set; }
     public DateTime? Bearbeitet { get; set; }
-    [StringLength(20)]
+    [StringLength(50)]
     public string? Sparte { get; set; }
     [StringLength(60)]
     public string? Details { get; set; }
     [Required]
     [StringLength(40)]
     public string Key { get; set; }
-    [StringLength(40)]
+    [StringLength(80)]
     public string? Vu { get; set; }
     public int VuNummer { get; set; }
     [StringLength(60)]

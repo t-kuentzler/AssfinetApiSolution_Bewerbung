@@ -41,7 +41,7 @@ namespace Assfinet.Shared.Validators
                 .MaximumLength(34);
 
             RuleFor(k => k.Mobiltelefon)
-                .MaximumLength(15);
+                .MaximumLength(35);
 
             RuleFor(k => k.Konto1)
                 .MaximumLength(12);

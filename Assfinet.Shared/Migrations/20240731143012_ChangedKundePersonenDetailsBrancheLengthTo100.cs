@@ -5,20 +5,20 @@
 namespace Assfinet.Shared.Migrations
 {
     /// <inheritdoc />
-    public partial class ChangedKundeZuordnungLengthTo20 : Migration
+    public partial class ChangedKundePersonenDetailsBrancheLengthTo100 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Zuordnung",
-                table: "Kunden",
-                type: "varchar(20)",
-                maxLength: 20,
+                name: "Branche",
+                table: "KundenPersonenDetails",
+                type: "varchar(100)",
+                maxLength: 100,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "varchar(3)",
-                oldMaxLength: 3,
+                oldType: "varchar(60)",
+                oldMaxLength: 60,
                 oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");
@@ -28,14 +28,14 @@ namespace Assfinet.Shared.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Zuordnung",
-                table: "Kunden",
-                type: "varchar(3)",
-                maxLength: 3,
+                name: "Branche",
+                table: "KundenPersonenDetails",
+                type: "varchar(60)",
+                maxLength: 60,
                 nullable: true,
                 oldClrType: typeof(string),
-                oldType: "varchar(20)",
-                oldMaxLength: 20,
+                oldType: "varchar(100)",
+                oldMaxLength: 100,
                 oldNullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4")
                 .OldAnnotation("MySql:CharSet", "utf8mb4");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assfinet.Shared.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240726112825_ChangedKundeZuordnungLengthTo20")]
-    partial class ChangedKundeZuordnungLengthTo20
+    [Migration("20240731142534_ChangedKundeKontaktMobilPhoneLengthTo35")]
+    partial class ChangedKundeKontaktMobilPhoneLengthTo35
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,517 +48,414 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("KRV101")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV102")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV103")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV104")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV105")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV106")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV108")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV109")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV110")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV111")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV112")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV113")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV114")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV115")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV116")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV117")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV118")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV119")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV120")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV121")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV122")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV123")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV124")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV125")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV126")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV127")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV128")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV129")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV130")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV132")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV134")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV135")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV136")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV138")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV141")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV143")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV145")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV147")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV149")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV151")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV153")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV155")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV156")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV158")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV159")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV161")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV162")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV164")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV165")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV167")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV168")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV169")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV171")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV172")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV173")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV174")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV177")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV178")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV180")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV181")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV204")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV205")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV206")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV207")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV209")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV214")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV215")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV216")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV217")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV219")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV229")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV239")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV249")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV259")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV260")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV261")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV262")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV263")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV264")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV300")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV301")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV306")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV307")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV308")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV309")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV314")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV315")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV316")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV317")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV324")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV325")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV326")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV327")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV333")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV334")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV335")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV336")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV337")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV343")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV344")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV345")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV346")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV347")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
@@ -571,7 +468,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("License")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
@@ -1491,8 +1387,8 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("Mobiltelefon")
-                        .HasMaxLength(15)
-                        .HasColumnType("varchar(15)");
+                        .HasMaxLength(35)
+                        .HasColumnType("varchar(35)");
 
                     b.Property<string>("TelefonGeschaeftlich")
                         .HasMaxLength(35)
@@ -1737,12 +1633,10 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ComputedStatus")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("varchar(60)");
 
                     b.Property<string>("Details")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("varchar(60)");
 
@@ -1758,17 +1652,14 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("License")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("Sparte")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
                     b.Property<string>("Vu")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
@@ -1791,27 +1682,22 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Bic")
-                        .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("varchar(11)");
 
                     b.Property<string>("Blz")
-                        .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("varchar(8)");
 
                     b.Property<string>("Iban")
-                        .IsRequired()
                         .HasMaxLength(34)
                         .HasColumnType("varchar(34)");
 
                     b.Property<string>("Konto")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("varchar(12)");
 
                     b.Property<string>("Kontobezeichnung")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -1826,17 +1712,14 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("AbrInfo")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("Abschlussvermittler")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("AendGrund")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
@@ -1859,17 +1742,14 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ApInfo")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("Art")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("Berater")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -1877,12 +1757,10 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Beratungsgebiet")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Beschreibung")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
@@ -1893,207 +1771,166 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("BetreuungsvertragsNr")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("BezugAppro1")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro10")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro2")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro3")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro4")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro5")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro6")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro7")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro8")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugAppro9")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro1")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro10")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro2")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro3")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro4")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro5")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro6")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro7")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro8")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugApzvpro9")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro1")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro10")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro2")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro3")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro4")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro5")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro6")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro7")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro8")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugDypro9")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro1")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro10")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro2")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro3")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro4")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro5")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro6")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro7")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro8")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("BezugVmpro9")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -2122,12 +1959,10 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Ccxid")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
                     b.Property<string>("Ccximport")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -2138,7 +1973,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("CourtageBezugsgroesseFormel")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -2152,7 +1986,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("CourtageZahlweise")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -2166,7 +1999,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Courtformelzv")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -2219,7 +2051,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("EloGid")
-                        .IsRequired()
                         .HasMaxLength(38)
                         .HasColumnType("varchar(38)");
 
@@ -2227,7 +2058,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Extid")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
@@ -2244,7 +2074,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("FeeArt")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -2270,7 +2099,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Fronter")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -2293,17 +2121,14 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("GekuendigtVon")
-                        .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("varchar(2)");
 
                     b.Property<string>("Gesellschaft")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Gevo")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
@@ -2311,57 +2136,46 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("HaftungMakler")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm1")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm10")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm2")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm3")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm4")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm5")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm6")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm7")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm8")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("HaftungVm9")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -2391,25 +2205,20 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Kommakler")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Kommentar")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Komvers")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Konto")
-                        .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("varchar(12)");
 
                     b.Property<string>("Kontobezeichnung")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
@@ -2477,7 +2286,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Matchcode")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
@@ -2485,22 +2293,18 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("ModellVmprovis")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("NVnr")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("NachtragNr")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("NedVstCheck")
-                        .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("varchar(4)");
 
@@ -2517,52 +2321,42 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Parentid")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
                     b.Property<string>("Pricing")
-                        .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
                     b.Property<string>("Produkt")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Produktgruppe")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("ProduktgruppeId")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
                     b.Property<string>("ProviMaxAp")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("ProviMaxDy")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("ProviMaxFp")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("ProvisMonat")
-                        .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("varchar(2)");
 
                     b.Property<string>("ProvisTag")
-                        .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("varchar(2)");
 
@@ -2576,7 +2370,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("RVKumulnr")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
@@ -2602,32 +2395,26 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("RisikoAllgemein")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("RisikoOrt")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("RisikoPlz")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
                     b.Property<string>("RisikoStrasse")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("Risikotraeger")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
                     b.Property<string>("Rvart")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -2635,67 +2422,54 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("S2_01")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_02")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_03")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_04")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_05")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_06")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_07")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_08")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_09")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_10")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_11")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_12")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
                     b.Property<string>("S2_13")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
@@ -2703,17 +2477,14 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("SEPAMandatsreferenz")
-                        .IsRequired()
                         .HasMaxLength(35)
                         .HasColumnType("varchar(35)");
 
                     b.Property<string>("Sachbearbeiter")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("SammelVtId")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -2722,27 +2493,22 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Sammelvertragsnr")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
                     b.Property<string>("SchadenBetJaNein")
-                        .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("varchar(4)");
 
                     b.Property<string>("Schlagwoerter")
-                        .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("varchar(250)");
 
                     b.Property<string>("SchwebeZuVertrag")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
                     b.Property<string>("SepaSddType")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("varchar(30)");
 
@@ -2750,7 +2516,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Sourceid")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -2767,7 +2532,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("StandNr")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("varchar(10)");
 
@@ -2778,7 +2542,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<string>("Statpolice")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -2786,7 +2549,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Statpraemie")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
@@ -2799,7 +2561,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("varchar(9)");
 
                     b.Property<string>("Statusgrund")
-                        .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("varchar(60)");
 
@@ -2876,7 +2637,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Zuordnung")
-                        .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("varchar(6)");
 
@@ -2949,7 +2709,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("HistorieZuVertrag")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 
@@ -2957,7 +2716,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Historiengrund")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
@@ -2995,7 +2753,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Hpvahb")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("varchar(15)");
 
@@ -3073,7 +2830,7 @@ namespace Assfinet.Shared.Migrations
             modelBuilder.Entity("Assfinet.Shared.Entities.VertragDetails", b =>
                 {
                     b.HasOne("Assfinet.Shared.Entities.Vertrag", "Vertrag")
-                        .WithOne("DetailsEntity")
+                        .WithOne("VertragDetails")
                         .HasForeignKey("Assfinet.Shared.Entities.VertragDetails", "VertragId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -3122,13 +2879,13 @@ namespace Assfinet.Shared.Migrations
                     b.Navigation("BankDetails")
                         .IsRequired();
 
-                    b.Navigation("DetailsEntity")
-                        .IsRequired();
-
                     b.Navigation("Finanzen")
                         .IsRequired();
 
                     b.Navigation("Historie")
+                        .IsRequired();
+
+                    b.Navigation("VertragDetails")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

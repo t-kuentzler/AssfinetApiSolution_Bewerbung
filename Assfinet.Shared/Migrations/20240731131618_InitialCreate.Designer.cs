@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assfinet.Shared.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240730114942_ChangedStringsToNullable")]
-    partial class ChangedStringsToNullable
+    [Migration("20240731131618_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,517 +48,414 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("KRV101")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV102")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV103")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV104")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV105")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV106")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV108")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV109")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV110")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV111")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV112")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV113")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV114")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV115")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV116")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV117")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV118")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV119")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV120")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV121")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV122")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV123")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV124")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV125")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV126")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV127")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV128")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV129")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV130")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV132")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV134")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV135")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV136")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV138")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV141")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV143")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV145")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV147")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV149")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV151")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV153")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV155")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV156")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV158")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV159")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV161")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV162")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV164")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV165")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV167")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV168")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV169")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV171")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV172")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV173")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV174")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV177")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV178")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV180")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV181")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV204")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV205")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV206")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV207")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV209")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV214")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV215")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV216")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV217")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV219")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV229")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV239")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV249")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV259")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV260")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV261")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV262")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV263")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV264")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV300")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV301")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV306")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV307")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV308")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV309")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV314")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV315")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV316")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV317")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV324")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV325")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV326")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV327")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV333")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV334")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV335")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV336")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV337")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV343")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV344")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV345")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV346")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
                     b.Property<string>("KRV347")
-                        .IsRequired()
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
 
@@ -571,7 +468,6 @@ namespace Assfinet.Shared.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("License")
-                        .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("varchar(40)");
 

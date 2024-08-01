@@ -273,7 +273,7 @@ namespace Assfinet.Shared.Migrations
                     VnSepaPreNotificationtAge = table.Column<int>(type: "int", nullable: true),
                     WarenMaterialwertProJahr = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     Wasserschutzgebiet = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Zuordnung = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: true)
+                    Zuordnung = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Kundenname = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -554,19 +554,19 @@ namespace Assfinet.Shared.Migrations
                     Amsidnr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Bearbeitet = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    Sparte = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    Sparte = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Details = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
+                    Details = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Key = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Vu = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    Vu = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     VuNummer = table.Column<int>(type: "int", nullable: false),
-                    ComputedStatus = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
+                    ComputedStatus = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Dirty = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    License = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    License = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastSynchronisation = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Abbuchung = table.Column<bool>(type: "tinyint(1)", nullable: true),
@@ -600,214 +600,214 @@ namespace Assfinet.Shared.Migrations
                     Typ = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Dirty = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    License = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    License = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     LastSynchronisation = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    KRV101 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV101 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV102 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV102 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV103 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV103 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV104 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV104 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV105 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV105 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV106 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV106 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV108 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV108 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV109 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV109 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV110 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV110 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV111 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV111 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV112 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV112 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV113 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV113 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV114 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV114 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV115 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV115 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV116 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV116 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV117 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV117 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV118 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV118 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV119 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV119 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV120 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV120 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV121 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV121 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV122 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV122 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV123 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV123 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV124 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV124 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV125 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV125 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV126 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV126 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV127 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV127 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV128 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV128 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV129 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV129 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV130 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV130 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV132 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV132 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV134 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV134 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV135 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV135 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV136 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV136 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV138 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV138 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV141 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV141 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV143 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV143 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV145 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV145 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV147 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV147 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV149 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV149 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV151 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV151 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV153 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV153 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV155 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV155 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV156 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV156 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV158 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV158 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV159 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV159 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV161 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV161 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV162 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV162 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV164 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV164 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV165 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV165 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV167 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV167 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV168 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV168 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV169 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV169 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV171 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV171 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV172 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV172 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV173 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV173 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV174 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV174 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV204 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV204 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV205 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV205 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV206 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV206 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV207 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV207 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV209 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV209 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV214 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV214 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV215 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV215 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV216 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV216 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV217 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV217 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV219 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV219 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV229 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV229 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV239 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV239 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV249 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV249 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV259 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV259 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV260 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV260 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV261 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV261 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV262 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV262 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV263 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV263 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV264 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV264 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV177 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV177 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV178 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV178 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV180 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV180 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV181 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV181 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV300 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV300 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV301 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV301 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV306 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV306 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV307 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV307 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV308 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV308 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV309 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV309 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV314 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV314 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV315 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV315 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV316 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV316 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV317 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV317 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV324 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV324 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV325 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV325 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV326 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV326 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV327 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV327 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV333 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV333 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV334 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV334 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV335 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV335 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV336 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV336 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV337 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV337 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV343 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV343 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV344 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV344 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV345 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV345 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV346 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV346 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    KRV347 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: false)
+                    KRV347 = table.Column<string>(type: "varchar(80)", maxLength: 80, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -827,15 +827,15 @@ namespace Assfinet.Shared.Migrations
                 columns: table => new
                 {
                     VertragId = table.Column<int>(type: "int", nullable: false),
-                    Bic = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false)
+                    Bic = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Blz = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: false)
+                    Blz = table.Column<string>(type: "varchar(8)", maxLength: 8, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Iban = table.Column<string>(type: "varchar(34)", maxLength: 34, nullable: false)
+                    Iban = table.Column<string>(type: "varchar(34)", maxLength: 34, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Konto = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false)
+                    Konto = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Kontobezeichnung = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Kontobezeichnung = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -855,11 +855,11 @@ namespace Assfinet.Shared.Migrations
                 columns: table => new
                 {
                     VertragId = table.Column<int>(type: "int", nullable: false),
-                    AbrInfo = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
+                    AbrInfo = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Abschlussvermittler = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Abschlussvermittler = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AendGrund = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    AendGrund = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Anfrage = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Angebot = table.Column<DateTime>(type: "datetime(6)", nullable: true),
@@ -867,100 +867,100 @@ namespace Assfinet.Shared.Migrations
                     Antrag = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     AnzahlZahlungenProJahr = table.Column<int>(type: "int", nullable: true),
                     Anzcourtzahlung = table.Column<int>(type: "int", nullable: true),
-                    ApInfo = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
+                    ApInfo = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Art = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
+                    Art = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Berater = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    Berater = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BeratungErforderlich = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Beratungsgebiet = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Beratungsgebiet = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Beschreibung = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
+                    Beschreibung = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Bestaetigung = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Beteiligungsverhaeltnis = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    BetreuungsvertragsNr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    BetreuungsvertragsNr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugAppro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugAppro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugApzvpro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugApzvpro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugDypro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugDypro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    BezugVmpro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    BezugVmpro9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Bimonthvalue = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     BisherigeJahresNettoPraemie = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
@@ -970,22 +970,22 @@ namespace Assfinet.Shared.Migrations
                     BruttoVertrag = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     BuchenAutomatisch = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     Cbc = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Ccxid = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    Ccxid = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Ccximport = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    Ccximport = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CourtageAb = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Courtagesplit = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     CourtagesplitBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    CourtageBezugsgroesseFormel = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    CourtageBezugsgroesseFormel = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CourtageBis = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CourtageFormelBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     CourtageProzent = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    CourtageZahlweise = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    CourtageZahlweise = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Courtformelbetragzv = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Courtformelzv = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    Courtformelzv = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CourtManuell = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     Courtprozzv = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
@@ -1004,13 +1004,13 @@ namespace Assfinet.Shared.Migrations
                     Dyvm8 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     Dyvm9 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     EinzelpraemienErfassen = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    EloGid = table.Column<string>(type: "varchar(38)", maxLength: 38, nullable: false)
+                    EloGid = table.Column<string>(type: "varchar(38)", maxLength: 38, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Erloeskonto = table.Column<int>(type: "int", nullable: true),
-                    Extid = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    Extid = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Faellig = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    FeeArt = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    FeeArt = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FeeBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     FeeJahresZahlBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
@@ -1022,42 +1022,42 @@ namespace Assfinet.Shared.Migrations
                     FNettoJPraemie = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     FPoliceGeprueft = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     FPoliceVorhanden = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Fronter = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Fronter = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FrontingPolice = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     GdvDatenVom = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     GdvIgnore = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     GebuehrNetto = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     GebuehrZw = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    GekuendigtVon = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: false)
+                    GekuendigtVon = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     GekuendWv = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    Gesellschaft = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Gesellschaft = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Gevo = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
+                    Gevo = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Gevoid = table.Column<int>(type: "int", nullable: true),
-                    HaftungMakler = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungMakler = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm1 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm10 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm2 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm3 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm4 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm5 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm6 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm7 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm8 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HaftungVm9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    HaftungVm9 = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     HatFestwertBeteiligung = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     InvitatioDatum = table.Column<DateTime>(type: "datetime(6)", nullable: true),
@@ -1067,13 +1067,13 @@ namespace Assfinet.Shared.Migrations
                     Jahrescourtage = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     Kickback = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     KickbackBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Konto = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: false)
+                    Konto = table.Column<string>(type: "varchar(12)", maxLength: 12, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Kommakler = table.Column<string>(type: "longtext", nullable: false)
+                    Kommakler = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Komvers = table.Column<string>(type: "longtext", nullable: false)
+                    Komvers = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Kontobezeichnung = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    Kontobezeichnung = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     KorrespondenzMaklerBis = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Kostenstelle = table.Column<int>(type: "int", nullable: true),
@@ -1093,46 +1093,46 @@ namespace Assfinet.Shared.Migrations
                     LokalSteuerBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     LtFaelligBis = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     LtPraemiebrutto = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Kommentar = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    Kommentar = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MahnstopBis = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     MaklerFuehrtVersSteuerAb = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Matchcode = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    Matchcode = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MindestJahresNettopraermie = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    ModellVmprovis = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    ModellVmprovis = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     MPraemieFronting = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    NachtragNr = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
+                    NachtragNr = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    NedVstCheck = table.Column<string>(type: "varchar(4)", maxLength: 4, nullable: false)
+                    NedVstCheck = table.Column<string>(type: "varchar(4)", maxLength: 4, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Nettoisiert = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     NonAdmittedFinc = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    NVnr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    NVnr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Overrider = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     OverriderBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Parentid = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    Parentid = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Pricing = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
+                    Pricing = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Produkt = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Produkt = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Produktgruppe = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Produktgruppe = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProduktgruppeId = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    ProduktgruppeId = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProviMaxAp = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    ProviMaxAp = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProviMaxDy = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    ProviMaxDy = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProviMaxFp = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    ProviMaxFp = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Provisionsreferenzdatum = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    ProvisMonat = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: false)
+                    ProvisMonat = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    ProvisTag = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: false)
+                    ProvisTag = table.Column<string>(type: "varchar(2)", maxLength: 2, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Prtausschluss = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     Rabatt = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
@@ -1141,87 +1141,87 @@ namespace Assfinet.Shared.Migrations
                     RechnungsMail = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     Renta = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     RGDruckstop = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    RisikoAllgemein = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    RisikoAllgemein = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    RisikoOrt = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    RisikoOrt = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    RisikoPlz = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
+                    RisikoPlz = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    RisikoStrasse = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    RisikoStrasse = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Risikotraeger = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    Risikotraeger = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Rvart = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Rvart = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    RVKumulnr = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
+                    RVKumulnr = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Rvnummer = table.Column<int>(type: "int", nullable: true),
                     RVRelKumulsumme = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     RVRelSumme = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    S2_01 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_01 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_02 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_02 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_03 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_03 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_04 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_04 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_05 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_05 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_06 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_06 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_07 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_07 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_08 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_08 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_09 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_09 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_10 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_10 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_11 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_11 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_12 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_12 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    S2_13 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
+                    S2_13 = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Sachbearbeiter = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    Sachbearbeiter = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Sammelvertrag = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Sammelvertragsnr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    Sammelvertragsnr = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SammelVtId = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    SammelVtId = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SchadenBetJaNein = table.Column<string>(type: "varchar(4)", maxLength: 4, nullable: false)
+                    SchadenBetJaNein = table.Column<string>(type: "varchar(4)", maxLength: 4, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Schlagwoerter = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: false)
+                    Schlagwoerter = table.Column<string>(type: "varchar(250)", maxLength: 250, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SchwebeZuVertrag = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    SchwebeZuVertrag = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SEPAEinzugsmandat = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    SEPAMandatsreferenz = table.Column<string>(type: "varchar(35)", maxLength: 35, nullable: false)
+                    SEPAMandatsreferenz = table.Column<string>(type: "varchar(35)", maxLength: 35, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SepaSddType = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: false)
+                    SepaSddType = table.Column<string>(type: "varchar(30)", maxLength: 30, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Sicherungsschein = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Sourceid = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    Sourceid = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SpartenberechnAufschub = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     SpartenberechnungAus = table.Column<bool>(type: "tinyint(1)", nullable: true),
                     SpartenCounter = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     SperrdatumVUAbrechnung = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    StandNr = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false)
+                    StandNr = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StatCharges = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     StatChargesBetrag = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Statpolice = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Statpolice = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StatpoliceDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    Statpraemie = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                    Statpraemie = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StatpraemieDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Status = table.Column<string>(type: "varchar(9)", maxLength: 9, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Statusgrund = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: false)
+                    Statusgrund = table.Column<string>(type: "varchar(60)", maxLength: 60, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     StopAbrechnungBis = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     StopZahlungBis = table.Column<DateTime>(type: "datetime(6)", nullable: true),
@@ -1247,7 +1247,7 @@ namespace Assfinet.Shared.Migrations
                     Zugangsdatum = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     ZugangsdatumJjjj = table.Column<int>(type: "int", nullable: true),
                     ZugangsdatumJjjjmm = table.Column<int>(type: "int", nullable: true),
-                    Zuordnung = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: false)
+                    Zuordnung = table.Column<string>(type: "varchar(6)", maxLength: 6, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -1302,9 +1302,9 @@ namespace Assfinet.Shared.Migrations
                 {
                     VertragId = table.Column<int>(type: "int", nullable: false),
                     Historiendatum = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    Historiengrund = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    Historiengrund = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    HistorieZuVertrag = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: false)
+                    HistorieZuVertrag = table.Column<string>(type: "varchar(40)", maxLength: 40, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     HonorarVm1 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     HonorarVm10 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
@@ -1316,7 +1316,7 @@ namespace Assfinet.Shared.Migrations
                     HonorarVm7 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     HonorarVm8 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     HonorarVm9 = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
-                    Hpvahb = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: false)
+                    Hpvahb = table.Column<string>(type: "varchar(15)", maxLength: 15, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     HpvGruppe = table.Column<bool>(type: "tinyint(1)", nullable: true)
                 },

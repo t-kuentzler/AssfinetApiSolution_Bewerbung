@@ -13,7 +13,7 @@ namespace Assfinet.Shared.Entities
         [StringLength(40)] public string? Berufsstatus { get; set; }
         [StringLength(50)] public string? Besitzverhaeltnis { get; set; }
         [StringLength(10)] public string? Bilanzstichtag { get; set; }
-        [StringLength(60)] public string? Branche { get; set; }
+        [StringLength(600)] public string? Branche { get; set; }
         public decimal? Bruttojahresmietwert { get; set; }
         public decimal? Bruttojahresumsatz { get; set; }
         [StringLength(25)] public string? Bundesland { get; set; }

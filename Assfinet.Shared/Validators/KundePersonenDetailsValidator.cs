@@ -29,7 +29,7 @@ namespace Assfinet.Shared.Validators
                 .MaximumLength(10);
 
             RuleFor(k => k.Branche)
-                .MaximumLength(60);
+                .MaximumLength(600);
 
             RuleFor(k => k.Bruttojahresmietwert)
                 .GreaterThanOrEqualTo(0).When(k => k.Bruttojahresmietwert.HasValue);

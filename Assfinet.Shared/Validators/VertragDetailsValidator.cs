@@ -10,7 +10,6 @@ namespace Assfinet.Shared.Validators
             RuleFor(vd => vd.AbrInfo).MaximumLength(150);
             RuleFor(vd => vd.Abschlussvermittler).MaximumLength(50);
             RuleFor(vd => vd.AendGrund).MaximumLength(100);
-            RuleFor(vd => vd.AnpassungAm).NotNull();
             RuleFor(vd => vd.AnzahlZahlungenProJahr).GreaterThan(0);
             RuleFor(vd => vd.Anzcourtzahlung).GreaterThan(0);
             RuleFor(vd => vd.ApInfo).MaximumLength(10);

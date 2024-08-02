@@ -1,8 +1,6 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Exceptions;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
 using Assfinet.Shared.Entities;
 using Assfinet.Shared.Models;
 
@@ -37,7 +35,7 @@ public class SparteParserService : ISparteParserService
             var sourceType = sparteModel.GetType();
             if (!_typeMapping.TryGetValue(sourceType, out var targetType))
             {
-                throw new InvalidOperationException($"Kein Mapping für den Typ {sourceType.Name} gefunden.");
+                throw new InvalidOperationException($"Kein Mapping für den Typ '{sourceType.Name}' gefunden.");
             }
 
             var result = _mapper.Map(sparteModel, sourceType, targetType);
@@ -45,7 +43,7 @@ public class SparteParserService : ISparteParserService
             if (result == null)
             {
                 throw new InvalidOperationException(
-                    $"Mapping von {sourceType.Name} zu {targetType.Name} fehlgeschlagen.");
+                    $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
             }
 
             return result;
@@ -53,7 +51,7 @@ public class SparteParserService : ISparteParserService
         catch (Exception ex)
         {
             _logger.LogError(
-                $"Es ist ein unerwarteter Fehler beim Parsen von {sparteModel.GetType().Name} zu einem Zieltyp aufgetreten.",
+                "Es ist ein unerwarteter Fehler beim Parsen zu einem Zieltyp aufgetreten.",
                 ex);
             throw new SparteParserServiceException();
         }

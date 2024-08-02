@@ -19,7 +19,7 @@ public class VertragProcessingService : IVertragProcessingService
         _logger = logger;
     }
 
-    public async Task ValidateKundeAsync(Vertrag vertrag)
+    public async Task ValidateVertragAsync(Vertrag vertrag)
     {
         await _vertragValidator.ValidateAndThrowAsync(vertrag);
     }

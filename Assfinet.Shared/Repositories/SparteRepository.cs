@@ -1,35 +1,66 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
+using Assfinet.Shared.Models;
 
-namespace Assfinet.Shared.Repositories
+public class SparteRepository : ISparteRepository
 {
-    public class SparteRepository<T> : ISparteRepository<T> where T : class, IVertragKeyProvider
+    private readonly IGenericSparteRepository<KrvSparte> _krvRepository;
+    private readonly IGenericSparteRepository<DepModel> _depRepository;
+    private readonly IVertragRepository _vertragRepository;
+    private readonly ISparteParserService _sparteParserService;
+    private readonly IAppLogger _logger;
+    
+
+    public SparteRepository(
+        IGenericSparteRepository<KrvSparte> krvRepository,
+        IGenericSparteRepository<DepModel> depRepository,
+        IVertragRepository vertragRepository,
+        ISparteParserService sparteParserService,
+        IAppLogger logger)
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        _krvRepository = krvRepository;
+        _depRepository = depRepository;
+        _vertragRepository = vertragRepository;
+        _sparteParserService = sparteParserService;
+        _logger = logger;
+    }
 
-        public SparteRepository(ApplicationDbContext applicationDbContext)
+    public async Task SaveSpartenDatenAsync<T>(List<T> spartenDaten) where T : class
+    {
+        foreach (var item in spartenDaten)
         {
-            _applicationDbContext = applicationDbContext;
-        }
-
-        public async Task AddSparteAsync(T sparte)
-        {
-            _applicationDbContext.Set<T>().Add(sparte);
-            await _applicationDbContext.SaveChangesAsync();
-        }
-
-        public async Task<T?> GetSparteByAmsidnrAsync(string amsidnr)
-        {
-            try
+            if (item is KrvModel sparteModel)
             {
-                return await _applicationDbContext.Set<T>().FirstOrDefaultAsync(k => k.Key == amsidnr);
+                var krvSparte = _sparteParserService.ParseSparteModelToKrvSparte(sparteModel);
+                var key = krvSparte.Key;
+                var vertrag = await _vertragRepository.GetVertragByAmsidnrAsync(key);
+                if (vertrag != null)
+                {
+                    await _krvRepository.AddAsync(krvSparte);
+                }
+                else
+                {
+                    _logger.LogWarning($"No matching Vertrag found for key {key}");
+                }
             }
-            catch (Exception ex)
+            // else if (item is DepModel depModel)
+            // {
+            //     var key = depModel.Key;
+            //     var vertrag = await _vertragRepository.GetVertragByAmsidnrAsync(key);
+            //     if (vertrag != null)
+            //     {
+            //         await _depRepository.AddAsync(depModel);
+            //     }
+            //     else
+            //     {
+            //         _logger.LogWarning($"No matching Vertrag found for key {key}");
+            //     }
+            // }
+            else
             {
-                throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen der Spartendaten mit Amsidnr: '{amsidnr}'.", ex);
+                _logger.LogWarning($"Unknown type {item.GetType().FullName}");
+                throw new UnknownSparteException("Unbekannte Sparte");
             }
         }
     }

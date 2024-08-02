@@ -1,10 +1,7 @@
-using System.Threading.Tasks;
+namespace Assfinet.Shared.Contracts;
 
-namespace Assfinet.Shared.Contracts
+public interface ISparteRepository
 {
-    public interface ISparteRepository<T>
-    {
-        Task AddSparteAsync(T sparte);
-        Task<T?> GetSparteByAmsidnrAsync(string amsidnr);
-    }
+    Task SaveSpartenDatenAsync<T>(List<T> spartenDaten) where T : class;
+
 }

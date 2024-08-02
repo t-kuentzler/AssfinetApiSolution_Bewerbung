@@ -35,14 +35,15 @@ public class SparteRepository : ISparteRepository
                 var krvSparte = _sparteParserService.ParseSparteModelToKrvSparte(sparteModel);
                 var key = krvSparte.Key;
                 var vertrag = await _vertragRepository.GetVertragByAmsidnrAsync(key);
-                if (vertrag != null)
-                {
-                    await _krvRepository.AddAsync(krvSparte);
-                }
-                else
+                if (vertrag == null)
                 {
                     _logger.LogWarning($"No matching Vertrag found for key {key}");
+                    return;
                 }
+                
+                
+                await _krvRepository.AddAsync(krvSparte);
+
             }
             // else if (item is DepModel depModel)
             // {

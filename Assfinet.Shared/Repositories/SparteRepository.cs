@@ -1,58 +1,47 @@
 using Assfinet.Shared.Contracts;
-using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
-using Assfinet.Shared.Models;
 
 namespace Assfinet.Shared.Repositories;
 
 public class SparteRepository : ISparteRepository
 {
-    private readonly IGenericSparteRepository<KrvSparte> _krvRepository;
-    private readonly IGenericSparteRepository<DepModel> _depRepository;
+    private readonly IServiceProvider _serviceProvider;
     private readonly IAppLogger _logger;
-    
 
-    public SparteRepository(
-        IGenericSparteRepository<KrvSparte> krvRepository,
-        IGenericSparteRepository<DepModel> depRepository,
-        IAppLogger logger)
+    public SparteRepository(IServiceProvider serviceProvider, IAppLogger logger)
     {
-        _krvRepository = krvRepository;
-        _depRepository = depRepository;
+        _serviceProvider = serviceProvider;
         _logger = logger;
     }
 
     public async Task AddAsync(object sparte)
     {
-        switch (sparte)
+        var repositoryType = typeof(IGenericSparteRepository<>).MakeGenericType(sparte.GetType());
+        dynamic? repository = _serviceProvider.GetService(repositoryType);
+
+        if (repository == null)
         {
-            case KrvSparte krvSparte:
-                await _krvRepository.AddAsync(krvSparte);
-                break;
-            // case DepModel depModel:
-            //     await _depRepository.AddAsync(depModel);
-            //     break;
-            default:
-                _logger.LogWarning($"Unknown type {sparte.GetType().FullName}");
-                throw new UnknownSparteException("Unbekannte Sparte");
+            _logger.LogWarning($"Unbekannter Repository Typ '{sparte.GetType().FullName}'");
+            throw new UnknownSparteException("Unbekannte Sparte");
         }
+
+        await repository.AddAsync((dynamic)sparte);
     }
 
-    public async Task<object?> GetSparteByAmsIdAsync(Guid amsId)
+    public async Task<object?> GetSparteByAmsIdAsync(Guid amsId, Type sparteType)
     {
-        var krvSparte = await _krvRepository.GetSparteByAmsIdAsync(amsId);
-        if (krvSparte != null)
+        var repositoryType = typeof(IGenericSparteRepository<>).MakeGenericType(sparteType);
+        dynamic? repository = _serviceProvider.GetService(repositoryType);
+
+        if (repository == null)
         {
-            return krvSparte;
+            _logger.LogWarning($"Unbekannter Repository Typ '{sparteType.FullName}'.");
+            throw new UnknownSparteException("Unbekannte Sparte");
         }
 
-        // var depModel = await _depRepository.GetSparteByAmsIdAsync(amsId);
-        // if (depModel != null)
-        // {
-        //     return depModel;
-        // }
-
-        return null;
+        return await repository.GetSparteByAmsIdAsync(amsId);
     }
 
 }
+
+

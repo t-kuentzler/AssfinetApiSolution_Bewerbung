@@ -69,7 +69,7 @@ namespace Assfinet.Shared.Services
                 throw;
             }
         }
-        
+
         public async Task<List<VertragModel>> GetVertraegeAsync(int skip, int take)
         {
             try
@@ -110,7 +110,8 @@ namespace Assfinet.Shared.Services
             }
         }
 
-        public async Task<List<object>> GetSpartenDatenAsync(string sparte, int skip, int take)
+        // Im ApiService
+        public async Task<List<object>> GetSpartenDatenAsync(Spartentypen sparte, int skip, int take)
         {
             try
             {
@@ -138,20 +139,7 @@ namespace Assfinet.Shared.Services
                         $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
                 }
 
-                // Basierend auf dem Sparte-Parameter das passende Model auswählen
-                if (Enum.TryParse(sparte, out Spartentypen spartentyp))
-                {
-                    return ParseSpartenResponse(apiErgebnis, spartentyp);
-                }
-                else
-                {
-                    _logger.LogWarning("Unbekannte Sparte");
-                    throw new UnknownSparteException("Unbekannte Sparte");
-                }
-            }
-            catch (UnknownSparteException)
-            {
-                throw;
+                return ParseSpartenResponse(apiErgebnis, sparte);
             }
             catch (Exception ex)
             {
@@ -160,10 +148,8 @@ namespace Assfinet.Shared.Services
             }
         }
 
-
         private List<object> ParseSpartenResponse(string responseContent, Spartentypen spartentyp)
         {
-            // Dictionary zur Zuordnung der Spartentypen zu ihren entsprechenden Typen
             var sparteModelTypes = new Dictionary<Spartentypen, Type>
             {
                 { Spartentypen.KRV, typeof(KrvModel) },
@@ -178,18 +164,10 @@ namespace Assfinet.Shared.Services
             }
 
             var deserializedListType = typeof(List<>).MakeGenericType(modelType);
-            var kundenModels = (IList?)JsonConvert.DeserializeObject(responseContent, deserializedListType);
+            var spartenModels = (IList?)JsonConvert.DeserializeObject(responseContent, deserializedListType);
 
-            if (kundenModels == null)
-            {
-                return new List<object>();
-            }
-
-            return kundenModels.Cast<object>().ToList();
+            return spartenModels?.Cast<object>().ToList() ?? new List<object>();
         }
-
-
-
 
 
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth,

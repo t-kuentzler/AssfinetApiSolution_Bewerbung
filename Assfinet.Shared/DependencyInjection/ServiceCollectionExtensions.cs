@@ -39,14 +39,13 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddScoped<IVertragService, VertragService>();
             services.AddScoped<IVertragParserService, VertragParserService>();
             services.AddScoped<IVertragProcessingService, VertragProcessingService>();
-            services.AddScoped<ISparteService, SparteService>();
             services.AddScoped<ISparteParserService, SparteParserService>();
-            services.AddScoped<ISparteProcessingService, SparteProcessingService>();
 
             // Repositories
             services.AddScoped<IKundeRepository, KundeRepository>();
             services.AddScoped<IVertragRepository, VertragRepository>();
-            services.AddTransient(typeof(ISparteRepository<>), typeof(SparteRepository<>));
+            services.AddScoped<ISparteRepository, SparteRepository>();
+            services.AddScoped(typeof(IGenericSparteRepository<>), typeof(GenericSparteRepository<>));
 
 
             // Automapper
@@ -65,7 +64,6 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddTransient<IValidator<VertragHistorie>, VertragHistorieValidator>();
             services.AddTransient<IValidator<VertragBank>, VertragBankValidator>();
             services.AddTransient<IValidator<KrvSparte>, KrvSparteValidator>();
-            services.AddTransient<IValidator<IVertragKeyProvider>, VertragKeyProviderValidator>();
 
             // Logger
             services.AddTransient<IAppLogger, AppLogger>();

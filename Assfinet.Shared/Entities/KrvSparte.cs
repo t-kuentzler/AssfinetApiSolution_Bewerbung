@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Assfinet.Shared.Entities;
 
-public class KrvSparte : IVertragKeyProvider
+public class KrvSparte 
 {
     public int Id { get; set; }
     [Required]

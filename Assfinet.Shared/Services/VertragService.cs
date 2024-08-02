@@ -27,7 +27,7 @@ public class VertragService : IVertragService
             return;
         }
 
-        _logger.LogInformation($"Es wurden {vertraegeModels.Count} Kunden von der API abgerufen.");
+        _logger.LogInformation($"Es wurden {vertraegeModels.Count} Verträge von der API abgerufen.");
 
         foreach (var vertragModel in vertraegeModels)
         {

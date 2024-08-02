@@ -77,7 +77,7 @@ public class SparteProcessingService : ISparteProcessingService
             return;
         }
 
-        var existingSparte = await _sparteRepository.GetSparteByAmsIdAsync(amsId.Value);
+        var existingSparte = await _sparteRepository.GetSparteByAmsIdAsync(amsId.Value, sparteType);
         if (existingSparte != null)
         {
             _logger.LogError($"Die Spartendaten mit der AmsId '{amsId}' im Typ '{sparteType.Name}' konnten nicht in der Datenbank erstellt werden, da schon ein Datensatz mit der AmsId existiert.");

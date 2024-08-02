@@ -1,59 +1,61 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Exceptions;
 using AutoMapper;
-using Assfinet.Shared.Entities;
-using Assfinet.Shared.Models;
 
-namespace Assfinet.Shared.Services;
-
-public class SparteParserService : ISparteParserService
+namespace Assfinet.Shared.Services
 {
-    private readonly IMapper _mapper;
-    private readonly IAppLogger _logger;
-    private readonly IDictionary<Type, Type> _typeMapping;
-
-    public SparteParserService(IMapper mapper, IAppLogger logger)
+    public class SparteParserService : ISparteParserService
     {
-        _mapper = mapper;
-        _logger = logger;
-        _typeMapping = new Dictionary<Type, Type>
-        {
-            { typeof(KrvModel), typeof(KrvSparte) }
-            // Weitere Typzuordnungen hinzufügen
-        };
-    }
+        private readonly IMapper _mapper;
+        private readonly IAppLogger _logger;
 
-    public object ParseSparteModel(object sparteModel)
-    {
-        try
+        public SparteParserService(IMapper mapper, IAppLogger logger)
         {
-            if (sparteModel == null)
+            _mapper = mapper;
+            _logger = logger;
+        }
+
+        public object ParseSparteModel(object sparteModel)
+        {
+            try
             {
-                throw new ArgumentNullException(nameof(sparteModel));
+                if (sparteModel == null)
+                {
+                    throw new ArgumentNullException(nameof(sparteModel));
+                }
+
+                var sourceType = sparteModel.GetType();
+                var targetType = GetTargetType(sourceType);
+
+                var result = _mapper.Map(sparteModel, sourceType, targetType);
+
+                if (result == null)
+                {
+                    throw new InvalidOperationException(
+                        $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
+                }
+
+                return result;
             }
-
-            var sourceType = sparteModel.GetType();
-            if (!_typeMapping.TryGetValue(sourceType, out var targetType))
+            catch (Exception ex)
             {
+                _logger.LogError("Es ist ein unerwarteter Fehler beim Parsen zu einem Zieltyp aufgetreten.", ex);
+                throw new SparteParserServiceException();
+            }
+        }
+
+        private Type GetTargetType(Type sourceType)
+        {
+            var allTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
+            var targetType = allTypes.FirstOrDefault(t => t.Name == sourceType.Name.Replace("Model", "Sparte"));
+
+            if (targetType == null)
+            {
+                _logger.LogError($"Kein Mapping für den Typ '{sourceType.Name}' gefunden.");
                 throw new InvalidOperationException($"Kein Mapping für den Typ '{sourceType.Name}' gefunden.");
             }
 
-            var result = _mapper.Map(sparteModel, sourceType, targetType);
-
-            if (result == null)
-            {
-                throw new InvalidOperationException(
-                    $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
-            }
-
-            return result;
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(
-                "Es ist ein unerwarteter Fehler beim Parsen zu einem Zieltyp aufgetreten.",
-                ex);
-            throw new SparteParserServiceException();
+            return targetType;
         }
     }
 }

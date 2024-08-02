@@ -5,5 +5,5 @@ namespace Assfinet.Shared.Contracts;
 
 public interface ISparteParserService
 {
-    KrvSparte ParseSparteModelToKrvSparte(KrvModel krvModel);
+    object ParseSparteModel(object sparteModel);
 }

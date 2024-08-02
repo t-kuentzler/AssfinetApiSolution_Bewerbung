@@ -1,8 +1,10 @@
 using Assfinet.Shared.Contracts;
-using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
-using Assfinet.Shared.Models;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using Assfinet.Shared.Entities;
+using Assfinet.Shared.Models;
 
 namespace Assfinet.Shared.Services;
 
@@ -10,33 +12,48 @@ public class SparteParserService : ISparteParserService
 {
     private readonly IMapper _mapper;
     private readonly IAppLogger _logger;
+    private readonly IDictionary<Type, Type> _typeMapping;
 
     public SparteParserService(IMapper mapper, IAppLogger logger)
     {
         _mapper = mapper;
         _logger = logger;
+        _typeMapping = new Dictionary<Type, Type>
+        {
+            { typeof(KrvModel), typeof(KrvSparte) }
+            // Weitere Typzuordnungen hinzufügen
+        };
     }
 
-    public KrvSparte ParseSparteModelToKrvSparte(KrvModel krvModel)
+    public object ParseSparteModel(object sparteModel)
     {
         try
         {
-            if (krvModel == null)
+            if (sparteModel == null)
             {
-                throw new ArgumentNullException(nameof(krvModel));
+                throw new ArgumentNullException(nameof(sparteModel));
             }
 
-            var krvSparte = _mapper.Map<KrvSparte>(krvModel);
-            if (krvSparte == null)
+            var sourceType = sparteModel.GetType();
+            if (!_typeMapping.TryGetValue(sourceType, out var targetType))
             {
-                throw new InvalidOperationException("Mapping von SparteModel zu KrvSparte fehlgeschlagen.");
+                throw new InvalidOperationException($"Kein Mapping für den Typ {sourceType.Name} gefunden.");
             }
 
-            return krvSparte;
+            var result = _mapper.Map(sparteModel, sourceType, targetType);
+
+            if (result == null)
+            {
+                throw new InvalidOperationException(
+                    $"Mapping von {sourceType.Name} zu {targetType.Name} fehlgeschlagen.");
+            }
+
+            return result;
         }
         catch (Exception ex)
         {
-            _logger.LogError($"Es ist ein unerwarteter Fehler beim Parsen von SparteModel zu KrvSparte aufgetreten.",
+            _logger.LogError(
+                $"Es ist ein unerwarteter Fehler beim Parsen von {sparteModel.GetType().Name} zu einem Zieltyp aufgetreten.",
                 ex);
             throw new SparteParserServiceException();
         }

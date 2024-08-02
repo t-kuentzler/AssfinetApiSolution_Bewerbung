@@ -14,16 +14,16 @@ namespace Assfinet.InitialImporter.Api.Controllers
         private readonly IKundeService _kundeService;
         private readonly IVertragService _vertragService;
         private readonly IAppLogger _logger;
-        private readonly ISparteRepository _sparteRepository;
+        private readonly ISparteService _sparteService;
 
         public DataController(IApiService apiService, IKundeService kundeService, 
-            IVertragService vertragService, IAppLogger logger, ISparteRepository sparteRepository)
+            IVertragService vertragService, IAppLogger logger, ISparteService sparteService)
         {
             _apiService = apiService;
             _kundeService = kundeService;
             _vertragService = vertragService;
             _logger = logger;
-            _sparteRepository = sparteRepository;
+            _sparteService = sparteService;
         }
 
         [HttpPost("import-kunden")]
@@ -100,7 +100,6 @@ namespace Assfinet.InitialImporter.Api.Controllers
             }
         }
 
-        // Im Controller
         [HttpPost("import-sparten")]
         public async Task<IActionResult> ImportSpartenDaten([FromQuery] Spartentypen sparte)
         {
@@ -112,6 +111,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
 
                 while (hasMoreData)
                 {
+                    //Daten abrufen und dynamisch speichern
                     var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte, skip, take);
                     if (spartenDaten.Count < take)
                     {
@@ -120,7 +120,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
 
                     if (spartenDaten.Count > 0)
                     {
-                        await _sparteRepository.SaveSpartenDatenAsync(spartenDaten);
+                        await _sparteService.ImportSpartenDatenAsync(spartenDaten);
                     }
 
                     skip += take;

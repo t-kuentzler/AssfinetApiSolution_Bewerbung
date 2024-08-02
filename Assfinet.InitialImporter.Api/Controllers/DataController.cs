@@ -136,9 +136,5 @@ namespace Assfinet.InitialImporter.Api.Controllers
                 return StatusCode(500, "Interner Serverfehler");
             }
         }
-
-
-
-
     }
 }

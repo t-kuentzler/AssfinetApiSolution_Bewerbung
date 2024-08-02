@@ -19,5 +19,10 @@ public class GenericSparteRepository<T> : IGenericSparteRepository<T> where T : 
         await _dbSet.AddAsync(entity);
         await _applicationDbContext.SaveChangesAsync();
     }
+    
+    public async Task<T?> GetSparteByAmsIdAsync(Guid amsid)
+    {
+        return await _dbSet.FirstOrDefaultAsync(s => EF.Property<Guid>(s, "AmsId") == amsid);
+    }
 }
 

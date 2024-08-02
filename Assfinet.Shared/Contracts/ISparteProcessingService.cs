@@ -4,6 +4,5 @@ namespace Assfinet.Shared.Contracts;
 
 public interface ISparteProcessingService
 {
-    Task ValidateKrvSparteAsync(KrvSparte krvSparte);
-    Task ProcessImportKrvSparteAsync(KrvSparte krvSparte);
+    Task ValidateAndProcessSparteAsync(object sparte);
 }

@@ -34,7 +34,7 @@ public class VertragService : IVertragService
             try
             {
                 var vertrag = _vertragParserService.ParseKundeModelToDbEntity(vertragModel);
-                await _vertragProcessingService.ValidateKundeAsync(vertrag);
+                await _vertragProcessingService.ValidateVertragAsync(vertrag);
                 await _vertragProcessingService.ProcessImportVertragAsync(vertrag);
             }
             catch (ValidationException ex)

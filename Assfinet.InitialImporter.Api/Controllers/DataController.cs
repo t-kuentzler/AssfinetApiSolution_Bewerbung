@@ -13,18 +13,17 @@ namespace Assfinet.InitialImporter.Api.Controllers
         private readonly IApiService _apiService;
         private readonly IKundeService _kundeService;
         private readonly IVertragService _vertragService;
-        private readonly ISparteService _sparteService;
         private readonly IAppLogger _logger;
+        private readonly ISparteRepository _sparteRepository;
 
-        public DataController(IApiService apiService, IKundeService kundeService,
-            IVertragService vertragService, ISparteService sparteService,
-            IAppLogger logger)
+        public DataController(IApiService apiService, IKundeService kundeService, 
+            IVertragService vertragService, IAppLogger logger, ISparteRepository sparteRepository)
         {
             _apiService = apiService;
             _kundeService = kundeService;
             _vertragService = vertragService;
-            _sparteService = sparteService;
             _logger = logger;
+            _sparteRepository = sparteRepository;
         }
 
         [HttpPost("import-kunden")]
@@ -32,7 +31,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
         {
             try
             {
-                int skip = 4200;
+                int skip = 0;
                 int take = 50;
                 bool hasMoreData = true;
                 var allKunden = new List<KundeModel>();
@@ -69,7 +68,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
         {
             try
             {
-                int skip = 12000;
+                int skip = 0;
                 int take = 50;
                 bool hasMoreData = true;
                 var allVertraege = new List<VertragModel>();
@@ -101,19 +100,19 @@ namespace Assfinet.InitialImporter.Api.Controllers
             }
         }
 
+        // Im Controller
         [HttpPost("import-sparten")]
         public async Task<IActionResult> ImportSpartenDaten([FromQuery] Spartentypen sparte)
         {
             try
             {
                 int skip = 0;
-                int take = 10;
+                int take = 5;
                 bool hasMoreData = true;
-                var allSparten = new List<object>();
 
                 while (hasMoreData)
                 {
-                    var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte.ToString(), skip, take);
+                    var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte, skip, take);
                     if (spartenDaten.Count < take)
                     {
                         hasMoreData = false;
@@ -121,25 +120,25 @@ namespace Assfinet.InitialImporter.Api.Controllers
 
                     if (spartenDaten.Count > 0)
                     {
-                        // await _sparteService.ImportSpartenDatenAsync(spartenDaten);
-                        allSparten.AddRange(spartenDaten);
+                        await _sparteRepository.SaveSpartenDatenAsync(spartenDaten);
                     }
 
                     skip += take;
                     await Task.Delay(3000);
                 }
 
-                _logger.LogInformation($"Es wurden insgesamt {allSparten.Count} Verträge importiert.");
+                _logger.LogInformation("Import abgeschlossen.");
                 return Ok("Import abgeschlossen.");
             }
-            catch (UnknownSparteException ex)
+            catch (Exception ex)
             {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception)
-            {
+                _logger.LogError($"Fehler beim Importieren der Sparten-Daten: {ex.Message}");
                 return StatusCode(500, "Interner Serverfehler");
             }
         }
+
+
+
+
     }
 }

@@ -46,6 +46,11 @@ public class SparteService : ISparteService
                 _logger.LogError($"Validierungsfehler bei Spartendaten mit dem Schlüssel '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
                 throw;
             }
+            catch (UnknownSparteException ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
             catch (RepositoryException ex)
             {
                 _logger.LogError($"Repository-Fehler beim Import von Spartendaten mit dem Schlüssel '{(sparteModel as dynamic).Key}'.", ex);

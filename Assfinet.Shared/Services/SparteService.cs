@@ -1,7 +1,5 @@
 using Assfinet.Shared.Contracts;
-using Assfinet.Shared.Enums;
 using Assfinet.Shared.Exceptions;
-using Assfinet.Shared.Models;
 using FluentValidation;
 
 namespace Assfinet.Shared.Services;

@@ -21,7 +21,7 @@ public class SparteRepository : ISparteRepository
 
         if (repository == null)
         {
-            _logger.LogWarning($"Unbekannter Repository Typ '{sparte.GetType().FullName}'");
+            _logger.LogError($"Unbekannter Repository Typ '{sparte.GetType().FullName}'");
             throw new UnknownSparteException("Unbekannte Sparte");
         }
 
@@ -35,7 +35,7 @@ public class SparteRepository : ISparteRepository
 
         if (repository == null)
         {
-            _logger.LogWarning($"Unbekannter Repository Typ '{sparteType.FullName}'.");
+            _logger.LogError($"Unbekannter Repository Typ '{sparteType.FullName}'.");
             throw new UnknownSparteException("Unbekannte Sparte");
         }
 

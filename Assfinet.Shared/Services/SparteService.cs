@@ -26,11 +26,11 @@ public class SparteService : ISparteService
     {
         if (spartenModels.Count == 0)
         {
-            _logger.LogWarning("Es wurden 0 Sparten-Daten von der API abgerufen.");
+            _logger.LogWarning("Es wurden 0 Spartendaten von der API abgerufen.");
             return;
         }
 
-        _logger.LogInformation($"Es wurden {spartenModels.Count} Sparten-Daten von der API abgerufen.");
+        _logger.LogInformation($"Es wurden {spartenModels.Count} Spartendaten von der API abgerufen.");
 
         foreach (var sparteModel in spartenModels)
         {
@@ -41,17 +41,17 @@ public class SparteService : ISparteService
             }
             catch (ValidationException ex)
             {
-                _logger.LogError($"Validierungsfehler bei Sparte mit dem Schlüssel '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                _logger.LogError($"Validierungsfehler bei Spartendaten mit dem Schlüssel '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
                 throw;
             }
             catch (RepositoryException ex)
             {
-                _logger.LogError($"Repository-Fehler beim Import von Sparte mit dem Schlüssel '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                _logger.LogError($"Repository-Fehler beim Import von Spartendaten mit dem Schlüssel '{(sparteModel as dynamic).Key}'.", ex);
                 throw;
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Unerwarteter Fehler beim Import von Sparte mit dem Schlüssel '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                _logger.LogError($"Unerwarteter Fehler beim Import von Spartendaten mit dem Schlüssel '{(sparteModel as dynamic).Key}'.", ex);
                 throw new SparteServiceException();
             }
         }

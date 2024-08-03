@@ -34,8 +34,11 @@ public class SparteService : ISparteService
         {
             try
             {
+                //Model zu Entity parsen
                 var parsedSparte = _sparteParserService.ParseSparteModel(sparteModel);
+                //Entity validieren
                 await _sparteProcessingService.ValidateSparteAsync(parsedSparte);
+                //In Db erstellen
                 await _sparteProcessingService.ProcessImportSparteAsync(parsedSparte);
             }
             catch (ValidationException ex)

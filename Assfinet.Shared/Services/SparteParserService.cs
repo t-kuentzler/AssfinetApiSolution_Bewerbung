@@ -25,6 +25,7 @@ namespace Assfinet.Shared.Services
                     throw new ArgumentNullException(nameof(sparteModel));
                 }
 
+                //Typ ermitteln für dynamisches mappen
                 var sourceType = sparteModel.GetType();
                 var targetType = GetTargetType(sourceType);
 

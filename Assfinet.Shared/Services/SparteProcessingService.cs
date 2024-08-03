@@ -25,6 +25,7 @@ public class SparteProcessingService : ISparteProcessingService
     
     public async Task ValidateSparteAsync(object sparte)
     {
+        //Typ ermitteln für dynamische validation
         var validatorType = typeof(IValidator<>).MakeGenericType(sparte.GetType());
         var validator = _serviceProvider.GetService(validatorType) as IValidator;
 

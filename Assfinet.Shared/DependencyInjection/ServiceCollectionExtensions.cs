@@ -66,6 +66,7 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddTransient<IValidator<VertragHistorie>, VertragHistorieValidator>();
             services.AddTransient<IValidator<VertragBank>, VertragBankValidator>();
             services.AddTransient<IValidator<KrvSparte>, KrvSparteValidator>();
+            services.AddTransient<IValidator<DepSparte>, DepSparteValidator>();
 
             // Logger
             services.AddTransient<IAppLogger, AppLogger>();

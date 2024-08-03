@@ -16,6 +16,7 @@ namespace Assfinet.Shared
         public DbSet<VertragBank> VertragBanken { get; set; }
         
         public DbSet<KrvSparte> KrvSparten { get; set; }
+        public DbSet<KrvSparte> DepSparten { get; set; }
 
         public ApplicationDbContext()
         {
@@ -44,7 +45,6 @@ namespace Assfinet.Shared
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Konfiguration für Kunde
             modelBuilder.Entity<Kunde>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -63,25 +63,21 @@ namespace Assfinet.Shared
                     .HasForeignKey<KundeKontakt>(k => k.KundeId);
             });
 
-            // Konfiguration für KundePersonenDetails
             modelBuilder.Entity<KundePersonenDetails>(entity =>
             {
                 entity.HasKey(e => e.KundeId);
             });
 
-            // Konfiguration für KundeFinanzen
             modelBuilder.Entity<KundeFinanzen>(entity =>
             {
                 entity.HasKey(e => e.KundeId);
             });
 
-            // Konfiguration für KundeKontakt
             modelBuilder.Entity<KundeKontakt>(entity =>
             {
                 entity.HasKey(e => e.KundeId);
             });
 
-            // Konfiguration für Vertrag
             modelBuilder.Entity<Vertrag>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -110,32 +106,39 @@ namespace Assfinet.Shared
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            // Konfiguration für VertragFinanzen
             modelBuilder.Entity<VertragFinanzen>(entity =>
             {
                 entity.HasKey(e => e.VertragId);
             });
 
-            // Konfiguration für VertragDetails
             modelBuilder.Entity<VertragDetails>(entity =>
             {
                 entity.HasKey(e => e.VertragId);
             });
 
-            // Konfiguration für VertragHistorie
             modelBuilder.Entity<VertragHistorie>(entity =>
             {
                 entity.HasKey(e => e.VertragId);
             });
 
-            // Konfiguration für VertragBank
             modelBuilder.Entity<VertragBank>(entity =>
             {
                 entity.HasKey(e => e.VertragId);
             });
 
-            // Konfiguration für KrvSparte
             modelBuilder.Entity<KrvSparte>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasIndex(e => e.AmsId).IsUnique();
+
+                entity.HasOne<Vertrag>()
+                    .WithMany()
+                    .HasForeignKey(e => e.Key)
+                    .HasPrincipalKey(v => v.Amsidnr)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+            
+            modelBuilder.Entity<DepSparte>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.AmsId).IsUnique();

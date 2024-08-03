@@ -37,6 +37,20 @@ public class VertragService : IVertragService
                 await _vertragProcessingService.ValidateVertragAsync(vertrag);
                 await _vertragProcessingService.ProcessImportVertragAsync(vertrag);
             }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError(
+                    $"ArgumentNullException beim Importieren von dem Vertrag mit der AmsId '{vertragModel.Id}': {ex.Message}",
+                    ex);
+                throw;
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError(
+                    $"InvalidOperationException Fehler beim Importieren von dem Vertrag mit der AmsId '{vertragModel.Id}': {ex.Message}",
+                    ex);
+                throw;
+            }
             catch (ValidationException ex)
             {
                 _logger.LogError(

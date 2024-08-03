@@ -21,6 +21,7 @@ namespace Assfinet.Shared.Services
             {
                 if (sparteModel == null)
                 {
+                    _logger.LogError($"{nameof(sparteModel)} darf beim parsen nicht null sein.");
                     throw new ArgumentNullException(nameof(sparteModel));
                 }
 
@@ -31,6 +32,7 @@ namespace Assfinet.Shared.Services
 
                 if (result == null)
                 {
+                    _logger.LogError($"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
                     throw new InvalidOperationException(
                         $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
                 }

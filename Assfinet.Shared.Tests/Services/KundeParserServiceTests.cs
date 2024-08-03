@@ -21,7 +21,7 @@ namespace Assfinet.Shared.Tests.Services
         public void ParseKundeModelToDbEntity_NullKundeModel_ThrowsArgumentNullException()
         {
             // Arrange
-            KundeModel kundeModel = null;
+            KundeModel? kundeModel = null;
 
             // Act & Assert
             Assert.Throws<ArgumentNullException>(() => _kundeParserService.ParseKundeModelToDbEntity(kundeModel));
@@ -59,7 +59,7 @@ namespace Assfinet.Shared.Tests.Services
             // Arrange
             var kundeModel = new KundeModel { Id = Guid.NewGuid() };
 
-            _mapperMock.Setup(m => m.Map<Kunde>(kundeModel)).Returns((Kunde)null);
+            _mapperMock.Setup(m => m.Map<Kunde?>(kundeModel)).Returns((Kunde?)null);
 
             // Act & Assert
             Assert.Throws<InvalidOperationException>(() => _kundeParserService.ParseKundeModelToDbEntity(kundeModel));

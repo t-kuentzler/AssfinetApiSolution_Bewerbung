@@ -101,8 +101,13 @@ namespace Assfinet.InitialImporter.Api.Controllers
         }
 
         [HttpPost("import-sparten")]
-        public async Task<IActionResult> ImportSpartenDaten([FromQuery] Spartentypen sparte)
+        public async Task<IActionResult> ImportSpartenDaten([FromQuery] Spartentypen? sparte)
         {
+            if (!sparte.HasValue)
+            {
+                return BadRequest("Kein gültiger Spartentyp ausgewählt.");
+            }
+            
             try
             {
                 int skip = 0;
@@ -112,7 +117,7 @@ namespace Assfinet.InitialImporter.Api.Controllers
                 while (hasMoreData)
                 {
                     //Daten abrufen und dynamisch speichern
-                    var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte, skip, take);
+                    var spartenDaten = await _apiService.GetSpartenDatenAsync(sparte.Value, skip, take);
                     if (spartenDaten.Count < take)
                     {
                         hasMoreData = false;

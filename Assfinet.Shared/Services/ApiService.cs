@@ -130,6 +130,7 @@ namespace Assfinet.Shared.Services
                 };
                 requestData.Headers.TryAddWithoutValidation("Authorization", $"Bearer {_bearerToken}");
 
+                _logger.LogInformation($"API-Anfrage wird gesendet an {requestData.RequestUri}");
                 var results = await _httpClient.SendAsync(requestData);
                 var apiErgebnis = await results.Content.ReadAsStringAsync();
 
@@ -138,8 +139,11 @@ namespace Assfinet.Shared.Services
                     throw new Exception(
                         $"Fehler bei der API-Anfrage: {apiErgebnis}, StatusCode: {results.StatusCode}, ReasonPhrase: {results.ReasonPhrase}");
                 }
-
-                return ParseSpartenResponse(apiErgebnis, sparte);
+                
+                var parseSpartenResponse = ParseSpartenResponse(apiErgebnis, sparte);
+                _logger.LogInformation("API-Antwort erfolgreich empfangen.");
+                
+                return parseSpartenResponse;
             }
             catch (Exception ex)
             {

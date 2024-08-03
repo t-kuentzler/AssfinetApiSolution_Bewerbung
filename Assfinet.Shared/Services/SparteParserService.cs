@@ -7,11 +7,14 @@ namespace Assfinet.Shared.Services
     {
         private readonly IMapper _mapper;
         private readonly IAppLogger _logger;
+        private readonly ITypeMappingService _typeMappingService;
 
-        public SparteParserService(IMapper mapper, IAppLogger logger)
+        public SparteParserService(IMapper mapper, IAppLogger logger,
+            ITypeMappingService typeMappingService)
         {
             _mapper = mapper;
             _logger = logger;
+            _typeMappingService = typeMappingService;
         }
 
         public object ParseSparteModel(object sparteModel)
@@ -24,7 +27,7 @@ namespace Assfinet.Shared.Services
 
             //Typ ermitteln für dynamisches mapping
             var sourceType = sparteModel.GetType();
-            var targetType = GetTargetType(sourceType);
+            var targetType = _typeMappingService.GetTargetType(sourceType);
 
             var result = _mapper.Map(sparteModel, sourceType, targetType);
 
@@ -36,20 +39,6 @@ namespace Assfinet.Shared.Services
             }
 
             return result;
-        }
-
-        private Type GetTargetType(Type sourceType)
-        {
-            var allTypes = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes());
-            var targetType = allTypes.FirstOrDefault(t => t.Name == sourceType.Name.Replace("Model", "Sparte"));
-
-            if (targetType == null)
-            {
-                _logger.LogError($"Kein Mapping für den Typ '{sourceType.Name}' gefunden.");
-                throw new InvalidOperationException($"Kein Mapping für den Typ '{sourceType.Name}' gefunden.");
-            }
-
-            return targetType;
         }
     }
 }

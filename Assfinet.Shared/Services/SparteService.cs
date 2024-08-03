@@ -41,6 +41,16 @@ public class SparteService : ISparteService
                 //In Db erstellen
                 await _sparteProcessingService.ProcessImportSparteAsync(parsedSparte);
             }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ArgumentNullException beim Importieren von den Spartendaten mit der AmsId '{(sparteModel as dynamic).Id}': {ex.Message}", ex);
+                throw;
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError($"InvalidOperationException beim Importieren von den Spartendaten mit der AmsId '{(sparteModel as dynamic).Id}': {ex.Message}", ex);
+                throw;
+            }
             catch (ValidationException ex)
             {
                 _logger.LogError($"Validierungsfehler bei Spartendaten mit dem Schlüssel '{(sparteModel as dynamic).Key}': {ex.Message}", ex);

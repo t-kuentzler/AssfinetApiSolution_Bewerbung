@@ -35,7 +35,8 @@ public class SparteService : ISparteService
             try
             {
                 var parsedSparte = _sparteParserService.ParseSparteModel(sparteModel);
-                await _sparteProcessingService.ValidateAndProcessSparteAsync(parsedSparte);
+                await _sparteProcessingService.ValidateSparteAsync(parsedSparte);
+                await _sparteProcessingService.ProcessImportSparteAsync(parsedSparte);
             }
             catch (ValidationException ex)
             {

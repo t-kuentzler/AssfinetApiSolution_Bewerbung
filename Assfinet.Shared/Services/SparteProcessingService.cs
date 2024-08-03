@@ -22,14 +22,8 @@ public class SparteProcessingService : ISparteProcessingService
         _sparteRepository = sparteRepository;
         _serviceProvider = serviceProvider;
     }
-
-    public async Task ValidateAndProcessSparteAsync(object sparte)
-    {
-        await ValidateSparteAsync(sparte);
-        await ProcessImportSparteAsync(sparte);
-    }
-
-    private async Task ValidateSparteAsync(object sparte)
+    
+    public async Task ValidateSparteAsync(object sparte)
     {
         var validatorType = typeof(IValidator<>).MakeGenericType(sparte.GetType());
         var validator = _serviceProvider.GetService(validatorType) as IValidator;
@@ -46,7 +40,7 @@ public class SparteProcessingService : ISparteProcessingService
         }
     }
 
-    private async Task ProcessImportSparteAsync(object sparte)
+    public async Task ProcessImportSparteAsync(object sparte)
     {
         var sparteType = sparte.GetType();
         var keyProperty = sparteType.GetProperty("Key");

@@ -38,6 +38,16 @@ public class KundeService : IKundeService
                 await _kundeProcessingService.ValidateKundeAsync(kunde);
                 await _kundeProcessingService.ProcessImportKundeAsync(kunde);
             }
+            catch (ArgumentNullException ex)
+            {
+                _logger.LogError($"ArgumentNullException beim Importieren von dem Kunden mit der AmsId '{kundeModel.Id}': {ex.Message}", ex);
+                throw;
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.LogError($"InvalidOperationException Fehler beim Importieren von dem Kunden mit der AmsId '{kundeModel.Id}': {ex.Message}", ex);
+                throw;
+            }
             catch (ValidationException ex)
             {
                 _logger.LogError(

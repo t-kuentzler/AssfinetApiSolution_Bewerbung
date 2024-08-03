@@ -1,5 +1,4 @@
 using Assfinet.Shared.Contracts;
-using Assfinet.Shared.Exceptions;
 using AutoMapper;
 
 namespace Assfinet.Shared.Services
@@ -17,34 +16,26 @@ namespace Assfinet.Shared.Services
 
         public object ParseSparteModel(object sparteModel)
         {
-            try
+            if (sparteModel == null)
             {
-                if (sparteModel == null)
-                {
-                    _logger.LogError($"{nameof(sparteModel)} darf beim parsen nicht null sein.");
-                    throw new ArgumentNullException(nameof(sparteModel));
-                }
-
-                //Typ ermitteln für dynamisches mappen
-                var sourceType = sparteModel.GetType();
-                var targetType = GetTargetType(sourceType);
-
-                var result = _mapper.Map(sparteModel, sourceType, targetType);
-
-                if (result == null)
-                {
-                    _logger.LogError($"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
-                    throw new InvalidOperationException(
-                        $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
-                }
-
-                return result;
+                _logger.LogError($"{nameof(sparteModel)} darf beim parsen nicht null sein.");
+                throw new ArgumentNullException(nameof(sparteModel));
             }
-            catch (Exception ex)
+
+            //Typ ermitteln für dynamisches mapping
+            var sourceType = sparteModel.GetType();
+            var targetType = GetTargetType(sourceType);
+
+            var result = _mapper.Map(sparteModel, sourceType, targetType);
+
+            if (result == null)
             {
-                _logger.LogError("Es ist ein unerwarteter Fehler beim Parsen zu einem Zieltyp aufgetreten.", ex);
-                throw new SparteParserServiceException();
+                _logger.LogError($"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
+                throw new InvalidOperationException(
+                    $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
             }
+
+            return result;
         }
 
         private Type GetTargetType(Type sourceType)

@@ -18,7 +18,7 @@ namespace Assfinet.Shared.Validators
                 .NotEmpty()
                 .MaximumLength(50);
             RuleFor(v => v.License).MaximumLength(40);
-            RuleFor(v => v.LastSynchronisation).NotNull();
+            RuleFor(v => v.LastSynchronisation).NotEmpty();
 
             RuleFor(v => v.KRV101).MaximumLength(150);
             RuleFor(v => v.KRV102).MaximumLength(150);

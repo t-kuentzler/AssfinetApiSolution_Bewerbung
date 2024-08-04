@@ -22,7 +22,7 @@ public class KrvSparte
     public bool Dirty { get; set; }
 
     [StringLength(40)] public string? License { get; set; }
-    public DateTime LastSynchronisation { get; private set; }
+    public DateTime LastSynchronisation { get; set; }
 
     [StringLength(150)] public string? KRV101 { get; set; }
     [StringLength(150)] public string? KRV102 { get; set; }

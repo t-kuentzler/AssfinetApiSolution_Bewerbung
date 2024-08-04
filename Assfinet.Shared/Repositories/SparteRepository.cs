@@ -55,13 +55,13 @@ namespace Assfinet.Shared.Repositories
             }
             catch (RepositoryException ex)
             {
-                _logger.LogError($"Ein Fehler ist beim Abrufen von {sparteType.Name} mit AmsId: '{amsId}' aufgetreten: {ex.Message}", ex);
+                _logger.LogError($"Ein Fehler ist beim Abrufen von '{sparteType.Name}' mit AmsId '{amsId}' aufgetreten.", ex);
                 throw;
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Ein unerwarteter Fehler ist beim Abrufen von {sparteType.Name} mit AmsId: '{amsId}' aufgetreten.", ex);
-                throw new RepositoryException($"Ein unerwarteter Fehler ist beim Abrufen von {sparteType.Name} mit AmsId: '{amsId}' aufgetreten.", ex);
+                _logger.LogError($"Ein unerwarteter Fehler ist beim Abrufen von '{sparteType.Name}' mit AmsId '{amsId}' aufgetreten.", ex);
+                throw new RepositoryException($"Ein unerwarteter Fehler ist beim Abrufen von '{sparteType.Name}' mit AmsId '{amsId}' aufgetreten.", ex);
             }
         }
     }

@@ -48,7 +48,7 @@ public class KundeRepository : IKundeRepository
         } 
         catch (Exception ex)
         {
-            throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Kunden mit AmsId: '{amsId}'.", ex);
+            throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Kunden mit AmsId '{amsId}'.", ex);
         }
     }
     
@@ -60,7 +60,7 @@ public class KundeRepository : IKundeRepository
         } 
         catch (Exception ex)
         {
-            throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Kunden mit Amsidnr: '{amsidnr}'.", ex);
+            throw new RepositoryException($"Ein unerwarteter Fehler ist aufgetreten beim Abrufen des Kunden mit Amsidnr '{amsidnr}'.", ex);
         }
     }
     

@@ -85,6 +85,7 @@ namespace Assfinet.Shared.Tests.Validators
             result.ShouldHaveValidationErrorFor(x => x.LastSynchronisation);
         }
 
+        //Nur erste DEP Eigenschaft testen, da alle die selben regeln haben
         [Fact]
         public void Should_Have_Error_When_Dep101_Exceeds_MaxLength()
         {

@@ -30,7 +30,7 @@ namespace Assfinet.Shared.Validators
 
             RuleFor(k => k.EmailPrivat)
                 .MaximumLength(80);
-            
+
             RuleFor(k => k.Fax)
                 .MaximumLength(35);
 
@@ -63,7 +63,7 @@ namespace Assfinet.Shared.Validators
 
             RuleFor(k => k.Internet)
                 .MaximumLength(200);
-            
+
             RuleFor(k => k.TelefonGeschaeftlich)
                 .MaximumLength(35);
 

@@ -149,6 +149,18 @@ namespace Assfinet.Shared
                     .HasPrincipalKey(v => v.Amsidnr)
                     .OnDelete(DeleteBehavior.Cascade);
             });
+            
+            modelBuilder.Entity<ImoSparte>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasIndex(e => e.AmsId).IsUnique();
+
+                entity.HasOne<Vertrag>()
+                    .WithMany()
+                    .HasForeignKey(e => e.Key)
+                    .HasPrincipalKey(v => v.Amsidnr)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
         }
     }
 }

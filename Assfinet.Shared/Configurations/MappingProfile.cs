@@ -48,5 +48,10 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.AmsId,
                 opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
             .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
+
+        CreateMap<ImoModel, ImoSparte>()
+            .ForMember(dest => dest.AmsId,
+                opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
+            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
     }
 }

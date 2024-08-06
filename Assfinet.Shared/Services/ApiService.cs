@@ -157,7 +157,8 @@ namespace Assfinet.Shared.Services
             var sparteModelTypes = new Dictionary<Spartentypen, Type>
             {
                 { Spartentypen.KRV, typeof(KrvModel) },
-                { Spartentypen.DEP, typeof(DepModel) }
+                { Spartentypen.DEP, typeof(DepModel) },
+                { Spartentypen.IMO, typeof(ImoModel) }
                 // Weitere Spartentypen hier hinzufügen
             };
 

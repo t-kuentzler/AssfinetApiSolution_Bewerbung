@@ -29,7 +29,7 @@ public class Vertrag
     public bool Dirty { get; set; }
     [StringLength(40)]
     public string? License { get; set; }
-    public DateTime LastSynchronisation { get; private set; }
+    public DateTime? LastSynchronisation { get; private set; }
     [NotMapped]
     [JsonExtensionData]
     public IDictionary<string, JToken> AdditionalData { get; set; }

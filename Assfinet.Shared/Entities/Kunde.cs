@@ -85,7 +85,7 @@ namespace Assfinet.Shared.Entities
         public string? IdentTyp { get; set; }
         public decimal? Inflationsrate { get; set; }
         public string? License { get; set; }
-        public DateTime LastSynchronisation { get; private set; }
+        public DateTime? LastSynchronisation { get; private set; }
         [StringLength(50)]
         public string? LageBetriebsgrundstuecks { get; set; }
         [StringLength(3)]

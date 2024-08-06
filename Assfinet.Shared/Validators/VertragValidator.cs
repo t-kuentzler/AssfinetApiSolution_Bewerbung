@@ -18,8 +18,6 @@ namespace Assfinet.Shared.Validators
             RuleFor(v => v.ComputedStatus).MaximumLength(60);
             RuleFor(v => v.Dirty).NotNull();
             RuleFor(v => v.License).MaximumLength(40);
-            RuleFor(v => v.LastSynchronisation).NotNull();
-
             RuleFor(v => v.VertragDetails).SetValidator(new VertragDetailsValidator());
             RuleFor(v => v.Historie).SetValidator(new VertragHistorieValidator());
             RuleFor(v => v.BankDetails).SetValidator(new VertragBankValidator());

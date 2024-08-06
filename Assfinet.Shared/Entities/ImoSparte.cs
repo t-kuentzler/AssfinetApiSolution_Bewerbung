@@ -27,7 +27,7 @@ namespace Assfinet.Shared.Entities
 
         [StringLength(40)] public string? License { get; set; }
 
-        public DateTime LastSynchronisation { get; set; }
+        public DateTime? LastSynchronisation { get; set; }
 
         [StringLength(150)] public string? IMO101 { get; set; }
         [StringLength(150)] public string? IMO102 { get; set; }

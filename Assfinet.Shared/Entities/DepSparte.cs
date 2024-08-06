@@ -25,7 +25,7 @@ public class DepSparte
 
     [StringLength(40)] public string? License { get; set; }
 
-    public DateTime LastSynchronisation { get; set; }
+    public DateTime? LastSynchronisation { get; set; }
 
     [StringLength(150)] public string? DEP101 { get; set; }
     [StringLength(150)] public string? DEP111 { get; set; }

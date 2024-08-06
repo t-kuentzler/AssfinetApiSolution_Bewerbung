@@ -158,7 +158,8 @@ namespace Assfinet.Shared.Services
             {
                 { Spartentypen.KRV, typeof(KrvModel) },
                 { Spartentypen.DEP, typeof(DepModel) },
-                { Spartentypen.IMO, typeof(ImoModel) }
+                { Spartentypen.IMO, typeof(ImoModel) },
+                { Spartentypen.UNF, typeof(UnfModel) }
                 // Weitere Spartentypen hier hinzufügen
             };
 

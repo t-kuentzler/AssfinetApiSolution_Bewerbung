@@ -1,5 +1,10 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Entities;
+using Assfinet.Shared.Models;
 using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Assfinet.Shared.Services
 {
@@ -7,38 +12,60 @@ namespace Assfinet.Shared.Services
     {
         private readonly IMapper _mapper;
         private readonly IAppLogger _logger;
-        private readonly ITypeMappingService _typeMappingService;
 
-        public SparteParserService(IMapper mapper, IAppLogger logger,
-            ITypeMappingService typeMappingService)
+        public SparteParserService(IMapper mapper, IAppLogger logger)
         {
             _mapper = mapper;
             _logger = logger;
-            _typeMappingService = typeMappingService;
         }
 
         public object ParseSparteModel(object sparteModel)
         {
             if (sparteModel == null)
             {
-                _logger.LogError($"{nameof(sparteModel)} darf beim parsen nicht null sein.");
+                _logger.LogError($"{nameof(sparteModel)} darf beim Parsen nicht null sein.");
                 throw new ArgumentNullException(nameof(sparteModel));
             }
 
-            //Typ ermitteln für dynamisches mapping
+            // Typ ermitteln für dynamisches Mapping
             var sourceType = sparteModel.GetType();
-            var targetType = _typeMappingService.GetTargetType(sourceType);
+            var targetType = typeof(Sparte);
 
-            var result = _mapper.Map(sparteModel, sourceType, targetType);
+            // Map basic properties
+            var result = _mapper.Map(sparteModel, sourceType, targetType) as Sparte;
 
             if (result == null)
             {
                 _logger.LogError($"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
-                throw new InvalidOperationException(
-                    $"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
+                throw new InvalidOperationException($"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
             }
 
+            // Map additional properties to SparteFields
+            result.SparteFields = MapAdditionalProperties((VertragSparteModel)sparteModel);
+
             return result;
+        }
+
+        private ICollection<SparteFields> MapAdditionalProperties(VertragSparteModel src)
+        {
+            var sparteProperties = typeof(Sparte).GetProperties().Select(p => p.Name).ToHashSet();
+            var baseProperties = typeof(VertragSparteModel).GetProperties().Select(p => p.Name).ToHashSet();
+            var additionalFields = new List<SparteFields>();
+
+            foreach (var property in src.GetType().GetProperties())
+            {
+                if (!sparteProperties.Contains(property.Name) && !baseProperties.Contains(property.Name) && property.CanRead)
+                {
+                    var value = property.GetValue(src)?.ToString();
+                    additionalFields.Add(new SparteFields
+                    {
+                        FieldName = property.Name,
+                        FieldValue = value
+                    });
+                }
+            }
+
+            return additionalFields;
         }
     }
 }

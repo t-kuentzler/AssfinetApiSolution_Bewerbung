@@ -9,18 +9,19 @@ namespace Assfinet.Shared
         public DbSet<KundePersonenDetails> KundenPersonenDetails { get; set; }
         public DbSet<KundeFinanzen> KundenFinanzen { get; set; }
         public DbSet<KundeKontakt> KundenKontakte { get; set; }
-        
+
         public DbSet<Vertrag> Vertraege { get; set; }
         public DbSet<VertragDetails> VertragDetails { get; set; }
         public DbSet<VertragHistorie> VertragHistorien { get; set; }
         public DbSet<VertragBank> VertragBanken { get; set; }
-        
+
         public DbSet<KrvSparte> KrvSparten { get; set; }
         public DbSet<KrvSparte> DepSparten { get; set; }
-
+      
         public ApplicationDbContext()
         {
         }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -30,15 +31,17 @@ namespace Assfinet.Shared
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = Environment.GetEnvironmentVariable("HANSMANN_ASSFINET_SCHATTENDATENBANK_CONNECTIONSTRING_TEST");
+                var connectionString =
+                    Environment.GetEnvironmentVariable("HANSMANN_ASSFINET_SCHATTENDATENBANK_CONNECTIONSTRING_TEST");
 
                 if (!string.IsNullOrEmpty(connectionString))
                 {
-                    optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 23))); 
+                    optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 23)));
                 }
                 else
                 {
-                    throw new InvalidOperationException("Keine gültige Verbindungszeichenfolge in der Umgebungsvariablen gefunden.");
+                    throw new InvalidOperationException(
+                        "Keine gültige Verbindungszeichenfolge in der Umgebungsvariablen gefunden.");
                 }
             }
         }
@@ -49,7 +52,7 @@ namespace Assfinet.Shared
             {
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.AmsId).IsUnique();
-            
+
                 entity.HasOne(e => e.PersonenDetails)
                     .WithOne(pd => pd.Kunde)
                     .HasForeignKey<KundePersonenDetails>(pd => pd.KundeId);
@@ -63,20 +66,11 @@ namespace Assfinet.Shared
                     .HasForeignKey<KundeKontakt>(k => k.KundeId);
             });
 
-            modelBuilder.Entity<KundePersonenDetails>(entity =>
-            {
-                entity.HasKey(e => e.KundeId);
-            });
+            modelBuilder.Entity<KundePersonenDetails>(entity => { entity.HasKey(e => e.KundeId); });
 
-            modelBuilder.Entity<KundeFinanzen>(entity =>
-            {
-                entity.HasKey(e => e.KundeId);
-            });
+            modelBuilder.Entity<KundeFinanzen>(entity => { entity.HasKey(e => e.KundeId); });
 
-            modelBuilder.Entity<KundeKontakt>(entity =>
-            {
-                entity.HasKey(e => e.KundeId);
-            });
+            modelBuilder.Entity<KundeKontakt>(entity => { entity.HasKey(e => e.KundeId); });
 
             modelBuilder.Entity<Vertrag>(entity =>
             {
@@ -106,25 +100,13 @@ namespace Assfinet.Shared
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<VertragFinanzen>(entity =>
-            {
-                entity.HasKey(e => e.VertragId);
-            });
+            modelBuilder.Entity<VertragFinanzen>(entity => { entity.HasKey(e => e.VertragId); });
 
-            modelBuilder.Entity<VertragDetails>(entity =>
-            {
-                entity.HasKey(e => e.VertragId);
-            });
+            modelBuilder.Entity<VertragDetails>(entity => { entity.HasKey(e => e.VertragId); });
 
-            modelBuilder.Entity<VertragHistorie>(entity =>
-            {
-                entity.HasKey(e => e.VertragId);
-            });
+            modelBuilder.Entity<VertragHistorie>(entity => { entity.HasKey(e => e.VertragId); });
 
-            modelBuilder.Entity<VertragBank>(entity =>
-            {
-                entity.HasKey(e => e.VertragId);
-            });
+            modelBuilder.Entity<VertragBank>(entity => { entity.HasKey(e => e.VertragId); });
 
             modelBuilder.Entity<KrvSparte>(entity =>
             {
@@ -137,7 +119,7 @@ namespace Assfinet.Shared
                     .HasPrincipalKey(v => v.Amsidnr)
                     .OnDelete(DeleteBehavior.Cascade);
             });
-            
+
             modelBuilder.Entity<DepSparte>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -149,7 +131,7 @@ namespace Assfinet.Shared
                     .HasPrincipalKey(v => v.Amsidnr)
                     .OnDelete(DeleteBehavior.Cascade);
             });
-            
+
             modelBuilder.Entity<ImoSparte>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -161,21 +143,7 @@ namespace Assfinet.Shared
                     .HasPrincipalKey(v => v.Amsidnr)
                     .OnDelete(DeleteBehavior.Cascade);
             });
-            
-            modelBuilder.Entity<UnfSparteTeil1>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.HasIndex(e => e.AmsId).IsUnique();
-            
-                entity.HasOne(e => e.UnfSparteTeil2)
-                    .WithOne(pd => pd.UnfSparteTeil1)
-                    .HasForeignKey<UnfSparteTeil2>(pd => pd.UnfSparteTeil1Id);
-            });
-            
-            modelBuilder.Entity<UnfSparteTeil2>(entity =>
-            {
-                entity.HasKey(e => e.UnfSparteTeil1Id);
-            });
+         
         }
     }
 }

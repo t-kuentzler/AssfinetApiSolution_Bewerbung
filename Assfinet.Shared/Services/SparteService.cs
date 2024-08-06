@@ -1,75 +1,82 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
+using AutoMapper;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Assfinet.Shared.Services;
-
-public class SparteService : ISparteService
+namespace Assfinet.Shared.Services
 {
-    private readonly ISparteParserService _sparteParserService;
-    private readonly IAppLogger _logger;
-    private readonly ISparteProcessingService _sparteProcessingService;
-
-    public SparteService(
-        ISparteParserService sparteParserService,
-        IAppLogger logger,
-        ISparteProcessingService sparteProcessingService)
+    public class SparteService : ISparteService
     {
-        _sparteParserService = sparteParserService;
-        _logger = logger;
-        _sparteProcessingService = sparteProcessingService;
-    }
+        private readonly ISparteParserService _sparteParserService;
+        private readonly IAppLogger _logger;
+        private readonly ISparteProcessingService _sparteProcessingService;
+        private readonly IMapper _mapper;
 
-    public async Task ImportSpartenDatenAsync(List<object> spartenModels)
-    {
-        if (spartenModels.Count == 0)
+        public SparteService(
+            ISparteParserService sparteParserService,
+            IAppLogger logger,
+            ISparteProcessingService sparteProcessingService,
+            IMapper mapper)
         {
-            _logger.LogWarning("Es wurden 0 Spartendaten von der API abgerufen.");
-            return;
+            _sparteParserService = sparteParserService;
+            _logger = logger;
+            _sparteProcessingService = sparteProcessingService;
+            _mapper = mapper;
         }
 
-        _logger.LogInformation($"Es wurden {spartenModels.Count} Spartendaten von der API abgerufen.");
-
-        foreach (var sparteModel in spartenModels)
+        public async Task ImportSpartenDatenAsync(List<object> spartenModels)
         {
-            try
+            if (spartenModels.Count == 0)
             {
-                //Model zu Entity parsen
-                var parsedSparte = _sparteParserService.ParseSparteModel(sparteModel);
-                //Entity validieren
-                await _sparteProcessingService.ValidateSparteAsync(parsedSparte);
-                //In Db erstellen
-                await _sparteProcessingService.ProcessImportSparteAsync(parsedSparte);
+                _logger.LogWarning("Es wurden 0 Spartendaten von der API abgerufen.");
+                return;
             }
-            catch (ArgumentNullException ex)
+
+            _logger.LogInformation($"Es wurden {spartenModels.Count} Spartendaten von der API abgerufen.");
+
+            foreach (var sparteModel in spartenModels)
             {
-                _logger.LogError($"ArgumentNullException beim Importieren von den Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
-                throw;
-            }
-            catch (InvalidOperationException ex)
-            {
-                _logger.LogError($"InvalidOperationException beim Importieren von den Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
-                throw;
-            }
-            catch (ValidationException ex)
-            {
-                _logger.LogError($"Validierungsfehler bei Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
-                throw;
-            }
-            catch (UnknownSparteException ex)
-            {
-                _logger.LogError($"UnknownSparteException beim Importieren von den Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
-                throw;
-            }
-            catch (RepositoryException ex)
-            {
-                _logger.LogError($"Repository-Fehler beim Import von Spartendaten mit dem Key '{(sparteModel as dynamic).Key}'.", ex);
-                throw;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Unerwarteter Fehler beim Import von Spartendaten mit dem Key '{(sparteModel as dynamic).Key}'.", ex);
-                throw new SparteServiceException();
+                try
+                {
+                    var sparte = (Sparte)_sparteParserService.ParseSparteModel(sparteModel);
+                    // Validierung und Speicherung der Sparte-Entity
+                    await _sparteProcessingService.ValidateSparteAsync(sparte);
+                    await _sparteProcessingService.ProcessImportSparteAsync(sparte);
+                }
+                catch (ArgumentNullException ex)
+                {
+                    _logger.LogError($"ArgumentNullException beim Importieren von den Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                    throw;
+                }
+                catch (InvalidOperationException ex)
+                {
+                    _logger.LogError($"InvalidOperationException beim Importieren von den Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                    throw;
+                }
+                catch (ValidationException ex)
+                {
+                    _logger.LogError($"Validierungsfehler bei Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                    throw;
+                }
+                catch (UnknownSparteException ex)
+                {
+                    _logger.LogError($"UnknownSparteException beim Importieren von den Spartendaten mit dem Key '{(sparteModel as dynamic).Key}': {ex.Message}", ex);
+                    throw;
+                }
+                catch (RepositoryException ex)
+                {
+                    _logger.LogError($"Repository-Fehler beim Import von Spartendaten mit dem Key '{(sparteModel as dynamic).Key}'.", ex);
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Unerwarteter Fehler beim Import von Spartendaten mit dem Key '{(sparteModel as dynamic).Key}'.", ex);
+                    throw new SparteServiceException();
+                }
             }
         }
     }

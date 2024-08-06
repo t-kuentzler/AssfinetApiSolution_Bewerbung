@@ -42,7 +42,6 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddScoped<ISparteParserService, SparteParserService>();
             services.AddScoped<ISparteProcessingService, SparteProcessingService>();
             services.AddScoped<ISparteService, SparteService>();
-            services.AddScoped<ITypeMappingService, TypeMappingService>();
 
             // Repositories
             services.AddScoped<IKundeRepository, KundeRepository>();
@@ -69,8 +68,7 @@ namespace Assfinet.Shared.DependencyInjection
             services.AddTransient<IValidator<KrvSparte>, KrvSparteValidator>();
             services.AddTransient<IValidator<DepSparte>, DepSparteValidator>();
             services.AddTransient<IValidator<ImoSparte>, ImoSparteValidator>();
-            services.AddTransient<IValidator<UnfSparteTeil1>, UnfSparteTeil1Validator>();
-            services.AddTransient<IValidator<UnfSparteTeil2>, UnfSparteTeil2Validator>();
+    
 
             // Logger
             services.AddTransient<IAppLogger, AppLogger>();

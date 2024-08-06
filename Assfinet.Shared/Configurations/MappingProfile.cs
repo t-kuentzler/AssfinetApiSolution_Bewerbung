@@ -53,13 +53,35 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.AmsId,
                 opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
             .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
+
+        CreateMap<VertragSparteModel, Sparte>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore()) // ID wird von der Datenbank generiert
+            .ForMember(dest => dest.AmsId, opt => opt.MapFrom(src => src.Id));
+
+        CreateMap<UnfModel, Sparte>()
+            .IncludeBase<VertragSparteModel, Sparte>();
         
-        CreateMap<UnfModel, UnfSparteTeil1>()
-            .ForMember(dest => dest.AmsId,
-                opt => opt.MapFrom(src => src.Id)) // Mapping von Id auf AmsId
-            .ForMember(dest => dest.Id, opt => opt.Ignore()); // ID wird von der Datenbank generiert
-        
-        CreateMap<UnfModel, UnfSparteTeil2>()
-            .ForMember(dest => dest.UnfSparteTeil1Id, opt => opt.Ignore());
     }
-}
+
+   
+        
+        
+        // Mapping für SparteFields basierend auf den nicht direkt zugeordneten Eigenschaften
+        
+        // CreateMap<object, ICollection<SparteFields>>()
+        //     .ConstructUsing((src, context) => {
+        //         var fields = new List<SparteFields>();
+        //         var sparteProperties = typeof(Sparte).GetProperties().Select(p => p.Name).ToList();
+        //         foreach (var property in src.GetType().GetProperties())
+        //         {
+        //             if (!sparteProperties.Contains(property.Name) && property.CanRead)
+        //             {
+        //                 fields.Add(new SparteFields {
+        //                     FieldName = property.Name,
+        //                     FieldValue = property.GetValue(src)?.ToString()
+        //                 });
+        //             }
+        //         }
+        //         return fields;
+        //     });
+    }

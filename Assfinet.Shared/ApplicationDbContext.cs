@@ -161,6 +161,21 @@ namespace Assfinet.Shared
                     .HasPrincipalKey(v => v.Amsidnr)
                     .OnDelete(DeleteBehavior.Cascade);
             });
+            
+            modelBuilder.Entity<UnfSparteTeil1>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasIndex(e => e.AmsId).IsUnique();
+            
+                entity.HasOne(e => e.UnfSparteTeil2)
+                    .WithOne(pd => pd.UnfSparteTeil1)
+                    .HasForeignKey<UnfSparteTeil2>(pd => pd.UnfSparteTeil1Id);
+            });
+            
+            modelBuilder.Entity<UnfSparteTeil2>(entity =>
+            {
+                entity.HasKey(e => e.UnfSparteTeil1Id);
+            });
         }
     }
 }

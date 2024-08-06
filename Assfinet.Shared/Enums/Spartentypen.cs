@@ -4,5 +4,6 @@ public enum Spartentypen
 {
     KRV,
     DEP,
-    IMO
+    IMO,
+    UNF
 }

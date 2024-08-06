@@ -15,9 +15,9 @@ namespace Assfinet.Shared
         public DbSet<VertragHistorie> VertragHistorien { get; set; }
         public DbSet<VertragBank> VertragBanken { get; set; }
 
-        public DbSet<KrvSparte> KrvSparten { get; set; }
-        public DbSet<KrvSparte> DepSparten { get; set; }
-      
+        public DbSet<Sparte> Sparten { get; set; }
+        public DbSet<SparteFields> SparteFields { get; set; }
+        
         public ApplicationDbContext()
         {
         }
@@ -107,41 +107,21 @@ namespace Assfinet.Shared
             modelBuilder.Entity<VertragHistorie>(entity => { entity.HasKey(e => e.VertragId); });
 
             modelBuilder.Entity<VertragBank>(entity => { entity.HasKey(e => e.VertragId); });
-
-            modelBuilder.Entity<KrvSparte>(entity =>
+            
+            modelBuilder.Entity<Sparte>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.HasIndex(e => e.AmsId).IsUnique();
-
-                entity.HasOne<Vertrag>()
-                    .WithMany()
-                    .HasForeignKey(e => e.Key)
-                    .HasPrincipalKey(v => v.Amsidnr)
+                
+                entity.HasMany(e => e.SparteFields)
+                    .WithOne(f => f.Sparte)
+                    .HasForeignKey(f => f.SparteId)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            modelBuilder.Entity<DepSparte>(entity =>
+            modelBuilder.Entity<SparteFields>(entity =>
             {
                 entity.HasKey(e => e.Id);
-                entity.HasIndex(e => e.AmsId).IsUnique();
-
-                entity.HasOne<Vertrag>()
-                    .WithMany()
-                    .HasForeignKey(e => e.Key)
-                    .HasPrincipalKey(v => v.Amsidnr)
-                    .OnDelete(DeleteBehavior.Cascade);
-            });
-
-            modelBuilder.Entity<ImoSparte>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.HasIndex(e => e.AmsId).IsUnique();
-
-                entity.HasOne<Vertrag>()
-                    .WithMany()
-                    .HasForeignKey(e => e.Key)
-                    .HasPrincipalKey(v => v.Amsidnr)
-                    .OnDelete(DeleteBehavior.Cascade);
             });
          
         }

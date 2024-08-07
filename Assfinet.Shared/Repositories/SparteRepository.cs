@@ -1,67 +1,45 @@
 using Assfinet.Shared.Contracts;
+using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Assfinet.Shared.Repositories
 {
     public class SparteRepository : ISparteRepository
     {
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IAppLogger _logger;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public SparteRepository(IServiceProvider serviceProvider, IAppLogger logger)
+        public SparteRepository(ApplicationDbContext applicationDbContext)
         {
-            _serviceProvider = serviceProvider;
-            _logger = logger;
+            _applicationDbContext = applicationDbContext;
         }
 
-        public async Task AddAsync(object sparte)
+        public async Task AddSparteAsync(Sparte sparte)
         {
-            var repositoryType = typeof(IGenericSparteRepository<>).MakeGenericType(sparte.GetType());
-            dynamic? repository = _serviceProvider.GetService(repositoryType);
-
-            if (repository == null)
-            {
-                throw new UnknownSparteException($"Die Sparte '{sparte.GetType().FullName}' ist unbekannt.");
-            }
-
             try
             {
-                await repository.AddAsync((dynamic)sparte);
-            }
-            catch (RepositoryException)
-            {
-                throw;
+                _applicationDbContext.Sparten.Add(sparte);
+                await _applicationDbContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                throw new RepositoryException($"Ein unerwarteter Fehler ist beim Hinzufügen von '{sparte.GetType().Name}' aufgetreten.", ex);
+                throw new RepositoryException(
+                    $"Ein unerwarteter Fehler ist aufgetreten beim erstellen der Spartendaten. AmsId: '{sparte.AmsId}'.",
+                    ex);
             }
         }
 
-        public async Task<object?> GetSparteByAmsIdAsync(Guid amsId, Type sparteType)
+        public async Task<Sparte?> GetSparteByAmsIdAsync(Guid amsId)
         {
-            var repositoryType = typeof(IGenericSparteRepository<>).MakeGenericType(sparteType);
-            dynamic? repository = _serviceProvider.GetService(repositoryType);
-
-            if (repository == null)
-            {
-                _logger.LogError($"Unbekannter Repository-Typ '{sparteType.FullName}'.");
-                throw new UnknownSparteException("Unbekannte Sparte");
-            }
-
             try
             {
-                return await repository.GetSparteByAmsIdAsync(amsId);
-            }
-            catch (RepositoryException ex)
-            {
-                _logger.LogError($"Ein Fehler ist beim Abrufen von '{sparteType.Name}' mit AmsId '{amsId}' aufgetreten.", ex);
-                throw;
+                return await _applicationDbContext.Sparten.FirstOrDefaultAsync(s => s.AmsId == amsId);
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Ein unerwarteter Fehler ist beim Abrufen von '{sparteType.Name}' mit AmsId '{amsId}' aufgetreten.", ex);
-                throw new RepositoryException($"Ein unerwarteter Fehler ist beim Abrufen von '{sparteType.Name}' mit AmsId '{amsId}' aufgetreten.", ex);
+                throw new RepositoryException(
+                    $"Ein unerwarteter Fehler ist aufgetreten beim Abrufen der Spartendaten mit der AmsId '{amsId}'.",
+                    ex);
             }
         }
     }

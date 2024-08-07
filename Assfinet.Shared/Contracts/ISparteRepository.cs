@@ -1,7 +1,10 @@
+using Assfinet.Shared.Entities;
+
 namespace Assfinet.Shared.Contracts;
 
 public interface ISparteRepository
 {
-    Task AddAsync(object sparte);
-    Task<object?> GetSparteByAmsIdAsync(Guid amsId, Type sparteType);
+    Task AddSparteAsync(Sparte sparte);
+    Task<Sparte?> GetSparteByAmsIdAsync(Guid amsId);
+    
 }

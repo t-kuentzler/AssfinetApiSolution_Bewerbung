@@ -28,7 +28,7 @@ namespace Assfinet.Shared.Services
             var sourceType = sparteModel.GetType();
             var targetType = typeof(Sparte);
 
-            // Map basic properties
+            //Allgemeine Spartendaten mappen
             var result = _mapper.Map(sparteModel, sourceType, targetType) as Sparte;
 
             if (result == null)
@@ -37,7 +37,7 @@ namespace Assfinet.Shared.Services
                 throw new InvalidOperationException($"Mapping von '{sourceType.Name}' zu '{targetType.Name}' fehlgeschlagen.");
             }
 
-            // Map additional properties to SparteFields
+            // Spezifische SpartenFields mappen
             result.SparteFields = MapAdditionalProperties((VertragSparteModel)sparteModel);
 
             return result;
@@ -45,15 +45,23 @@ namespace Assfinet.Shared.Services
 
         private ICollection<SparteFields> MapAdditionalProperties(VertragSparteModel src)
         {
+            // Hole alle Eigenschaftsnamen der Sparte-Klasse und speichern sie in einem HashSet
             var sparteProperties = typeof(Sparte).GetProperties().Select(p => p.Name).ToHashSet();
+
+            // Holen alle Eigenschaftsnamen der VertragSparteModel-Klasse und speichern sie in einem HashSet
             var baseProperties = typeof(VertragSparteModel).GetProperties().Select(p => p.Name).ToHashSet();
+
             var additionalFields = new List<SparteFields>();
 
+            // Iterieren über alle Eigenschaften des VertragSparteModel-Objekts
             foreach (var property in src.GetType().GetProperties())
             {
+                // Prüfen, ob die Eigenschaft nicht in Sparte oder VertragSparteModel existiert und lesbar ist, um Duplikate zu vermeiden
                 if (!sparteProperties.Contains(property.Name) && !baseProperties.Contains(property.Name) && property.CanRead)
                 {
+                    // Hole den Wert der Eigenschaft und konvertieren ihn in einen String
                     var value = property.GetValue(src)?.ToString();
+
                     additionalFields.Add(new SparteFields
                     {
                         FieldName = property.Name,
@@ -64,5 +72,6 @@ namespace Assfinet.Shared.Services
 
             return additionalFields;
         }
+
     }
 }

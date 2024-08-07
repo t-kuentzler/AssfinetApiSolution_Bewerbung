@@ -2,9 +2,6 @@ using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Entities;
 using Assfinet.Shared.Models;
 using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Assfinet.Shared.Services
 {

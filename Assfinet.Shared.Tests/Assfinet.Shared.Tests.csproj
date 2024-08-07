@@ -26,4 +26,8 @@
       <ProjectReference Include="..\Assfinet.Shared\Assfinet.Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Validators\" />
+    </ItemGroup>
+
 </Project>

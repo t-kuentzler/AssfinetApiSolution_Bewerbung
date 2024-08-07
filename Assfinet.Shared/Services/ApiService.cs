@@ -154,16 +154,9 @@ namespace Assfinet.Shared.Services
 
         private List<object> ParseSpartenResponse(string responseContent, Spartentypen spartentyp)
         {
-            var sparteModelTypes = new Dictionary<Spartentypen, Type>
-            {
-                { Spartentypen.KRV, typeof(KrvModel) },
-                { Spartentypen.DEP, typeof(DepModel) },
-                { Spartentypen.IMO, typeof(ImoModel) },
-                { Spartentypen.UNF, typeof(UnfModel) }
-                // Weitere Spartentypen hier hinzufügen
-            };
+            var modelType = GetModelTypeForSpartentyp(spartentyp);
 
-            if (!sparteModelTypes.TryGetValue(spartentyp, out var modelType))
+            if (modelType == null)
             {
                 _logger.LogWarning("Unbekannte Sparte");
                 throw new UnknownSparteException("Unbekannte Sparte");
@@ -175,7 +168,14 @@ namespace Assfinet.Shared.Services
             return spartenModels?.Cast<object>().ToList() ?? new List<object>();
         }
 
-
+        private Type? GetModelTypeForSpartentyp(Spartentypen spartentyp)
+        {
+            // Konvertiere den Spartentypen in den entsprechenden Modellnamen (z.B. UNF zu UnfModel)
+            var spartentypName = spartentyp.ToString().ToLower();
+            var modelTypeName = $"Assfinet.Shared.Models.{char.ToUpper(spartentypName[0])}{spartentypName.Substring(1)}Model";
+            return Type.GetType(modelTypeName);
+        }
+        
         private async Task<(string, DateTime, string)> GetBearerToken(HttpClient httpClient, Uri baseUriAuth,
             string userName, string passwort, string clientId, string clientSecret, string? bearerToken,
             DateTime bearerExpireTimeUtc, string? refreshToken)

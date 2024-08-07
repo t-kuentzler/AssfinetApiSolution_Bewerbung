@@ -25,7 +25,7 @@ public class Sparte
 
     [StringLength(40)] public string? License { get; set; }
 
-    // public DateTime? LastSynchronisation { get; set; }
+    public DateTime? LastSynchronisation { get; set; }
     
     public virtual ICollection<SparteFields> SparteFields { get; set; }
 }

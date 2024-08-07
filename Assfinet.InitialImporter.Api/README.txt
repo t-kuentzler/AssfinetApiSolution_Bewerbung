@@ -6,4 +6,4 @@ Diese werden dann in der eigenen lokalen Datenbank gespeichert.
 Das soll nur einmalig Initial ausgeführt werden.
 Mit der Software Assfinet.DailyUpdate werden die täglichen Änderungen synchronisiert.
 
-Für das Hinzufügen neuer Sparten muss der Typ als Enum in 'SpartenTypen' gespeichert werden.
+Für das Hinzufügen neuer Sparten muss der Typ als Enum in 'SpartenTypen' gespeichert und das Model erstellt werden.

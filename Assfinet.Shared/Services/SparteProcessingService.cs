@@ -1,6 +1,5 @@
 using Assfinet.Shared.Contracts;
 using Assfinet.Shared.Entities;
-using FluentValidation;
 
 namespace Assfinet.Shared.Services;
 

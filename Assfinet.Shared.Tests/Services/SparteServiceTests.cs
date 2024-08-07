@@ -3,7 +3,6 @@ using Assfinet.Shared.Entities;
 using Assfinet.Shared.Exceptions;
 using Assfinet.Shared.Services;
 using Assfinet.Shared.Tests.Models;
-using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
 using Moq;
@@ -15,7 +14,6 @@ namespace Assfinet.Shared.Tests.Services
         private readonly Mock<ISparteParserService> _sparteParserServiceMock;
         private readonly Mock<IAppLogger> _loggerMock;
         private readonly Mock<ISparteProcessingService> _sparteProcessingServiceMock;
-        private readonly Mock<IMapper> _mapperMock;
         private readonly SparteService _sparteService;
 
         public SparteServiceTests()
@@ -23,12 +21,10 @@ namespace Assfinet.Shared.Tests.Services
             _sparteParserServiceMock = new Mock<ISparteParserService>();
             _loggerMock = new Mock<IAppLogger>();
             _sparteProcessingServiceMock = new Mock<ISparteProcessingService>();
-            _mapperMock = new Mock<IMapper>();
             _sparteService = new SparteService(
                 _sparteParserServiceMock.Object,
                 _loggerMock.Object,
-                _sparteProcessingServiceMock.Object,
-                _mapperMock.Object
+                _sparteProcessingServiceMock.Object
             );
         }
 

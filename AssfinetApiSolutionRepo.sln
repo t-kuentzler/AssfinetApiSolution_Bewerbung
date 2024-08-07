@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.Shared", "Assfinet.Shared\Assfinet.Shared.csproj", "{B7166F6F-DF88-4C29-9370-86ACF22CCD49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.DailyUpdate", "Assfinet.DailyUpdate\Assfinet.DailyUpdate.csproj", "{53737481-43E9-4F6D-AD41-7E1090A290E3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.InitialImporter.Api", "Assfinet.InitialImporter.Api\Assfinet.InitialImporter.Api.csproj", "{6B109054-F699-4523-875C-8FBFC9783994}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assfinet.Shared.Tests", "Assfinet.Shared.Tests\Assfinet.Shared.Tests.csproj", "{CE69F731-1290-44CC-AC15-E4576B709A06}"
@@ -20,10 +18,6 @@ Global
 		{B7166F6F-DF88-4C29-9370-86ACF22CCD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7166F6F-DF88-4C29-9370-86ACF22CCD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7166F6F-DF88-4C29-9370-86ACF22CCD49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53737481-43E9-4F6D-AD41-7E1090A290E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53737481-43E9-4F6D-AD41-7E1090A290E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53737481-43E9-4F6D-AD41-7E1090A290E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53737481-43E9-4F6D-AD41-7E1090A290E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6B109054-F699-4523-875C-8FBFC9783994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6B109054-F699-4523-875C-8FBFC9783994}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B109054-F699-4523-875C-8FBFC9783994}.Release|Any CPU.ActiveCfg = Release|Any CPU

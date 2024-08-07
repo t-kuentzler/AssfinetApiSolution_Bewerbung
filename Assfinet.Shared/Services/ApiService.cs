@@ -170,7 +170,7 @@ namespace Assfinet.Shared.Services
 
         private Type? GetModelTypeForSpartentyp(Spartentypen spartentyp)
         {
-            // Konvertiere den Spartentypen in den entsprechenden Modellnamen (z.B. UNF zu UnfModel)
+            // Konvertiere den Spartentypen in den entsprechenden Modelnamen (z.B. UNF zu UnfModel)
             var spartentypName = spartentyp.ToString().ToLower();
             var modelTypeName = $"Assfinet.Shared.Models.{char.ToUpper(spartentypName[0])}{spartentypName.Substring(1)}Model";
             return Type.GetType(modelTypeName);

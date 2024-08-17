@@ -45,7 +45,7 @@ namespace Assfinet.Shared.Services
 
         private ICollection<SparteFields> MapAdditionalProperties(VertragSparteModel src)
         {
-            // Hole alle Eigenschaftsnamen der Sparte-Klasse und speichern sie in einem HashSet
+            // Hole alle Eigenschaftsnamen der Sparte-Klasse und speichern sie in einem HashSet(Vermeidet duplikate)
             var sparteProperties = typeof(Sparte).GetProperties().Select(p => p.Name).ToHashSet();
 
             // Holen alle Eigenschaftsnamen der VertragSparteModel-Klasse und speichern sie in einem HashSet
@@ -57,6 +57,7 @@ namespace Assfinet.Shared.Services
             foreach (var property in src.GetType().GetProperties())
             {
                 // Prüfen, ob die Eigenschaft nicht in Sparte oder VertragSparteModel existiert und lesbar ist, um Duplikate zu vermeiden
+                //Wenn nicht vorhanden bedeutet es, dass es eine Spartenspezifische Eigenschaft ist, die in SparteFields gespeichert werden soll
                 if (!sparteProperties.Contains(property.Name) && !baseProperties.Contains(property.Name) && property.CanRead)
                 {
                     // Hole den Wert der Eigenschaft und konvertieren ihn in einen String
